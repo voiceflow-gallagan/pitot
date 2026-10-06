@@ -1,0 +1,105 @@
+{
+  "researchDate": "2026-10-06",
+  "claudeCodeVersionChecked": "2.1.291",
+  "docsChecked": [
+    "https://code.claude.com/docs/en/settings-reference.md",
+    "https://code.claude.com/docs/en/env-vars.md",
+    "https://www.schemastore.org/claude-code-settings.json"
+  ],
+  "note": "Names only. These keys are not documented, are not an endorsement, and may change or disappear. Pitot shows them read-only.",
+  "keys": [
+    {
+      "name": "CLAUDE_CODE_DONT_INHERIT_ENV",
+      "kind": "env",
+      "status": "unverified",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "CLAUDE_TMPDIR",
+      "kind": "env",
+      "status": "unverified",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "autoDreamEnabled",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "autoUploadSessions",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "breakReminder",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "daemonColdStart",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "idleCompaction",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "precomputeCompactionEnabled",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "quietHours",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "requireCoworkFullVmSandbox",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["schema"],
+      "notes": "Listed in the public settings schema, but not in the docs."
+    },
+    {
+      "name": "showMessageTimestamps",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "skippedMarketplaces",
+      "kind": "setting",
+      "status": "unverified",
+      "seenIn": ["schema"],
+      "notes": "Listed in the public settings schema, but not in the docs."
+    },
+    {
+      "name": "skippedPlugins",
+      "kind": "setting",
+      "status": "unverified",
+      "seenIn": ["schema"],
+      "notes": "Listed in the public settings schema, but not in the docs."
+    },
+    {
+      "name": "todoFeatureEnabled",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    },
+    {
+      "name": "xaaIdp",
+      "kind": "setting",
+      "status": "hidden",
+      "seenIn": ["binary"]
+    }
+  ]
+}

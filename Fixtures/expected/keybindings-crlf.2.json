@@ -1,0 +1,10 @@
+{
+    "bindings": [
+        {
+            "context": "Global",
+            "bindings": {
+                "ctrl+t": "app:toggleTodos"
+            }
+        }
+    ]
+}

@@ -1,0 +1,768 @@
+[
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "model"
+    ],
+    "value": "changed"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "voiceEnabled"
+    ],
+    "value": false
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "effortLevel"
+    ],
+    "value": "high"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "newTopLevel"
+    ],
+    "value": true
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "env",
+      "NEW_VAR"
+    ],
+    "value": "1"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "brandNew",
+      "child",
+      "leaf"
+    ],
+    "value": "v"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "remove",
+    "path": [
+      "includeCoAuthoredBy"
+    ]
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "remove",
+    "path": [
+      "model"
+    ]
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "remove",
+    "path": [
+      "modelSettings",
+      "example-model",
+      "effortLevel"
+    ],
+    "swiftExpected": "Fixtures/expected-swift/settings-synthetic.9.json"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "tui"
+    ],
+    "value": "fullscreen"
+  },
+  {
+    "fixture": "crlf",
+    "op": "set",
+    "path": [
+      "theme"
+    ],
+    "value": "light"
+  },
+  {
+    "fixture": "crlf",
+    "op": "set",
+    "path": [
+      "env",
+      "B"
+    ],
+    "value": "2"
+  },
+  {
+    "fixture": "crlf",
+    "op": "remove",
+    "path": [
+      "verbose"
+    ]
+  },
+  {
+    "fixture": "crlf",
+    "op": "set",
+    "path": [
+      "added"
+    ],
+    "value": 1
+  },
+  {
+    "fixture": "tabs",
+    "op": "set",
+    "path": [
+      "verbose"
+    ],
+    "value": false
+  },
+  {
+    "fixture": "tabs",
+    "op": "set",
+    "path": [
+      "env",
+      "B"
+    ],
+    "value": "2"
+  },
+  {
+    "fixture": "tabs",
+    "op": "remove",
+    "path": [
+      "env",
+      "A"
+    ],
+    "swiftExpected": "Fixtures/expected-swift/tabs.3.json"
+  },
+  {
+    "fixture": "single-line",
+    "op": "set",
+    "path": [
+      "theme"
+    ],
+    "value": "light"
+  },
+  {
+    "fixture": "single-line",
+    "op": "set",
+    "path": [
+      "added"
+    ],
+    "value": true,
+    "swiftExpected": "Fixtures/expected-swift/single-line.2.json"
+  },
+  {
+    "fixture": "single-line",
+    "op": "remove",
+    "path": [
+      "verbose"
+    ],
+    "swiftExpected": "Fixtures/expected-swift/single-line.3.json"
+  },
+  {
+    "fixture": "no-trailing-newline",
+    "op": "set",
+    "path": [
+      "theme"
+    ],
+    "value": "light"
+  },
+  {
+    "fixture": "no-trailing-newline",
+    "op": "set",
+    "path": [
+      "added"
+    ],
+    "value": true
+  },
+  {
+    "fixture": "no-trailing-newline",
+    "op": "remove",
+    "path": [
+      "verbose"
+    ]
+  },
+  {
+    "fixture": "integer-like-keys",
+    "op": "set",
+    "path": [
+      "10"
+    ],
+    "value": 99
+  },
+  {
+    "fixture": "integer-like-keys",
+    "op": "set",
+    "path": [
+      "2"
+    ],
+    "value": "two"
+  },
+  {
+    "fixture": "integer-like-keys",
+    "op": "set",
+    "path": [
+      "z"
+    ],
+    "value": 0,
+    "swiftExpected": "Fixtures/expected-swift/integer-like-keys.3.json"
+  },
+  {
+    "fixture": "integer-like-keys",
+    "op": "remove",
+    "path": [
+      "a"
+    ],
+    "swiftExpected": "Fixtures/expected-swift/integer-like-keys.4.json"
+  },
+  {
+    "fixture": "numbers",
+    "op": "set",
+    "path": [
+      "name"
+    ],
+    "value": "changed"
+  },
+  {
+    "fixture": "numbers",
+    "op": "set",
+    "path": [
+      "f"
+    ],
+    "value": 5
+  },
+  {
+    "fixture": "numbers",
+    "op": "remove",
+    "path": [
+      "b"
+    ]
+  },
+  {
+    "fixture": "unicode-escapes",
+    "op": "set",
+    "path": [
+      "flag"
+    ],
+    "value": true
+  },
+  {
+    "fixture": "unicode-escapes",
+    "op": "set",
+    "path": [
+      "added"
+    ],
+    "value": "é"
+  },
+  {
+    "fixture": "env-block",
+    "op": "set",
+    "path": [
+      "env",
+      "SECOND"
+    ],
+    "value": "changed"
+  },
+  {
+    "fixture": "env-block",
+    "op": "set",
+    "path": [
+      "env",
+      "FOURTH"
+    ],
+    "value": "four"
+  },
+  {
+    "fixture": "env-block",
+    "op": "remove",
+    "path": [
+      "env",
+      "THIRD"
+    ]
+  },
+  {
+    "fixture": "deep-nest",
+    "op": "set",
+    "path": [
+      "l1",
+      "l2",
+      "l3",
+      "l4",
+      "l5"
+    ],
+    "value": "changed"
+  },
+  {
+    "fixture": "deep-nest",
+    "op": "set",
+    "path": [
+      "l1",
+      "l2",
+      "sibling"
+    ],
+    "value": 1
+  },
+  {
+    "fixture": "nested-arrays",
+    "op": "set",
+    "path": [
+      "flag"
+    ],
+    "value": false
+  },
+  {
+    "fixture": "nested-arrays",
+    "op": "remove",
+    "path": [
+      "list"
+    ]
+  },
+  {
+    "fixture": "empty-object",
+    "op": "set",
+    "path": [
+      "a"
+    ],
+    "value": 1
+  },
+  {
+    "fixture": "empty-object",
+    "op": "set",
+    "path": [
+      "a",
+      "b"
+    ],
+    "value": 1
+  },
+  {
+    "fixture": "keybindings",
+    "op": "insert",
+    "path": [
+      "bindings",
+      -1
+    ],
+    "value": {
+      "context": "Help",
+      "bindings": {
+        "ctrl+h": "help:dismiss"
+      }
+    }
+  },
+  {
+    "fixture": "keybindings",
+    "op": "insert",
+    "path": [
+      "bindings",
+      0
+    ],
+    "value": {
+      "context": "Autocomplete",
+      "bindings": {}
+    }
+  },
+  {
+    "fixture": "keybindings",
+    "op": "insert",
+    "path": [
+      "bindings",
+      1
+    ],
+    "value": {
+      "context": "Confirmation",
+      "bindings": {
+        "y": "confirm:yes"
+      }
+    }
+  },
+  {
+    "fixture": "keybindings",
+    "op": "set",
+    "path": [
+      "bindings",
+      1
+    ],
+    "value": {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+g": "chat:submit"
+      }
+    }
+  },
+  {
+    "fixture": "keybindings",
+    "op": "remove",
+    "path": [
+      "bindings",
+      0
+    ]
+  },
+  {
+    "fixture": "keybindings",
+    "op": "remove",
+    "path": [
+      "bindings",
+      1
+    ]
+  },
+  {
+    "fixture": "keybindings",
+    "op": "set",
+    "path": [
+      "bindings",
+      0,
+      "bindings",
+      "ctrl+k"
+    ],
+    "value": "app:new"
+  },
+  {
+    "fixture": "keybindings",
+    "op": "set",
+    "path": [
+      "bindings",
+      1,
+      "bindings",
+      "ctrl+e"
+    ],
+    "value": null
+  },
+  {
+    "fixture": "keybindings",
+    "op": "remove",
+    "path": [
+      "bindings",
+      0,
+      "bindings",
+      "ctrl+o"
+    ]
+  },
+  {
+    "fixture": "keybindings",
+    "op": "remove",
+    "path": [
+      "bindings",
+      1,
+      "bindings",
+      "ctrl+e"
+    ],
+    "swiftExpected": "Fixtures/expected-swift/keybindings.10.json"
+  },
+  {
+    "fixture": "keybindings",
+    "op": "set",
+    "path": [
+      "bindings",
+      1,
+      "context"
+    ],
+    "value": "Help"
+  },
+  {
+    "fixture": "keybindings-tabs",
+    "op": "insert",
+    "path": [
+      "bindings",
+      -1
+    ],
+    "value": {
+      "context": "Help",
+      "bindings": {
+        "ctrl+h": "help:dismiss"
+      }
+    }
+  },
+  {
+    "fixture": "keybindings-tabs",
+    "op": "remove",
+    "path": [
+      "bindings",
+      0
+    ]
+  },
+  {
+    "fixture": "keybindings-tabs",
+    "op": "set",
+    "path": [
+      "bindings",
+      0,
+      "bindings",
+      "ctrl+k"
+    ],
+    "value": "app:new"
+  },
+  {
+    "fixture": "keybindings-crlf",
+    "op": "insert",
+    "path": [
+      "bindings",
+      -1
+    ],
+    "value": {
+      "context": "Help",
+      "bindings": {
+        "ctrl+h": "help:dismiss"
+      }
+    }
+  },
+  {
+    "fixture": "keybindings-crlf",
+    "op": "remove",
+    "path": [
+      "bindings",
+      1
+    ]
+  },
+  {
+    "fixture": "keybindings-crlf",
+    "op": "insert",
+    "path": [
+      "bindings",
+      0
+    ],
+    "value": {
+      "context": "Help",
+      "bindings": {
+        "ctrl+h": "help:dismiss"
+      }
+    }
+  },
+  {
+    "fixture": "array-single-line",
+    "op": "set",
+    "path": [
+      "list",
+      1
+    ],
+    "value": 5
+  },
+  {
+    "fixture": "array-single-line",
+    "op": "insert",
+    "path": [
+      "list",
+      -1
+    ],
+    "value": 4,
+    "swiftExpected": "Fixtures/expected-swift/array-single-line.2.json"
+  },
+  {
+    "fixture": "array-single-line",
+    "op": "remove",
+    "path": [
+      "list",
+      0
+    ],
+    "swiftExpected": "Fixtures/expected-swift/array-single-line.3.json"
+  },
+  {
+    "fixture": "array-single-line",
+    "op": "insert",
+    "path": [
+      "words",
+      0
+    ],
+    "value": "z",
+    "swiftExpected": "Fixtures/expected-swift/array-single-line.4.json"
+  },
+  {
+    "fixture": "array-single-line",
+    "op": "remove",
+    "path": [
+      "one",
+      0
+    ],
+    "swiftExpected": "Fixtures/expected-swift/array-single-line.5.json"
+  },
+  {
+    "fixture": "array-empty",
+    "op": "insert",
+    "path": [
+      "bindings",
+      -1
+    ],
+    "value": {
+      "context": "Global",
+      "bindings": {
+        "ctrl+t": "app:toggleTodos"
+      }
+    }
+  },
+  {
+    "fixture": "array-empty",
+    "op": "insert",
+    "path": [
+      "bindings",
+      0
+    ],
+    "value": "x"
+  },
+  {
+    "fixture": "array-numbers",
+    "op": "set",
+    "path": [
+      "values",
+      1
+    ],
+    "value": 5
+  },
+  {
+    "fixture": "array-numbers",
+    "op": "remove",
+    "path": [
+      "values",
+      0
+    ]
+  },
+  {
+    "fixture": "array-numbers",
+    "op": "insert",
+    "path": [
+      "values",
+      -1
+    ],
+    "value": 7
+  },
+  {
+    "fixture": "array-numbers",
+    "op": "insert",
+    "path": [
+      "values",
+      2
+    ],
+    "value": 42
+  },
+  {
+    "fixture": "array-numbers",
+    "op": "remove",
+    "path": [
+      "inline",
+      1
+    ],
+    "swiftExpected": "Fixtures/expected-swift/array-numbers.5.json"
+  },
+  {
+    "fixture": "nested-array-objects",
+    "op": "insert",
+    "path": [
+      "groups",
+      0,
+      "items",
+      -1
+    ],
+    "value": {
+      "id": 3
+    }
+  },
+  {
+    "fixture": "nested-array-objects",
+    "op": "remove",
+    "path": [
+      "groups",
+      0,
+      "items",
+      0
+    ]
+  },
+  {
+    "fixture": "nested-array-objects",
+    "op": "set",
+    "path": [
+      "groups",
+      0,
+      "items",
+      1,
+      "id"
+    ],
+    "value": 9
+  },
+  {
+    "fixture": "nested-array-objects",
+    "op": "insert",
+    "path": [
+      "groups",
+      1,
+      "items",
+      -1
+    ],
+    "value": {
+      "id": 1
+    }
+  },
+  {
+    "fixture": "nested-array-objects",
+    "op": "remove",
+    "path": [
+      "groups",
+      1
+    ]
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "insert",
+    "path": [
+      "permissions",
+      "allow",
+      -1
+    ],
+    "value": "Bash(ls:*)"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "insert",
+    "path": [
+      "permissions",
+      "deny",
+      -1
+    ],
+    "value": "Bash(rm:*)"
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "set",
+    "path": [
+      "hooks",
+      "Notification",
+      0,
+      "hooks",
+      0,
+      "timeout"
+    ],
+    "value": 30
+  },
+  {
+    "fixture": "settings-synthetic",
+    "op": "remove",
+    "path": [
+      "hooks",
+      "Notification",
+      1
+    ]
+  },
+  {
+    "fixture": "nested-arrays",
+    "op": "insert",
+    "path": [
+      "list",
+      -1
+    ],
+    "value": "c",
+    "swiftExpected": "Fixtures/expected-swift/nested-arrays.3.json"
+  },
+  {
+    "fixture": "nested-arrays",
+    "op": "set",
+    "path": [
+      "matrix",
+      0
+    ],
+    "value": [
+      9
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+.build/
+DerivedData/
+*.xcodeproj
+node_modules/
+.DS_Store
+
+# local Claude Code settings are personal
+.claude/settings.local.json
+.swiftpm/
+
+# release artifacts (DMGs, appcasts, notarization logs)
+Tools/release/out/
+Tools/catalog-check/.cache/
+.claude/

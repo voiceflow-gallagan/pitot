@@ -1,0 +1,22 @@
+{
+    "bindings": [
+        {
+            "context": "Global",
+            "bindings": {
+                "ctrl+t": "app:toggleTodos"
+            }
+        },
+        {
+            "context": "Chat",
+            "bindings": {
+                "ctrl+e": null
+            }
+        },
+        {
+            "context": "Help",
+            "bindings": {
+                "ctrl+h": "help:dismiss"
+            }
+        }
+    ]
+}

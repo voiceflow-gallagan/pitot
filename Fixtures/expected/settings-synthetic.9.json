@@ -1,0 +1,1128 @@
+{
+  "env": {
+    "EXAMPLE_VAR_1": "example-value-1",
+    "EXAMPLE_VAR_2": "example-value-2",
+    "EXAMPLE_VAR_3": "example-value-3",
+    "EXAMPLE_VAR_4": "40",
+    "EXAMPLE_VAR_5": "example-value-5",
+    "EXAMPLE_VAR_6": "example-value-6",
+    "EXAMPLE_VAR_7": "example-value-7",
+    "EXAMPLE_VAR_8": "80",
+    "EXAMPLE_VAR_9": "example-value-9",
+    "EXAMPLE_VAR_10": "example-value-10",
+    "EXAMPLE_VAR_11": "example-value-11",
+    "EXAMPLE_VAR_12": "120",
+    "EXAMPLE_VAR_13": "example-value-13",
+    "EXAMPLE_VAR_14": "example-value-14",
+    "EXAMPLE_VAR_15": "example-value-15",
+    "EXAMPLE_VAR_16": "160",
+    "EXAMPLE_VAR_17": "example-value-17",
+    "EXAMPLE_VAR_18": "example-value-18",
+    "EXAMPLE_VAR_19": "example-value-19",
+    "EXAMPLE_VAR_20": "200",
+    "EXAMPLE_VAR_21": "example-value-21",
+    "EXAMPLE_VAR_22": "example-value-22",
+    "EXAMPLE_VAR_23": "example-value-23",
+    "EXAMPLE_VAR_24": "240",
+    "EXAMPLE_VAR_25": "example-value-25",
+    "EXAMPLE_VAR_26": "example-value-26",
+    "EXAMPLE_VAR_27": "example-value-27",
+    "EXAMPLE_VAR_28": "280"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(example-tool-1:*)",
+      "Bash(example-tool-2:*)",
+      "Bash(example-tool-3:*)",
+      "Bash(example-tool-4:*)",
+      "Bash(example-tool-5:*)",
+      "Bash(example-tool-6:*)",
+      "Bash(example-tool-7:*)",
+      "Bash(example-tool-8:*)",
+      "Bash(example-tool-9:*)",
+      "Bash(example-tool-10:*)",
+      "Bash(example-tool-11:*)",
+      "Bash(example-tool-12:*)",
+      "Bash(example-tool-13:*)",
+      "Bash(example-tool-14:*)",
+      "Bash(example-tool-15:*)",
+      "Bash(example-tool-16:*)",
+      "Bash(example-tool-17:*)",
+      "Bash(example-tool-18:*)",
+      "Bash(example-tool-19:*)",
+      "Bash(example-tool-20:*)",
+      "Bash(example-tool-21:*)",
+      "Bash(example-tool-22:*)",
+      "Bash(example-tool-23:*)",
+      "Bash(example-tool-24:*)",
+      "Bash(example-tool-25:*)",
+      "Bash(example-tool-26:*)",
+      "Bash(example-tool-27:*)",
+      "Bash(example-tool-28:*)",
+      "Bash(example-tool-29:*)",
+      "Bash(example-tool-30:*)",
+      "Bash(example-tool-31:*)",
+      "Bash(example-tool-32:*)",
+      "Bash(example-tool-33:*)",
+      "Bash(example-tool-34:*)",
+      "Bash(example-tool-35:*)",
+      "Bash(example-tool-36:*)",
+      "Bash(example-tool-37:*)",
+      "Bash(example-tool-38:*)",
+      "Bash(example-tool-39:*)",
+      "Bash(example-tool-40:*)",
+      "Bash(example-tool-41:*)",
+      "Bash(example-tool-42:*)",
+      "Bash(example-tool-43:*)",
+      "Bash(example-tool-44:*)",
+      "Bash(example-tool-45:*)",
+      "Bash(example-tool-46:*)",
+      "Bash(example-tool-47:*)",
+      "Bash(example-tool-48:*)",
+      "Bash(example-tool-49:*)",
+      "Bash(example-tool-50:*)",
+      "Bash(example-tool-51:*)",
+      "Bash(example-tool-52:*)",
+      "Bash(example-tool-53:*)",
+      "Bash(example-tool-54:*)",
+      "Bash(example-tool-55:*)",
+      "Bash(example-tool-56:*)",
+      "Bash(example-tool-57:*)",
+      "Bash(example-tool-58:*)",
+      "Bash(example-tool-59:*)",
+      "Bash(example-tool-60:*)",
+      "Bash(example-tool-61:*)",
+      "Bash(example-tool-62:*)",
+      "Bash(example-tool-63:*)",
+      "Bash(example-tool-64:*)",
+      "Bash(example-tool-65:*)",
+      "Bash(example-tool-66:*)",
+      "Bash(example-tool-67:*)",
+      "Bash(example-tool-68:*)",
+      "Bash(example-tool-69:*)",
+      "Bash(example-tool-70:*)",
+      "Bash(example-tool-71:*)",
+      "Bash(example-tool-72:*)",
+      "Bash(example-tool-73:*)",
+      "Bash(example-tool-74:*)",
+      "Bash(example-tool-75:*)",
+      "Bash(example-tool-76:*)",
+      "Bash(example-tool-77:*)",
+      "Bash(example-tool-78:*)",
+      "Bash(example-tool-79:*)",
+      "Bash(example-tool-80:*)",
+      "Bash(example-tool-81:*)",
+      "Bash(example-tool-82:*)",
+      "Bash(example-tool-83:*)",
+      "Bash(example-tool-84:*)",
+      "Bash(example-tool-85:*)",
+      "Bash(example-tool-86:*)",
+      "Bash(example-tool-87:*)",
+      "Bash(example-tool-88:*)",
+      "Bash(example-tool-89:*)",
+      "Bash(example-tool-90:*)",
+      "Bash(echo:*)",
+      "Bash(ls:*)",
+      "Bash(pwd:*)",
+      "Bash(printf:*)",
+      "Bash(true:*)",
+      "Bash(date:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Read(./docs/example-section-1/**)",
+      "Read(./docs/example-section-2/**)",
+      "Read(./docs/example-section-3/**)",
+      "Read(./docs/example-section-4/**)",
+      "Read(./docs/example-section-5/**)",
+      "Read(./docs/example-section-6/**)",
+      "Read(./docs/example-section-7/**)",
+      "Read(./docs/example-section-8/**)",
+      "Read(./docs/example-section-9/**)",
+      "Read(./docs/example-section-10/**)",
+      "Read(./docs/example-section-11/**)",
+      "Read(./docs/example-section-12/**)",
+      "Read(./docs/example-section-13/**)",
+      "Read(./docs/example-section-14/**)",
+      "Read(./docs/example-section-15/**)",
+      "Read(./docs/example-section-16/**)",
+      "Read(./docs/example-section-17/**)",
+      "Read(./docs/example-section-18/**)",
+      "Read(./docs/example-section-19/**)",
+      "Read(./docs/example-section-20/**)",
+      "Read(./docs/example-section-21/**)",
+      "Read(./docs/example-section-22/**)",
+      "Read(./docs/example-section-23/**)",
+      "Read(./docs/example-section-24/**)",
+      "Read(./docs/example-section-25/**)",
+      "Read(./docs/example-section-26/**)",
+      "Read(./docs/example-section-27/**)",
+      "Read(./docs/example-section-28/**)",
+      "Read(./docs/example-section-29/**)",
+      "Read(./docs/example-section-30/**)",
+      "Read(./docs/example-section-31/**)",
+      "Read(./docs/example-section-32/**)",
+      "Read(./docs/example-section-33/**)",
+      "Read(./docs/example-section-34/**)",
+      "Read(./docs/example-section-35/**)",
+      "Read(./docs/example-section-36/**)",
+      "Read(./docs/example-section-37/**)",
+      "Read(./docs/example-section-38/**)",
+      "Read(./docs/example-section-39/**)",
+      "Read(./docs/example-section-40/**)",
+      "Read(./docs/example-section-41/**)",
+      "Read(./docs/example-section-42/**)",
+      "Read(./docs/example-section-43/**)",
+      "Read(./docs/example-section-44/**)",
+      "Read(./docs/example-section-45/**)",
+      "Read(./docs/example-section-46/**)",
+      "Read(./docs/example-section-47/**)",
+      "Read(./docs/example-section-48/**)",
+      "Read(./docs/example-section-49/**)",
+      "Read(./docs/example-section-50/**)",
+      "Read(./docs/example-section-51/**)",
+      "Read(./docs/example-section-52/**)",
+      "Read(./docs/example-section-53/**)",
+      "Read(./docs/example-section-54/**)",
+      "Read(./docs/example-section-55/**)",
+      "Read(./docs/example-section-56/**)",
+      "Read(./docs/example-section-57/**)",
+      "Read(./docs/example-section-58/**)",
+      "Read(./docs/example-section-59/**)",
+      "Read(./docs/example-section-60/**)",
+      "Edit(./src/example-module-1/**)",
+      "Edit(./src/example-module-2/**)",
+      "Edit(./src/example-module-3/**)",
+      "Edit(./src/example-module-4/**)",
+      "Edit(./src/example-module-5/**)",
+      "Edit(./src/example-module-6/**)",
+      "Edit(./src/example-module-7/**)",
+      "Edit(./src/example-module-8/**)",
+      "Edit(./src/example-module-9/**)",
+      "Edit(./src/example-module-10/**)",
+      "Edit(./src/example-module-11/**)",
+      "Edit(./src/example-module-12/**)",
+      "Edit(./src/example-module-13/**)",
+      "Edit(./src/example-module-14/**)",
+      "Edit(./src/example-module-15/**)",
+      "Edit(./src/example-module-16/**)",
+      "Edit(./src/example-module-17/**)",
+      "Edit(./src/example-module-18/**)",
+      "Edit(./src/example-module-19/**)",
+      "Edit(./src/example-module-20/**)",
+      "Edit(./src/example-module-21/**)",
+      "Edit(./src/example-module-22/**)",
+      "Edit(./src/example-module-23/**)",
+      "Edit(./src/example-module-24/**)",
+      "Edit(./src/example-module-25/**)",
+      "Edit(./src/example-module-26/**)",
+      "Edit(./src/example-module-27/**)",
+      "Edit(./src/example-module-28/**)",
+      "Edit(./src/example-module-29/**)",
+      "Edit(./src/example-module-30/**)",
+      "Edit(./src/example-module-31/**)",
+      "Edit(./src/example-module-32/**)",
+      "Edit(./src/example-module-33/**)",
+      "Edit(./src/example-module-34/**)",
+      "Edit(./src/example-module-35/**)",
+      "Edit(./src/example-module-36/**)",
+      "Edit(./src/example-module-37/**)",
+      "Edit(./src/example-module-38/**)",
+      "Edit(./src/example-module-39/**)",
+      "Edit(./src/example-module-40/**)",
+      "Edit(./src/example-module-41/**)",
+      "Edit(./src/example-module-42/**)",
+      "Edit(./src/example-module-43/**)",
+      "Edit(./src/example-module-44/**)",
+      "Edit(./src/example-module-45/**)",
+      "Edit(./src/example-module-46/**)",
+      "Edit(./src/example-module-47/**)",
+      "Edit(./src/example-module-48/**)",
+      "Edit(./src/example-module-49/**)",
+      "Edit(./src/example-module-50/**)",
+      "WebFetch(domain:docs1.example.com)",
+      "WebFetch(domain:docs2.example.com)",
+      "WebFetch(domain:docs3.example.com)",
+      "WebFetch(domain:docs4.example.com)",
+      "WebFetch(domain:docs5.example.com)",
+      "WebFetch(domain:docs6.example.com)",
+      "WebFetch(domain:docs7.example.com)",
+      "WebFetch(domain:docs8.example.com)",
+      "WebFetch(domain:docs9.example.com)",
+      "WebFetch(domain:docs10.example.com)",
+      "WebFetch(domain:docs11.example.com)",
+      "WebFetch(domain:docs12.example.com)",
+      "WebFetch(domain:docs13.example.com)",
+      "WebFetch(domain:docs14.example.com)",
+      "WebFetch(domain:docs15.example.com)",
+      "WebFetch(domain:docs16.example.com)",
+      "WebFetch(domain:docs17.example.com)",
+      "WebFetch(domain:docs18.example.com)",
+      "WebFetch(domain:docs19.example.com)",
+      "WebFetch(domain:docs20.example.com)",
+      "WebFetch(domain:docs21.example.com)",
+      "WebFetch(domain:docs22.example.com)",
+      "WebFetch(domain:docs23.example.com)",
+      "WebFetch(domain:docs24.example.com)",
+      "WebFetch(domain:docs25.example.com)",
+      "WebFetch(domain:docs26.example.com)",
+      "WebFetch(domain:docs27.example.com)",
+      "WebFetch(domain:docs28.example.com)",
+      "WebFetch(domain:docs29.example.com)",
+      "WebFetch(domain:docs30.example.com)",
+      "mcp__example-server-2__example_action_1",
+      "mcp__example-server-3__example_action_2",
+      "mcp__example-server-4__example_action_3",
+      "mcp__example-server-5__example_action_4",
+      "mcp__example-server-1__example_action_5",
+      "mcp__example-server-2__example_action_6",
+      "mcp__example-server-3__example_action_7",
+      "mcp__example-server-4__example_action_8",
+      "mcp__example-server-5__example_action_9",
+      "mcp__example-server-1__example_action_10",
+      "mcp__example-server-2__example_action_11",
+      "mcp__example-server-3__example_action_12",
+      "mcp__example-server-4__example_action_13",
+      "mcp__example-server-5__example_action_14",
+      "mcp__example-server-1__example_action_15",
+      "mcp__example-server-2__example_action_16",
+      "mcp__example-server-3__example_action_17",
+      "mcp__example-server-4__example_action_18",
+      "mcp__example-server-5__example_action_19",
+      "mcp__example-server-1__example_action_20",
+      "mcp__example-server-2__example_action_21",
+      "mcp__example-server-3__example_action_22",
+      "mcp__example-server-4__example_action_23",
+      "mcp__example-server-5__example_action_24",
+      "mcp__example-server-1__example_action_25",
+      "mcp__example-server-2__example_action_26",
+      "mcp__example-server-3__example_action_27",
+      "mcp__example-server-4__example_action_28",
+      "mcp__example-server-5__example_action_29",
+      "mcp__example-server-1__example_action_30",
+      "mcp__example-server-2__example_action_31",
+      "mcp__example-server-3__example_action_32",
+      "mcp__example-server-4__example_action_33",
+      "mcp__example-server-5__example_action_34",
+      "mcp__example-server-1__example_action_35",
+      "mcp__example-server-2__example_action_36",
+      "mcp__example-server-3__example_action_37",
+      "mcp__example-server-4__example_action_38",
+      "mcp__example-server-5__example_action_39",
+      "mcp__example-server-1__example_action_40"
+    ],
+    "deny": [
+      "Read(./secrets/example-1/**)",
+      "Read(./secrets/example-2/**)",
+      "Read(./secrets/example-3/**)",
+      "Read(./secrets/example-4/**)",
+      "Read(./secrets/example-5/**)",
+      "Read(./secrets/example-6/**)",
+      "Read(./secrets/example-7/**)",
+      "Read(./secrets/example-8/**)",
+      "Read(./secrets/example-9/**)",
+      "Read(./secrets/example-10/**)",
+      "Read(./secrets/example-11/**)",
+      "Read(./secrets/example-12/**)",
+      "Read(./secrets/example-13/**)",
+      "Read(./secrets/example-14/**)",
+      "Read(./secrets/example-15/**)",
+      "Read(./secrets/example-16/**)",
+      "Read(./secrets/example-17/**)",
+      "Read(./secrets/example-18/**)",
+      "Read(./secrets/example-19/**)",
+      "Read(./secrets/example-20/**)",
+      "Read(./secrets/example-21/**)",
+      "Read(./secrets/example-22/**)",
+      "Read(./secrets/example-23/**)",
+      "Read(./secrets/example-24/**)",
+      "Bash(example-danger-1:*)",
+      "Bash(example-danger-2:*)",
+      "Bash(example-danger-3:*)",
+      "Bash(example-danger-4:*)",
+      "Bash(example-danger-5:*)",
+      "Bash(example-danger-6:*)",
+      "Bash(example-danger-7:*)",
+      "Bash(example-danger-8:*)",
+      "Bash(example-danger-9:*)",
+      "Bash(example-danger-10:*)",
+      "Bash(example-danger-11:*)",
+      "Bash(example-danger-12:*)",
+      "Bash(example-danger-13:*)",
+      "Bash(example-danger-14:*)",
+      "Bash(example-danger-15:*)",
+      "Bash(example-danger-16:*)"
+    ],
+    "ask": [
+      "Write(./example-output-1/**)",
+      "Write(./example-output-2/**)",
+      "Write(./example-output-3/**)",
+      "Write(./example-output-4/**)",
+      "Write(./example-output-5/**)",
+      "Write(./example-output-6/**)",
+      "Write(./example-output-7/**)",
+      "Write(./example-output-8/**)",
+      "Write(./example-output-9/**)",
+      "Write(./example-output-10/**)",
+      "Write(./example-output-11/**)",
+      "Write(./example-output-12/**)",
+      "Write(./example-output-13/**)",
+      "Write(./example-output-14/**)",
+      "Write(./example-output-15/**)",
+      "Write(./example-output-16/**)",
+      "Write(./example-output-17/**)",
+      "Write(./example-output-18/**)",
+      "Write(./example-output-19/**)",
+      "Write(./example-output-20/**)",
+      "WebFetch(domain:upload1.example.org)",
+      "WebFetch(domain:upload2.example.org)",
+      "WebFetch(domain:upload3.example.org)",
+      "WebFetch(domain:upload4.example.org)",
+      "WebFetch(domain:upload5.example.org)",
+      "WebFetch(domain:upload6.example.org)",
+      "WebFetch(domain:upload7.example.org)",
+      "WebFetch(domain:upload8.example.org)",
+      "WebFetch(domain:upload9.example.org)",
+      "WebFetch(domain:upload10.example.org)"
+    ],
+    "additionalDirectories": [],
+    "defaultMode": "default"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PreToolUse 3 done\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-4",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo pretooluse-step-4-1 && echo pretooluse-step-4-2 && echo pretooluse-step-4-3 && echo pretooluse-step-4-4 && echo pretooluse-step-4-5 && echo pretooluse-step-4-6 && echo pretooluse-step-4-7 && echo pretooluse-step-4-8 && echo pretooluse-step-4-9 && echo pretooluse-step-4-10 && echo pretooluse-step-4-11 && echo pretooluse-step-4-12 && echo pretooluse-step-4-13 && echo pretooluse-step-4-14 && echo pretooluse-step-4-15 && echo pretooluse-step-4-16 && echo pretooluse-step-4-17 && echo pretooluse-step-4-18 && echo pretooluse-step-4-19 && echo pretooluse-step-4-20 && echo pretooluse-step-4-21 && echo pretooluse-step-4-22 && echo pretooluse-step-4-23 && echo pretooluse-step-4-24 && echo pretooluse-step-4-25 && echo pretooluse-step-4-26 && echo pretooluse-step-4-27 && echo pretooluse-step-4-28 && echo pretooluse-step-4-29 && echo pretooluse-step-4-30 && echo pretooluse-step-4-31 && echo pretooluse-step-4-32 && echo pretooluse-step-4-33 && echo pretooluse-step-4-34 && echo pretooluse-step-4-35 && echo pretooluse-step-4-36 && echo pretooluse-step-4-37 && echo pretooluse-step-4-38 && echo pretooluse-step-4-39 && echo pretooluse-step-4-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher5|OtherMatcher5",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-5",
+            "timeout": 35
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-6",
+            "timeout": 40
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PreToolUse 6 done\""
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher7|OtherMatcher7",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-7",
+            "timeout": 45
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-8",
+            "timeout": 50
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo pretooluse-step-8-1 && echo pretooluse-step-8-2 && echo pretooluse-step-8-3 && echo pretooluse-step-8-4 && echo pretooluse-step-8-5 && echo pretooluse-step-8-6 && echo pretooluse-step-8-7 && echo pretooluse-step-8-8 && echo pretooluse-step-8-9 && echo pretooluse-step-8-10 && echo pretooluse-step-8-11 && echo pretooluse-step-8-12 && echo pretooluse-step-8-13 && echo pretooluse-step-8-14 && echo pretooluse-step-8-15 && echo pretooluse-step-8-16 && echo pretooluse-step-8-17 && echo pretooluse-step-8-18 && echo pretooluse-step-8-19 && echo pretooluse-step-8-20 && echo pretooluse-step-8-21 && echo pretooluse-step-8-22 && echo pretooluse-step-8-23 && echo pretooluse-step-8-24 && echo pretooluse-step-8-25 && echo pretooluse-step-8-26 && echo pretooluse-step-8-27 && echo pretooluse-step-8-28 && echo pretooluse-step-8-29 && echo pretooluse-step-8-30 && echo pretooluse-step-8-31 && echo pretooluse-step-8-32 && echo pretooluse-step-8-33 && echo pretooluse-step-8-34 && echo pretooluse-step-8-35 && echo pretooluse-step-8-36 && echo pretooluse-step-8-37 && echo pretooluse-step-8-38 && echo pretooluse-step-8-39 && echo pretooluse-step-8-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher9|OtherMatcher9",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-pretooluse-9",
+            "timeout": 55
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PreToolUse 9 done\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "example_notification",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-notification-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"hook-notification-2 \\\"quoted\\\" text\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PostToolUse 3 done\""
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo posttooluse-step-3-1 && echo posttooluse-step-3-2 && echo posttooluse-step-3-3 && echo posttooluse-step-3-4 && echo posttooluse-step-3-5 && echo posttooluse-step-3-6 && echo posttooluse-step-3-7 && echo posttooluse-step-3-8 && echo posttooluse-step-3-9 && echo posttooluse-step-3-10 && echo posttooluse-step-3-11 && echo posttooluse-step-3-12 && echo posttooluse-step-3-13 && echo posttooluse-step-3-14 && echo posttooluse-step-3-15 && echo posttooluse-step-3-16 && echo posttooluse-step-3-17 && echo posttooluse-step-3-18 && echo posttooluse-step-3-19 && echo posttooluse-step-3-20 && echo posttooluse-step-3-21 && echo posttooluse-step-3-22 && echo posttooluse-step-3-23 && echo posttooluse-step-3-24 && echo posttooluse-step-3-25 && echo posttooluse-step-3-26 && echo posttooluse-step-3-27 && echo posttooluse-step-3-28 && echo posttooluse-step-3-29 && echo posttooluse-step-3-30 && echo posttooluse-step-3-31 && echo posttooluse-step-3-32 && echo posttooluse-step-3-33 && echo posttooluse-step-3-34 && echo posttooluse-step-3-35 && echo posttooluse-step-3-36 && echo posttooluse-step-3-37 && echo posttooluse-step-3-38 && echo posttooluse-step-3-39 && echo posttooluse-step-3-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-4",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher5|OtherMatcher5",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-5",
+            "timeout": 35
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-6",
+            "timeout": 40
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PostToolUse 6 done\""
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo posttooluse-step-6-1 && echo posttooluse-step-6-2 && echo posttooluse-step-6-3 && echo posttooluse-step-6-4 && echo posttooluse-step-6-5 && echo posttooluse-step-6-6 && echo posttooluse-step-6-7 && echo posttooluse-step-6-8 && echo posttooluse-step-6-9 && echo posttooluse-step-6-10 && echo posttooluse-step-6-11 && echo posttooluse-step-6-12 && echo posttooluse-step-6-13 && echo posttooluse-step-6-14 && echo posttooluse-step-6-15 && echo posttooluse-step-6-16 && echo posttooluse-step-6-17 && echo posttooluse-step-6-18 && echo posttooluse-step-6-19 && echo posttooluse-step-6-20 && echo posttooluse-step-6-21 && echo posttooluse-step-6-22 && echo posttooluse-step-6-23 && echo posttooluse-step-6-24 && echo posttooluse-step-6-25 && echo posttooluse-step-6-26 && echo posttooluse-step-6-27 && echo posttooluse-step-6-28 && echo posttooluse-step-6-29 && echo posttooluse-step-6-30 && echo posttooluse-step-6-31 && echo posttooluse-step-6-32 && echo posttooluse-step-6-33 && echo posttooluse-step-6-34 && echo posttooluse-step-6-35 && echo posttooluse-step-6-36 && echo posttooluse-step-6-37 && echo posttooluse-step-6-38 && echo posttooluse-step-6-39 && echo posttooluse-step-6-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher7|OtherMatcher7",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttooluse-7",
+            "timeout": 45
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-1"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-2"
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-3"
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example SessionStart 3 done\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-4"
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher5|OtherMatcher5",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-5"
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo sessionstart-step-5-1 && echo sessionstart-step-5-2 && echo sessionstart-step-5-3 && echo sessionstart-step-5-4 && echo sessionstart-step-5-5 && echo sessionstart-step-5-6 && echo sessionstart-step-5-7 && echo sessionstart-step-5-8 && echo sessionstart-step-5-9 && echo sessionstart-step-5-10 && echo sessionstart-step-5-11 && echo sessionstart-step-5-12 && echo sessionstart-step-5-13 && echo sessionstart-step-5-14 && echo sessionstart-step-5-15 && echo sessionstart-step-5-16 && echo sessionstart-step-5-17 && echo sessionstart-step-5-18 && echo sessionstart-step-5-19 && echo sessionstart-step-5-20 && echo sessionstart-step-5-21 && echo sessionstart-step-5-22 && echo sessionstart-step-5-23 && echo sessionstart-step-5-24 && echo sessionstart-step-5-25 && echo sessionstart-step-5-26 && echo sessionstart-step-5-27 && echo sessionstart-step-5-28 && echo sessionstart-step-5-29 && echo sessionstart-step-5-30 && echo sessionstart-step-5-31 && echo sessionstart-step-5-32 && echo sessionstart-step-5-33 && echo sessionstart-step-5-34 && echo sessionstart-step-5-35 && echo sessionstart-step-5-36 && echo sessionstart-step-5-37 && echo sessionstart-step-5-38 && echo sessionstart-step-5-39 && echo sessionstart-step-5-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionstart-6"
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example SessionStart 6 done\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-stop-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-stop-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-stop-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example Stop 3 done\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-stop-4",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example UserPromptSubmit 3 done\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-4",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo userpromptsubmit-step-4-1 && echo userpromptsubmit-step-4-2 && echo userpromptsubmit-step-4-3 && echo userpromptsubmit-step-4-4 && echo userpromptsubmit-step-4-5 && echo userpromptsubmit-step-4-6 && echo userpromptsubmit-step-4-7 && echo userpromptsubmit-step-4-8 && echo userpromptsubmit-step-4-9 && echo userpromptsubmit-step-4-10 && echo userpromptsubmit-step-4-11 && echo userpromptsubmit-step-4-12 && echo userpromptsubmit-step-4-13 && echo userpromptsubmit-step-4-14 && echo userpromptsubmit-step-4-15 && echo userpromptsubmit-step-4-16 && echo userpromptsubmit-step-4-17 && echo userpromptsubmit-step-4-18 && echo userpromptsubmit-step-4-19 && echo userpromptsubmit-step-4-20 && echo userpromptsubmit-step-4-21 && echo userpromptsubmit-step-4-22 && echo userpromptsubmit-step-4-23 && echo userpromptsubmit-step-4-24 && echo userpromptsubmit-step-4-25 && echo userpromptsubmit-step-4-26 && echo userpromptsubmit-step-4-27 && echo userpromptsubmit-step-4-28 && echo userpromptsubmit-step-4-29 && echo userpromptsubmit-step-4-30 && echo userpromptsubmit-step-4-31 && echo userpromptsubmit-step-4-32 && echo userpromptsubmit-step-4-33 && echo userpromptsubmit-step-4-34 && echo userpromptsubmit-step-4-35 && echo userpromptsubmit-step-4-36 && echo userpromptsubmit-step-4-37 && echo userpromptsubmit-step-4-38 && echo userpromptsubmit-step-4-39 && echo userpromptsubmit-step-4-40'",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher5|OtherMatcher5",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-5",
+            "timeout": 35
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-6",
+            "timeout": 40
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example UserPromptSubmit 6 done\""
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher7|OtherMatcher7",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-7",
+            "timeout": 45
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-userpromptsubmit-8",
+            "timeout": 50
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo userpromptsubmit-step-8-1 && echo userpromptsubmit-step-8-2 && echo userpromptsubmit-step-8-3 && echo userpromptsubmit-step-8-4 && echo userpromptsubmit-step-8-5 && echo userpromptsubmit-step-8-6 && echo userpromptsubmit-step-8-7 && echo userpromptsubmit-step-8-8 && echo userpromptsubmit-step-8-9 && echo userpromptsubmit-step-8-10 && echo userpromptsubmit-step-8-11 && echo userpromptsubmit-step-8-12 && echo userpromptsubmit-step-8-13 && echo userpromptsubmit-step-8-14 && echo userpromptsubmit-step-8-15 && echo userpromptsubmit-step-8-16 && echo userpromptsubmit-step-8-17 && echo userpromptsubmit-step-8-18 && echo userpromptsubmit-step-8-19 && echo userpromptsubmit-step-8-20 && echo userpromptsubmit-step-8-21 && echo userpromptsubmit-step-8-22 && echo userpromptsubmit-step-8-23 && echo userpromptsubmit-step-8-24 && echo userpromptsubmit-step-8-25 && echo userpromptsubmit-step-8-26 && echo userpromptsubmit-step-8-27 && echo userpromptsubmit-step-8-28 && echo userpromptsubmit-step-8-29 && echo userpromptsubmit-step-8-30 && echo userpromptsubmit-step-8-31 && echo userpromptsubmit-step-8-32 && echo userpromptsubmit-step-8-33 && echo userpromptsubmit-step-8-34 && echo userpromptsubmit-step-8-35 && echo userpromptsubmit-step-8-36 && echo userpromptsubmit-step-8-37 && echo userpromptsubmit-step-8-38 && echo userpromptsubmit-step-8-39 && echo userpromptsubmit-step-8-40'",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionend-1"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionend-2"
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionend-3"
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example SessionEnd 3 done\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-sessionend-4"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-permissionrequest-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-permissionrequest-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-permissionrequest-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example PermissionRequest 3 done\""
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-subagentstop-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-subagentstop-2",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "ExampleMatcher3|OtherMatcher3",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-subagentstop-3",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "printf \"%s\\n\" \"example SubagentStop 3 done\""
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo subagentstop-step-3-1 && echo subagentstop-step-3-2 && echo subagentstop-step-3-3 && echo subagentstop-step-3-4 && echo subagentstop-step-3-5 && echo subagentstop-step-3-6 && echo subagentstop-step-3-7 && echo subagentstop-step-3-8 && echo subagentstop-step-3-9 && echo subagentstop-step-3-10 && echo subagentstop-step-3-11 && echo subagentstop-step-3-12 && echo subagentstop-step-3-13 && echo subagentstop-step-3-14 && echo subagentstop-step-3-15 && echo subagentstop-step-3-16 && echo subagentstop-step-3-17 && echo subagentstop-step-3-18 && echo subagentstop-step-3-19 && echo subagentstop-step-3-20 && echo subagentstop-step-3-21 && echo subagentstop-step-3-22 && echo subagentstop-step-3-23 && echo subagentstop-step-3-24 && echo subagentstop-step-3-25 && echo subagentstop-step-3-26 && echo subagentstop-step-3-27 && echo subagentstop-step-3-28 && echo subagentstop-step-3-29 && echo subagentstop-step-3-30 && echo subagentstop-step-3-31 && echo subagentstop-step-3-32 && echo subagentstop-step-3-33 && echo subagentstop-step-3-34 && echo subagentstop-step-3-35 && echo subagentstop-step-3-36 && echo subagentstop-step-3-37 && echo subagentstop-step-3-38 && echo subagentstop-step-3-39 && echo subagentstop-step-3-40'",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-precompact-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-precompact-2",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-subagentstart-1",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "ExampleMatcher1|OtherMatcher1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttoolusefailure-1",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo hook-posttoolusefailure-2",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'echo posttoolusefailure-step-2-1 && echo posttoolusefailure-step-2-2 && echo posttoolusefailure-step-2-3 && echo posttoolusefailure-step-2-4 && echo posttoolusefailure-step-2-5 && echo posttoolusefailure-step-2-6 && echo posttoolusefailure-step-2-7 && echo posttoolusefailure-step-2-8 && echo posttoolusefailure-step-2-9 && echo posttoolusefailure-step-2-10 && echo posttoolusefailure-step-2-11 && echo posttoolusefailure-step-2-12 && echo posttoolusefailure-step-2-13 && echo posttoolusefailure-step-2-14 && echo posttoolusefailure-step-2-15 && echo posttoolusefailure-step-2-16 && echo posttoolusefailure-step-2-17 && echo posttoolusefailure-step-2-18 && echo posttoolusefailure-step-2-19 && echo posttoolusefailure-step-2-20 && echo posttoolusefailure-step-2-21 && echo posttoolusefailure-step-2-22 && echo posttoolusefailure-step-2-23 && echo posttoolusefailure-step-2-24 && echo posttoolusefailure-step-2-25 && echo posttoolusefailure-step-2-26 && echo posttoolusefailure-step-2-27 && echo posttoolusefailure-step-2-28 && echo posttoolusefailure-step-2-29 && echo posttoolusefailure-step-2-30 && echo posttoolusefailure-step-2-31 && echo posttoolusefailure-step-2-32 && echo posttoolusefailure-step-2-33 && echo posttoolusefailure-step-2-34 && echo posttoolusefailure-step-2-35 && echo posttoolusefailure-step-2-36 && echo posttoolusefailure-step-2-37 && echo posttoolusefailure-step-2-38 && echo posttoolusefailure-step-2-39 && echo posttoolusefailure-step-2-40'",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "echo example-status-line",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "plugin-a@example-marketplace": true,
+    "plugin-b@example-marketplace": true,
+    "plugin-c@example-marketplace": false,
+    "plugin-d@example-marketplace": true,
+    "plugin-e@example-marketplace": true,
+    "plugin-f@example-marketplace": true,
+    "plugin-g@example-marketplace": true,
+    "plugin-h@example-marketplace": false,
+    "plugin-i@example-marketplace-2": true,
+    "plugin-j@example-marketplace-2": true,
+    "plugin-k@example-marketplace-2": true,
+    "plugin-l@example-marketplace-2": false,
+    "plugin-m@example-marketplace-2": true,
+    "plugin-n@example-marketplace-2": true,
+    "plugin-o@example-marketplace-2": true,
+    "plugin-p@example-marketplace-2": true,
+    "plugin-q@sample-marketplace": true,
+    "plugin-r@sample-marketplace": true,
+    "plugin-s@sample-marketplace": true,
+    "plugin-t@sample-marketplace": true,
+    "plugin-u@sample-marketplace": false,
+    "plugin-v@sample-marketplace": true,
+    "plugin-w@sample-marketplace": true,
+    "plugin-x@sample-marketplace": true,
+    "plugin-y@demo-marketplace": false,
+    "plugin-z@demo-marketplace": true,
+    "plugin-a2@demo-marketplace": true,
+    "plugin-b2@demo-marketplace": true,
+    "plugin-c2@demo-marketplace": true,
+    "plugin-d2@demo-marketplace": false,
+    "plugin-e2@demo-marketplace": true,
+    "plugin-f2@demo-marketplace": true,
+    "plugin-g2@test-marketplace": true,
+    "plugin-h2@test-marketplace": false,
+    "plugin-i2@test-marketplace": true,
+    "plugin-j2@test-marketplace": true,
+    "plugin-k2@test-marketplace": true,
+    "plugin-l2@test-marketplace": true,
+    "plugin-m2@test-marketplace": false,
+    "plugin-n2@test-marketplace": true,
+    "plugin-o2@local-example-marketplace": true,
+    "plugin-p2@local-example-marketplace": true,
+    "plugin-q2@local-example-marketplace": false,
+    "plugin-r2@local-example-marketplace": true,
+    "plugin-s2@local-example-marketplace": true,
+    "plugin-t2@local-example-marketplace": true,
+    "plugin-u2@local-example-marketplace": true,
+    "plugin-v2@local-example-marketplace": false
+  },
+  "extraKnownMarketplaces": {
+    "example-marketplace": {
+      "source": {
+        "source": "url",
+        "url": "https://example.com/marketplaces/example-marketplace/marketplace-1.json"
+      }
+    },
+    "example-marketplace-2": {
+      "source": {
+        "source": "url",
+        "url": "https://example.com/marketplaces/example-marketplace-2/marketplace-2.json"
+      }
+    },
+    "sample-marketplace": {
+      "source": {
+        "source": "url",
+        "url": "https://example.com/marketplaces/sample-marketplace/marketplace-3.json"
+      }
+    },
+    "demo-marketplace": {
+      "source": {
+        "source": "url",
+        "url": "https://example.com/marketplaces/demo-marketplace/marketplace-4.json"
+      }
+    },
+    "test-marketplace": {
+      "source": {
+        "source": "url",
+        "url": "https://example.com/marketplaces/test-marketplace/marketplace-5.json"
+      }
+    },
+    "local-example-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": "./example-marketplaces/local-example-marketplace"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "example-model": {
+    }
+  },
+  "pluginConfigs": {
+    "plugin-a@example-marketplace": {
+      "options": {
+        "example_option": true,
+        "example_profile": "standard"
+      }
+    },
+    "plugin-b@example-marketplace": {
+      "options": {}
+    }
+  },
+  "tui": "default",
+  "cleanupPeriodDays": 30,
+  "spinnerTipsEnabled": true,
+  "editorMode": "normal",
+  "teammateMode": "auto",
+  "outputStyle": "Explanatory",
+  "companyAnnouncements": [
+    "Example announcement number 1: nothing to see here.",
+    "Example announcement number 2: nothing to see here.",
+    "Example announcement number 3: nothing to see here.",
+    "Example announcement number 4: nothing to see here.",
+    "Example announcement number 5: nothing to see here.",
+    "Example announcement number 6: nothing to see here."
+  ],
+  "sandbox": {
+    "enabled": false,
+    "excludedCommands": [
+      "example-tool-1",
+      "example-tool-2",
+      "example-tool-3",
+      "example-tool-4",
+      "example-tool-5"
+    ]
+  },
+  "alwaysThinkingEnabled": true,
+  "showTurnDuration": true,
+  "autoUpdatesChannel": "stable",
+  "voiceEnabled": true,
+  "model": "example-model"
+}

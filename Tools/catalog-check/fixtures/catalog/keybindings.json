@@ -1,0 +1,73 @@
+{
+  "researchDate": "2026-10-06",
+  "claudeCodeVersionChecked": "2.1.291",
+  "docURL": "https://code.claude.com/docs/en/keybindings",
+  "header": {
+    "schema": "https://www.schemastore.org/claude-code-keybindings.json",
+    "docs": "https://code.claude.com/docs/en/keybindings"
+  },
+  "contexts": [
+    { "name": "Global", "description": "Test context." },
+    { "name": "Chat", "description": "Test context." },
+    { "name": "Footer", "description": "Test context." },
+    { "name": "Plugin", "description": "Test context." },
+    { "name": "Scroll", "description": "Test context." },
+    { "name": "DiffDialog", "description": "Test context." },
+    { "name": "MessageSelector", "description": "Test context." }
+  ],
+  "actions": [
+    { "id": "app:interrupt", "namespace": "app", "contexts": ["Global"], "description": "Test action.", "defaultKey": "Ctrl+C" },
+    { "id": "app:exit", "namespace": "app", "contexts": ["Global"], "description": "Test action.", "defaultKey": "Ctrl+D" },
+    { "id": "app:redraw", "namespace": "app", "contexts": ["Global"], "description": "Test action." },
+    { "id": "history:search", "namespace": "history", "contexts": [], "description": "Test action.", "defaultKey": "Ctrl+R" },
+    { "id": "history:previous", "namespace": "history", "contexts": [], "description": "Test action.", "defaultKey": "Up" },
+    { "id": "chat:submit", "namespace": "chat", "contexts": ["Chat"], "description": "Test action.", "defaultKey": "Enter" },
+    { "id": "chat:stash", "namespace": "chat", "contexts": ["Chat"], "description": "Test action.", "defaultKey": "Ctrl+S" },
+    { "id": "chat:cycleMode", "namespace": "chat", "contexts": ["Chat"], "description": "Test action.", "defaultKey": "Shift+Tab" },
+    { "id": "footer:next", "namespace": "footer", "contexts": ["Footer"], "description": "Test action.", "defaultKey": "Right" },
+    { "id": "footer:previous", "namespace": "footer", "contexts": ["Footer"], "description": "Test action.", "defaultKey": "Left" },
+    { "id": "plugin:favorite", "namespace": "plugin", "contexts": ["Plugin"], "description": "Test action.", "defaultKey": "F" },
+    {
+      "id": "scroll:top",
+      "namespace": "scroll",
+      "contexts": ["DiffDialog", "Scroll"],
+      "description": "Test action.",
+      "defaultKey": "Ctrl+Home",
+      "contextDefaults": { "DiffDialog": "G, Home", "Scroll": "Ctrl+Home" }
+    },
+    {
+      "id": "scroll:bottom",
+      "namespace": "scroll",
+      "contexts": ["DiffDialog", "Scroll"],
+      "description": "Test action.",
+      "defaultKey": "Ctrl+End",
+      "contextDefaults": { "DiffDialog": "Shift+G, End", "Scroll": "Ctrl+End" }
+    },
+    { "id": "select:previous", "namespace": "select", "contexts": ["MessageSelector"], "description": "Test action.", "defaultKey": "Up, K, Ctrl+P" },
+    { "id": "select:next", "namespace": "select", "contexts": ["MessageSelector"], "description": "Test action.", "defaultKey": "Down, J, Ctrl+N" },
+    {
+      "id": "messageSelector:up",
+      "namespace": "messageSelector",
+      "contexts": ["MessageSelector"],
+      "description": "Test action.",
+      "legacy": true,
+      "replacedBy": "select:previous"
+    },
+    {
+      "id": "messageSelector:down",
+      "namespace": "messageSelector",
+      "contexts": ["MessageSelector"],
+      "description": "Test action.",
+      "legacy": true,
+      "replacedBy": "select:next"
+    }
+  ],
+  "keySyntax": {
+    "modifiers": ["ctrl", "shift", "alt", "cmd"],
+    "aliases": { "esc": "escape", "return": "enter" },
+    "specialKeys": ["escape", "enter", "tab", "space", "up", "down", "left", "right", "home", "end"],
+    "chordSeparator": " ",
+    "notes": ["Test notes."]
+  },
+  "reservedKeys": [{ "key": "ctrl+c", "reason": "Test reason." }]
+}

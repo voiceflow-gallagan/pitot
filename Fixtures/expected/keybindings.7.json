@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "context": "Global",
+      "bindings": {
+        "ctrl+t": "app:toggleTodos",
+        "ctrl+o": null,
+        "ctrl+k": "app:new"
+      }
+    },
+    {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+e": "chat:externalEditor"
+      }
+    }
+  ]
+}

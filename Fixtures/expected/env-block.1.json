@@ -1,0 +1,8 @@
+{
+  "env": {
+    "FIRST": "one",
+    "SECOND": "changed",
+    "THIRD": "three"
+  },
+  "theme": "dark"
+}

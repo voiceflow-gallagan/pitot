@@ -1,0 +1,1083 @@
+{
+  "researchDate": "2026-10-06",
+  "claudeCodeVersionChecked": "2.1.291",
+  "tweaks": [
+    {
+      "id": "tui",
+      "location": {
+        "type": "setting",
+        "path": [
+          "tui"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "default",
+            "label": "Classic"
+          },
+          {
+            "value": "fullscreen",
+            "label": "Fullscreen"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: Claude Code picks the renderer.",
+      "title": "Renderer",
+      "description": "Choose the classic screen or the flicker-free fullscreen screen.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN"
+        },
+        {
+          "envName": "CLAUDE_CODE_NO_FLICKER",
+          "whenValue": "0"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#tui",
+      "notes": "The env vars CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN and CLAUDE_CODE_NO_FLICKER=0 force the classic screen and beat this setting."
+    },
+    {
+      "id": "viewMode",
+      "location": {
+        "type": "setting",
+        "path": [
+          "viewMode"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "verbose",
+            "label": "Verbose"
+          },
+          {
+            "value": "focus",
+            "label": "Focus"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: the verbose setting and your last /focus choice apply.",
+      "title": "Starting view",
+      "description": "Choose how much of the transcript new sessions show.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "requires": [
+        {
+          "tweakId": "tui",
+          "when": "focus",
+          "equals": "fullscreen",
+          "behavior": "autoSet",
+          "reason": "Focus view needs the fullscreen renderer."
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#viewmode",
+      "notes": "Overrides the verbose setting and the sticky /focus choice. Focus view needs the fullscreen renderer."
+    },
+    {
+      "id": "showThinkingSummaries",
+      "location": {
+        "type": "setting",
+        "path": [
+          "showThinkingSummaries"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "false: thinking shows as a collapsed stub.",
+      "title": "Show thinking summaries",
+      "description": "Show full thinking summaries when you expand thinking with Ctrl+O.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#showthinkingsummaries",
+      "notes": "Display only. Thinking tokens are billed either way."
+    },
+    {
+      "id": "showClearContextOnPlanAccept",
+      "location": {
+        "type": "setting",
+        "path": [
+          "showClearContextOnPlanAccept"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "false: the option is not shown.",
+      "title": "Clear context on plan accept",
+      "description": "Add a clear context and implement option to the plan approval menu.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#showclearcontextonplanaccept",
+      "notes": "Clearing context drops the conversation, so only the plan carries over."
+    },
+    {
+      "id": "plansDirectory",
+      "location": {
+        "type": "setting",
+        "path": [
+          "plansDirectory"
+        ]
+      },
+      "valueType": {
+        "type": "path"
+      },
+      "defaultDescription": "Unset: plans go to ~/.claude/plans.",
+      "title": "Plans folder",
+      "description": "Choose the folder where plan mode saves plan files.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#plansdirectory",
+      "notes": "The path is relative to the project root. Claude Code keeps the default when the path resolves outside the project."
+    },
+    {
+      "id": "outputStyle",
+      "location": {
+        "type": "setting",
+        "path": [
+          "outputStyle"
+        ]
+      },
+      "valueType": {
+        "type": "string"
+      },
+      "suggestions": [
+        {
+          "value": "Proactive",
+          "label": "Proactive",
+          "note": "Starts work right away and makes reasonable assumptions about routine decisions."
+        },
+        {
+          "value": "Concise",
+          "label": "Concise",
+          "note": "Leads with the result and leaves out preamble, narration and recaps. Needs v2.1.237 or later."
+        },
+        {
+          "value": "Explanatory",
+          "label": "Explanatory",
+          "note": "Adds short Insight blocks that explain the choices behind the code."
+        },
+        {
+          "value": "Learning",
+          "label": "Learning",
+          "note": "Explains its choices and leaves small pieces of code for you to write."
+        }
+      ],
+      "defaultDescription": "Unset: the default style.",
+      "title": "Output style",
+      "description": "Set the output style by name, such as Explanatory or Learning.",
+      "category": "Interface",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/output-styles",
+      "notes": "Names are case-sensitive: explanatory gives the default style. Built-in names are Proactive, Concise, Explanatory and Learning. Custom style names are allowed, so this row is a string."
+    },
+    {
+      "id": "theme",
+      "location": {
+        "type": "setting",
+        "path": [
+          "theme"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Match terminal"
+          },
+          {
+            "value": "dark",
+            "label": "Dark"
+          },
+          {
+            "value": "light",
+            "label": "Light"
+          },
+          {
+            "value": "dark-daltonized",
+            "label": "Dark, color-blind friendly"
+          },
+          {
+            "value": "light-daltonized",
+            "label": "Light, color-blind friendly"
+          },
+          {
+            "value": "dark-ansi",
+            "label": "Dark, terminal colors"
+          },
+          {
+            "value": "light-ansi",
+            "label": "Light, terminal colors"
+          }
+        ]
+      },
+      "defaultDescription": "dark",
+      "title": "Color theme",
+      "description": "Choose the color theme.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#theme",
+      "notes": "Custom themes (custom:<slug>) are valid in Claude Code but are not offered here."
+    },
+    {
+      "id": "editorMode",
+      "location": {
+        "type": "setting",
+        "path": [
+          "editorMode"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "vim",
+            "label": "Vim"
+          }
+        ]
+      },
+      "defaultDescription": "normal",
+      "title": "Prompt key bindings",
+      "description": "Use normal or vim key bindings in the prompt box.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#editormode",
+      "notes": "Vim mode has NORMAL, INSERT and VISUAL modes."
+    },
+    {
+      "id": "showTurnDuration",
+      "location": {
+        "type": "setting",
+        "path": [
+          "showTurnDuration"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "true: the message is shown.",
+      "title": "Show turn duration",
+      "description": "Show how long each reply took.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#showturnduration",
+      "notes": "Display only."
+    },
+    {
+      "id": "spinnerTipsEnabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "spinnerTipsEnabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "true: tips are shown.",
+      "title": "Spinner tips",
+      "description": "Show tips under the spinner while Claude works.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#spinnertipsenabled",
+      "notes": "Display only."
+    },
+    {
+      "id": "prefersReducedMotion",
+      "location": {
+        "type": "setting",
+        "path": [
+          "prefersReducedMotion"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "false: animations are on.",
+      "title": "Reduce motion",
+      "description": "Reduce or turn off animations such as the spinner and shimmer.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#prefersreducedmotion",
+      "notes": "Display only."
+    },
+    {
+      "id": "promptSuggestionEnabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "promptSuggestionEnabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "true: suggestions are shown.",
+      "title": "Prompt suggestions",
+      "description": "Show grayed-out prompt suggestions in the prompt box.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION"
+        },
+        {
+          "envName": "DISABLE_TELEMETRY"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#promptsuggestionenabled",
+      "notes": "Display only. Needs a claude.ai or Console account with telemetry on, so it has no effect while DISABLE_TELEMETRY is set."
+    },
+    {
+      "id": "preferredNotifChannel",
+      "location": {
+        "type": "setting",
+        "path": [
+          "preferredNotifChannel"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "terminal_bell",
+            "label": "Terminal bell"
+          },
+          {
+            "value": "iterm2",
+            "label": "iTerm2"
+          },
+          {
+            "value": "iterm2_with_bell",
+            "label": "iTerm2 with bell"
+          },
+          {
+            "value": "kitty",
+            "label": "Kitty"
+          },
+          {
+            "value": "ghostty",
+            "label": "Ghostty"
+          },
+          {
+            "value": "notifications_disabled",
+            "label": "Off"
+          }
+        ]
+      },
+      "defaultDescription": "auto: desktop notification in iTerm2, Ghostty and Kitty; a bell in Terminal.app only if its audible bell is off; nothing elsewhere.",
+      "title": "Notification channel",
+      "description": "Choose how Claude Code tells you a task is done or waiting.",
+      "category": "Notifications",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#preferrednotifchannel",
+      "notes": "Older Claude Code versions keep this value in ~/.claude.json."
+    },
+    {
+      "id": "askUserQuestionTimeout",
+      "location": {
+        "type": "setting",
+        "path": [
+          "askUserQuestionTimeout"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "60s",
+            "label": "60 seconds"
+          },
+          {
+            "value": "5m",
+            "label": "5 minutes"
+          },
+          {
+            "value": "10m",
+            "label": "10 minutes"
+          },
+          {
+            "value": "never",
+            "label": "Never"
+          }
+        ]
+      },
+      "defaultDescription": "never: the dialog waits for you.",
+      "title": "Question timeout",
+      "description": "Continue on its own when a question dialog stays unanswered.",
+      "category": "Notifications",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "scope": "userOnly",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_AFK_TIMEOUT_MS"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#askuserquestiontimeout",
+      "notes": "Only honored in user or managed settings. Claude continues without your answer after the timeout."
+    },
+    {
+      "id": "awaySummaryEnabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "awaySummaryEnabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: the recap is on.",
+      "title": "Recap after being away",
+      "description": "Show a one-line recap when you come back after a few minutes.",
+      "category": "Notifications",
+      "risks": [],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_ENABLE_AWAY_SUMMARY"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#awaysummaryenabled",
+      "notes": "Display only."
+    },
+    {
+      "id": "model",
+      "location": {
+        "type": "setting",
+        "path": [
+          "model"
+        ]
+      },
+      "valueType": {
+        "type": "string"
+      },
+      "suggestions": [
+        {
+          "value": "best",
+          "label": "Best",
+          "note": "Fable where it is available to you, otherwise the same model as opus."
+        },
+        {
+          "value": "fable",
+          "label": "Fable",
+          "note": "The Fable model for your provider, for your hardest and longest-running tasks."
+        },
+        {
+          "value": "opus",
+          "label": "Opus",
+          "note": "The latest Opus model, for complex reasoning tasks."
+        },
+        {
+          "value": "sonnet",
+          "label": "Sonnet",
+          "note": "The latest Sonnet model, for daily coding tasks."
+        },
+        {
+          "value": "haiku",
+          "label": "Haiku",
+          "note": "The fast and efficient Haiku model, for simple tasks."
+        },
+        {
+          "value": "opusplan",
+          "label": "Opus plan",
+          "note": "Opus in plan mode, then Sonnet for execution. The /model picker does not list it; /model opusplan saves it to user settings (tested 2026-10-06)."
+        },
+        {
+          "value": "opus[1m]",
+          "label": "Opus, 1M context",
+          "note": "Opus with a 1 million token context window."
+        },
+        {
+          "value": "sonnet[1m]",
+          "label": "Sonnet, 1M context",
+          "note": "Sonnet with a 1 million token context window. No effect when sonnet already resolves to a model with a native 1M window."
+        },
+        {
+          "value": "fable[1m]",
+          "label": "Fable, 1M context",
+          "note": "The 1M context form of the fable alias."
+        },
+        {
+          "value": "opusplan[1m]",
+          "label": "Opus plan, 1M context",
+          "note": "opusplan with 1M context in both phases where the models do not already run with it."
+        }
+      ],
+      "defaultDescription": "Unset: your account's default model.",
+      "title": "Default model",
+      "description": "Set the model new sessions use, as an alias or a full model ID.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "ANTHROPIC_MODEL"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#model",
+      "notes": "Suggestions are the aliases on the model configuration page. Full model names such as claude-opus-5-5 are also valid, and pin a version. The docs call default a special value that clears any model override, so it is not offered as a suggestion. ANTHROPIC_MODEL in env and the --model flag both beat this key. Pitot can only see the env one."
+    },
+    {
+      "id": "maxEffortLevel",
+      "location": {
+        "type": "setting",
+        "path": [
+          "maxEffortLevel"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "low",
+            "label": "Low"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "high",
+            "label": "High"
+          },
+          {
+            "value": "xhigh",
+            "label": "Extra high"
+          },
+          {
+            "value": "max",
+            "label": "Max (no cap)"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: no cap.",
+      "title": "Effort cap",
+      "description": "Set the highest reasoning effort Claude may use.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.267",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#maxeffortlevel",
+      "notes": "The lowest cap across all settings files wins."
+    },
+    {
+      "id": "alwaysThinkingEnabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "alwaysThinkingEnabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: thinking is on for models that support it.",
+      "title": "Always think",
+      "description": "Set false to turn extended thinking off for every session.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "MAX_THINKING_TOKENS"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#alwaysthinkingenabled",
+      "notes": "False has no effect on models that always think, such as Opus 5.5, Sonnet 5.5 and Fable."
+    },
+    {
+      "id": "fastMode",
+      "location": {
+        "type": "setting",
+        "path": [
+          "fastMode"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: fast mode is off.",
+      "title": "Fast mode",
+      "description": "Start sessions in fast mode where it is available.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_DISABLE_FAST_MODE",
+          "whenValue": "1"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#fastmode",
+      "notes": "Fast mode costs more per token."
+    },
+    {
+      "id": "promptCacheTtl",
+      "location": {
+        "type": "setting",
+        "path": [
+          "promptCacheTtl"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "5m",
+            "label": "5 minutes"
+          },
+          {
+            "value": "1h",
+            "label": "1 hour"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: each request gets its default lifetime.",
+      "title": "Prompt cache lifetime",
+      "description": "Set how long the prompt cache holds for the main conversation.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.242",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_PROMPT_CACHE_TTL"
+        },
+        {
+          "envName": "FORCE_PROMPT_CACHING_5M",
+          "whenValue": "1"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#promptcachettl",
+      "notes": "The 1 hour cache costs more per cache write."
+    },
+    {
+      "id": "autoCompactEnabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "autoCompactEnabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "true: auto-compact is on.",
+      "title": "Auto-compact",
+      "description": "Compact the conversation automatically when context nears the limit.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "DISABLE_AUTO_COMPACT",
+          "whenValue": "1"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#autocompactenabled",
+      "notes": "Turning it off can fill the context window and stop a long session."
+    },
+    {
+      "id": "CLAUDE_CODE_SUBAGENT_MODEL",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_SUBAGENT_MODEL"
+      },
+      "valueType": {
+        "type": "string"
+      },
+      "suggestions": [
+        {
+          "value": "sonnet",
+          "label": "Sonnet"
+        },
+        {
+          "value": "opus",
+          "label": "Opus"
+        },
+        {
+          "value": "haiku",
+          "label": "Haiku"
+        },
+        {
+          "value": "fable",
+          "label": "Fable"
+        }
+      ],
+      "defaultDescription": "Unset: subagents follow their own settings.",
+      "title": "Subagent model",
+      "description": "Set the default model for subagents, teammates and workflow agents.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Accepts an alias or a full model name. An alias here always resolves to the version it points to. inherit is the same as unset. Does not beat a model Claude passes at spawn or a model set in the agent definition."
+    },
+    {
+      "id": "CLAUDE_CODE_SUBAGENT_MODEL_FORCE",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_SUBAGENT_MODEL_FORCE"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: the subagent model is only a default.",
+      "title": "Force one subagent model",
+      "description": "Make every subagent use one model. With CLAUDE_CODE_SUBAGENT_MODEL set, that model. Without it, the main conversation's model.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.257",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Works on its own. Agent definitions and the model Claude passes at spawn are ignored. When only this is set, the built-in Explore subagent keeps the model listed for it."
+    },
+    {
+      "id": "disableClaudeAiConnectors",
+      "location": {
+        "type": "setting",
+        "path": [
+          "disableClaudeAiConnectors"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "false: connectors are fetched.",
+      "title": "Block claude.ai connectors",
+      "description": "Stop Claude Code from fetching and connecting claude.ai MCP connectors.",
+      "category": "Privacy",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "overriddenBy": [
+        {
+          "envName": "ENABLE_CLAUDEAI_MCP_SERVERS",
+          "whenValue": "false"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#disableclaudeaiconnectors",
+      "notes": "True in any settings file applies. A project false cannot override a user true. Explicit --mcp-config servers are not affected."
+    },
+    {
+      "id": "DISABLE_TELEMETRY",
+      "location": {
+        "type": "env",
+        "name": "DISABLE_TELEMETRY"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: telemetry is on.",
+      "title": "Disable telemetry",
+      "description": "Opt out of telemetry.",
+      "category": "Privacy",
+      "risks": [
+        "privacy"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "This also stops feature-flag fetching, so features that need it stop working. Prompt suggestions stop too.",
+        "appliesWhen": {
+          "type": "onEnable"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Any non-empty value turns it on, even 0. Pitot removes the key to turn it off. Features that need feature-flag fetching stop, such as the advisor, /import, artifact comments and skill sync. promptSuggestionEnabled has no effect while telemetry is off. Remote Control stays available unless your organization requires Trusted Devices (v2.1.283 or later)."
+    },
+    {
+      "id": "DISABLE_ERROR_REPORTING",
+      "location": {
+        "type": "env",
+        "name": "DISABLE_ERROR_REPORTING"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: error reporting is on.",
+      "title": "Disable error reporting",
+      "description": "Opt out of error reporting.",
+      "category": "Privacy",
+      "risks": [
+        "privacy"
+      ],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Any non-empty value turns it on, even 0. Pitot removes the key to turn it off."
+    },
+    {
+      "id": "enableArtifact",
+      "location": {
+        "type": "setting",
+        "path": [
+          "enableArtifact"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: the tool follows your account's availability.",
+      "title": "Artifact tool",
+      "description": "Set false to turn the Artifact tool off for every session.",
+      "category": "Privacy",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.196",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#enableartifact",
+      "notes": "False in any settings file applies. True is the same as unset."
+    },
+    {
+      "id": "CLAUDE_CODE_NEW_INIT",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_NEW_INIT"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: /init writes a CLAUDE.md without asking.",
+      "title": "Interactive /init",
+      "description": "Make /init ask which files to generate before it writes them.",
+      "category": "Privacy",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "The docs say to set it to 1. It also lets /init create CLAUDE.local.md."
+    },
+    {
+      "id": "sandbox.enabled",
+      "location": {
+        "type": "setting",
+        "path": [
+          "sandbox",
+          "enabled"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "false: Bash commands run without a sandbox.",
+      "defaultValue": false,
+      "title": "Sandbox shell commands",
+      "description": "Run Bash commands inside the sandbox.",
+      "category": "Safety",
+      "risks": [
+        "security"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "With the sandbox off, Bash commands run with your full user access. They can read files such as ~/.ssh and ~/.aws, write anywhere and reach any host. Permission prompts still apply. The sandbox is off by default.",
+        "appliesWhen": {
+          "type": "onDisable"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/settings-reference#sandbox-enabled",
+      "notes": "Related sandbox settings are not in this catalog yet."
+    },
+    {
+      "id": "permissions.blockReadsOutsideWorkingDirectories",
+      "location": {
+        "type": "setting",
+        "path": [
+          "permissions",
+          "blockReadsOutsideWorkingDirectories"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: reads outside follow your permission mode.",
+      "title": "Block reads outside the project",
+      "description": "Refuse file reads outside the working directories in every mode.",
+      "category": "Safety",
+      "risks": [
+        "security"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "Claude's file tools will be able to read outside the working directories again, as your permission mode allows. A true in another settings file still applies.",
+        "appliesWhen": {
+          "type": "onDisable"
+        }
+      },
+      "minVersion": "2.1.257",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories",
+      "notes": "Protective. True in any file applies, and a repo cannot lift it."
+    },
+    {
+      "id": "permissions.disableBypassPermissionsMode",
+      "location": {
+        "type": "setting",
+        "path": [
+          "permissions",
+          "disableBypassPermissionsMode"
+        ]
+      },
+      "valueType": {
+        "type": "fixedString",
+        "value": "disable"
+      },
+      "defaultDescription": "Unset: bypass mode is allowed.",
+      "title": "Forbid bypass mode",
+      "description": "Turn on to block bypassPermissions mode. Pitot writes the string disable.",
+      "category": "Safety",
+      "risks": [
+        "security"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "Bypass permissions mode becomes available again, unless another settings file still disables it. In that mode Claude runs almost anything without asking.",
+        "appliesWhen": {
+          "type": "onDisable"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-disablebypasspermissionsmode",
+      "notes": "Protective. The only valid value is the string disable. A user can lock themselves out."
+    },
+    {
+      "id": "permissions.defaultMode",
+      "location": {
+        "type": "setting",
+        "path": [
+          "permissions",
+          "defaultMode"
+        ]
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "acceptEdits",
+            "label": "Accept edits"
+          },
+          {
+            "value": "plan",
+            "label": "Plan"
+          },
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "dontAsk",
+            "label": "Do not ask"
+          },
+          {
+            "value": "bypassPermissions",
+            "label": "Bypass permissions"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: default mode.",
+      "title": "Starting permission mode",
+      "description": "Choose the permission mode new sessions start in.",
+      "category": "Safety",
+      "risks": [
+        "security"
+      ],
+      "status": "documented",
+      "userOnlyValues": [
+        "auto",
+        "bypassPermissions"
+      ],
+      "confirm": {
+        "message": "Bypass mode lets Claude run almost anything without asking.",
+        "appliesWhen": {
+          "type": "whenValue",
+          "value": "bypassPermissions"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-defaultmode",
+      "notes": "Settings reference: \"auto and bypassPermissions don't take effect from project or local settings, so set them in ~/.claude/settings.json instead.\" Pitot writes those two values only to user settings. bypassPermissions skips almost all prompts. The docs also accept manual as an alias for default. Pitot does not offer it."
+    },
+    {
+      "id": "ANTHROPIC_BASE_URL",
+      "location": {
+        "type": "env",
+        "name": "ANTHROPIC_BASE_URL"
+      },
+      "valueType": {
+        "type": "string"
+      },
+      "defaultDescription": "Unset: requests go to Anthropic.",
+      "title": "API base URL",
+      "description": "Send API requests to another host, such as a proxy or gateway.",
+      "category": "Safety",
+      "risks": [
+        "security",
+        "privacy"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "This sends all your prompts and code to that host.",
+        "appliesWhen": {
+          "type": "onEnable"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Remote Control is disabled for a non-Anthropic host. Telemetry is still sent. Do not put keys in env."
+    }
+  ]
+}

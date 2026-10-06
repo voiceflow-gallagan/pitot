@@ -1,0 +1,253 @@
+{
+  "questions": [
+    {
+      "id": "experience",
+      "title": "How long have you used Claude Code?",
+      "hint": "This changes a few helpers for new users.",
+      "options": [
+        {
+          "id": "new",
+          "label": "I am new to Claude Code.",
+          "hint": "The /init command asks you before it writes files.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "CLAUDE_CODE_NEW_INIT", "value": true }
+          ]
+        },
+        {
+          "id": "weeks",
+          "label": "I have used it for a few weeks.",
+          "hint": "Shows full thinking summaries. The /init command asks before it writes files.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "CLAUDE_CODE_NEW_INIT", "value": true },
+            { "tweakId": "showThinkingSummaries", "value": true }
+          ]
+        },
+        {
+          "id": "daily",
+          "label": "I use it every day.",
+          "hint": "Shows full thinking summaries and hides the gray prompt suggestions.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "showThinkingSummaries", "value": true },
+            { "tweakId": "promptSuggestionEnabled", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "What extra data may Claude Code send?",
+      "hint": "Prompts and code always go to the model. This covers extra data only.",
+      "options": [
+        {
+          "id": "default",
+          "label": "Keep the default: send usage data and error reports.",
+          "hint": "All features keep working. Nothing changes.",
+          "profile": "balanced",
+          "sets": []
+        },
+        {
+          "id": "less",
+          "label": "Do not send usage data or error reports.",
+          "hint": "Some features stop working, for example /import and skill sync.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "DISABLE_TELEMETRY", "value": true },
+            { "tweakId": "DISABLE_ERROR_REPORTING", "value": true }
+          ]
+        },
+        {
+          "id": "least",
+          "label": "Send as little as possible, and block claude.ai connectors.",
+          "hint": "No usage data or error reports. Connectors from your claude.ai account do not load.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "DISABLE_TELEMETRY", "value": true },
+            { "tweakId": "DISABLE_ERROR_REPORTING", "value": true },
+            { "tweakId": "disableClaudeAiConnectors", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cost",
+      "title": "How much does cost matter to you?",
+      "hint": "This sets the model for helper agents and a limit on effort.",
+      "options": [
+        {
+          "id": "lowest",
+          "label": "Spend as little as possible, even if answers get weaker.",
+          "hint": "Helper agents use Haiku unless they ask for another model. Effort is capped at medium.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "CLAUDE_CODE_SUBAGENT_MODEL", "value": "haiku" },
+            { "tweakId": "maxEffortLevel", "value": "medium" },
+            { "tweakId": "promptCacheTtl", "value": "5m" },
+            { "tweakId": "autoCompactEnabled", "value": true }
+          ]
+        },
+        {
+          "id": "some",
+          "label": "Keep costs reasonable without losing much quality.",
+          "hint": "Helper agents use Sonnet unless they ask for another model. Effort is capped at high.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "CLAUDE_CODE_SUBAGENT_MODEL", "value": "sonnet" },
+            { "tweakId": "maxEffortLevel", "value": "high" },
+            { "tweakId": "autoCompactEnabled", "value": true }
+          ]
+        },
+        {
+          "id": "quality",
+          "label": "Quality comes first. Cost is not a concern.",
+          "hint": "Removes limits on effort and on helper models. The prompt cache holds for one hour.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "CLAUDE_CODE_SUBAGENT_MODEL", "value": null },
+            { "tweakId": "maxEffortLevel", "value": null },
+            { "tweakId": "promptCacheTtl", "value": "1h" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "title": "What do you do most with Claude Code?",
+      "options": [
+        {
+          "id": "plan",
+          "label": "Large features. I like to plan before Claude writes code.",
+          "hint": "Plans are saved in the project. You can clear context when you accept a plan.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "plansDirectory", "value": ".claude/plans" },
+            { "tweakId": "showClearContextOnPlanAccept", "value": true }
+          ]
+        },
+        {
+          "id": "quick",
+          "label": "Many small fixes and quick changes.",
+          "hint": "Claude gives shorter answers.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "outputStyle", "value": "Concise" }
+          ]
+        },
+        {
+          "id": "learn",
+          "label": "Learning a new codebase, language or tool.",
+          "hint": "Claude explains its choices while it works.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "outputStyle", "value": "Explanatory" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "autonomy",
+      "title": "How much should Claude do without asking you first?",
+      "hint": "None of these answers lets Claude skip permission checks.",
+      "options": [
+        {
+          "id": "ask",
+          "label": "Ask me before edits and commands, with extra safety checks.",
+          "hint": "Commands run in a sandbox. Reads outside the project and bypass mode are blocked.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "sandbox.enabled", "value": true },
+            { "tweakId": "permissions.blockReadsOutsideWorkingDirectories", "value": true },
+            { "tweakId": "permissions.disableBypassPermissionsMode", "value": true }
+          ]
+        },
+        {
+          "id": "sandbox",
+          "label": "Ask me as usual, and run shell commands in a sandbox.",
+          "hint": "The sandbox limits what commands can touch on your computer.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "sandbox.enabled", "value": true }
+          ]
+        },
+        {
+          "id": "edits",
+          "label": "Edit files without asking. Keep shell commands in a sandbox.",
+          "hint": "File edits and simple file commands do not ask. Other commands still ask.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "sandbox.enabled", "value": true },
+            { "tweakId": "permissions.defaultMode", "value": "acceptEdits" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sessions",
+      "title": "How many Claude Code sessions do you run at the same time?",
+      "options": [
+        {
+          "id": "one",
+          "label": "Usually one.",
+          "hint": "Nothing changes.",
+          "profile": "cautious",
+          "sets": []
+        },
+        {
+          "id": "few",
+          "label": "Two or three.",
+          "hint": "Uses the fullscreen view without flicker. Shows a recap when you come back.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "tui", "value": "fullscreen" },
+            { "tweakId": "awaySummaryEnabled", "value": true }
+          ]
+        },
+        {
+          "id": "many",
+          "label": "Four or more.",
+          "hint": "Sessions start in focus view, with less on screen, and show a recap.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "viewMode", "value": "focus" },
+            { "tweakId": "awaySummaryEnabled", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "title": "How should Claude Code tell you that it is done or needs you?",
+      "options": [
+        {
+          "id": "auto",
+          "label": "Pick the best way for my terminal.",
+          "hint": "Desktop notices in iTerm2, Ghostty and Kitty. Some other terminals get nothing.",
+          "profile": "balanced",
+          "sets": [
+            { "tweakId": "preferredNotifChannel", "value": "auto" }
+          ]
+        },
+        {
+          "id": "bell",
+          "label": "Ring the terminal bell.",
+          "hint": "Works in almost every terminal.",
+          "profile": "power",
+          "sets": [
+            { "tweakId": "preferredNotifChannel", "value": "terminal_bell" }
+          ]
+        },
+        {
+          "id": "off",
+          "label": "Do not notify me.",
+          "hint": "You check your sessions yourself.",
+          "profile": "cautious",
+          "sets": [
+            { "tweakId": "preferredNotifChannel", "value": "notifications_disabled" }
+          ]
+        }
+      ]
+    }
+  ]
+}

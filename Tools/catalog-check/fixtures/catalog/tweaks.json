@@ -1,0 +1,309 @@
+{
+  "researchDate": "2026-10-06",
+  "claudeCodeVersionChecked": "2.1.291",
+  "tweaks": [
+    {
+      "id": "tui",
+      "location": { "type": "setting", "path": ["tui"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "default", "label": "Classic" },
+          { "value": "fullscreen", "label": "Fullscreen" }
+        ]
+      },
+      "defaultDescription": "Unset: Claude Code picks the renderer.",
+      "title": "Renderer",
+      "description": "Test row.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#tui"
+    },
+    {
+      "id": "theme",
+      "location": { "type": "setting", "path": ["theme"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "auto", "label": "Auto" },
+          { "value": "dark", "label": "Dark" },
+          { "value": "light", "label": "Light" }
+        ]
+      },
+      "defaultDescription": "dark",
+      "title": "Theme",
+      "description": "Test row.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#theme"
+    },
+    {
+      "id": "editorMode",
+      "location": { "type": "setting", "path": ["editorMode"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "vim", "label": "Vim" }
+        ]
+      },
+      "defaultDescription": "normal",
+      "title": "Editor mode",
+      "description": "Test row.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#editormode"
+    },
+    {
+      "id": "askUserQuestionTimeout",
+      "location": { "type": "setting", "path": ["askUserQuestionTimeout"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "60s", "label": "1 minute" },
+          { "value": "5m", "label": "5 minutes" },
+          { "value": "10m", "label": "10 minutes" },
+          { "value": "never", "label": "Never" }
+        ]
+      },
+      "defaultDescription": "never: the dialog waits for you.",
+      "title": "Question timeout",
+      "description": "Test row.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "scope": "userOnly",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#askuserquestiontimeout"
+    },
+    {
+      "id": "outputStyle",
+      "location": { "type": "setting", "path": ["outputStyle"] },
+      "valueType": { "type": "string" },
+      "defaultDescription": "Unset: the default style.",
+      "title": "Output style",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "suggestions": [
+        { "value": "Explanatory", "label": "Explanatory" },
+        { "value": "Learning", "label": "Learning" },
+        { "value": "Concise", "label": "Concise" },
+        { "value": "Proactive", "label": "Proactive" }
+      ],
+      "docURL": "https://code.claude.com/docs/en/output-styles"
+    },
+    {
+      "id": "model",
+      "location": { "type": "setting", "path": ["model"] },
+      "valueType": { "type": "string" },
+      "defaultDescription": "Unset: your account's default model.",
+      "title": "Model",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "suggestions": [
+        { "value": "opus", "label": "Opus" },
+        { "value": "sonnet", "label": "Sonnet" },
+        { "value": "haiku", "label": "Haiku" },
+        { "value": "opusplan", "label": "Opus plan" },
+        { "value": "opus[1m]", "label": "Opus, long context" }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#model"
+    },
+    {
+      "id": "maxEffortLevel",
+      "location": { "type": "setting", "path": ["maxEffortLevel"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "low", "label": "Low" },
+          { "value": "medium", "label": "Medium" },
+          { "value": "high", "label": "High" },
+          { "value": "xhigh", "label": "Extra high" },
+          { "value": "max", "label": "Max" }
+        ]
+      },
+      "defaultDescription": "Unset: no cap.",
+      "title": "Effort cap",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "minVersion": "2.1.267",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#maxeffortlevel"
+    },
+    {
+      "id": "alwaysThinkingEnabled",
+      "location": { "type": "setting", "path": ["alwaysThinkingEnabled"] },
+      "valueType": { "type": "bool" },
+      "defaultDescription": "Unset: thinking is on for models that support it.",
+      "title": "Thinking",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#alwaysthinkingenabled"
+    },
+    {
+      "id": "fastMode",
+      "location": { "type": "setting", "path": ["fastMode"] },
+      "valueType": { "type": "bool" },
+      "defaultDescription": "Unset: fast mode is off.",
+      "title": "Fast mode",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#fastmode"
+    },
+    {
+      "id": "promptCacheTtl",
+      "location": { "type": "setting", "path": ["promptCacheTtl"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "5m", "label": "5 minutes" },
+          { "value": "1h", "label": "1 hour" }
+        ]
+      },
+      "defaultDescription": "Unset: each request gets its default lifetime.",
+      "title": "Prompt cache lifetime",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "minVersion": "2.1.242",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#promptcachettl"
+    },
+    {
+      "id": "sandbox.enabled",
+      "location": { "type": "setting", "path": ["sandbox", "enabled"] },
+      "valueType": { "type": "bool" },
+      "defaultDescription": "false: Bash commands run without a sandbox.",
+      "defaultValue": false,
+      "title": "Sandbox",
+      "description": "Test row.",
+      "category": "Security",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#sandbox-enabled"
+    },
+    {
+      "id": "permissions.disableBypassPermissionsMode",
+      "location": { "type": "setting", "path": ["permissions", "disableBypassPermissionsMode"] },
+      "valueType": { "type": "fixedString", "value": "disable" },
+      "defaultDescription": "Unset: bypass mode is allowed.",
+      "title": "Block bypass mode",
+      "description": "Test row.",
+      "category": "Security",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-disablebypasspermissionsmode"
+    },
+    {
+      "id": "permissions.defaultMode",
+      "location": { "type": "setting", "path": ["permissions", "defaultMode"] },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          { "value": "default", "label": "Ask" },
+          { "value": "acceptEdits", "label": "Accept edits" },
+          { "value": "plan", "label": "Plan" },
+          { "value": "bypassPermissions", "label": "Bypass" }
+        ]
+      },
+      "defaultDescription": "Unset: default mode.",
+      "title": "Starting permission mode",
+      "description": "Test row.",
+      "category": "Security",
+      "risks": [],
+      "status": "documented",
+      "userOnlyValues": ["bypassPermissions"],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-defaultmode"
+    },
+    {
+      "id": "CLAUDE_CODE_SUBAGENT_MODEL",
+      "location": { "type": "env", "name": "CLAUDE_CODE_SUBAGENT_MODEL" },
+      "valueType": { "type": "string" },
+      "defaultDescription": "Unset: subagents follow their own settings.",
+      "title": "Subagent model",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "suggestions": [
+        { "value": "sonnet", "label": "Sonnet" },
+        { "value": "opus", "label": "Opus" },
+        { "value": "haiku", "label": "Haiku" }
+      ],
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    },
+    {
+      "id": "CLAUDE_CODE_SUBAGENT_MODEL_FORCE",
+      "location": { "type": "env", "name": "CLAUDE_CODE_SUBAGENT_MODEL_FORCE" },
+      "valueType": { "type": "flag" },
+      "defaultDescription": "Unset: the subagent model is only a default.",
+      "title": "Force the subagent model",
+      "description": "Test row.",
+      "category": "Model",
+      "risks": [],
+      "status": "documented",
+      "minVersion": "2.1.257",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    },
+    {
+      "id": "DISABLE_TELEMETRY",
+      "location": { "type": "env", "name": "DISABLE_TELEMETRY" },
+      "valueType": { "type": "flag" },
+      "defaultDescription": "Unset: telemetry is on.",
+      "title": "Turn off telemetry",
+      "description": "Test row.",
+      "category": "Privacy",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    },
+    {
+      "id": "CLAUDE_CODE_NEW_INIT",
+      "location": { "type": "env", "name": "CLAUDE_CODE_NEW_INIT" },
+      "valueType": { "type": "flag" },
+      "defaultDescription": "Unset: /init writes a CLAUDE.md without asking.",
+      "title": "Ask before /init writes",
+      "description": "Test row.",
+      "category": "Files",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    },
+    {
+      "id": "CLAUDE_CODE_TMPDIR",
+      "location": { "type": "env", "name": "CLAUDE_CODE_TMPDIR" },
+      "valueType": { "type": "path" },
+      "defaultDescription": "Unset: the system temporary folder.",
+      "title": "Temporary folder",
+      "description": "Test row.",
+      "category": "Files",
+      "risks": [],
+      "status": "documented",
+      "scope": "userOnly",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    },
+    {
+      "id": "ANTHROPIC_BASE_URL",
+      "location": { "type": "env", "name": "ANTHROPIC_BASE_URL" },
+      "valueType": { "type": "string" },
+      "defaultDescription": "Unset: requests go to Anthropic.",
+      "title": "API endpoint",
+      "description": "Test row.",
+      "category": "Network",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables"
+    }
+  ]
+}

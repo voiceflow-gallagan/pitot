@@ -1,0 +1,7 @@
+{
+  "theme": "light",
+  "verbose": true,
+  "env": {
+    "A": "1"
+  }
+}

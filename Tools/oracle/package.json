@@ -1,0 +1,13 @@
+{
+  "name": "pitot-oracle",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Generates expected outputs for Core golden tests using jsonc-parser",
+  "scripts": {
+    "generate": "node run.js",
+    "check": "node run.js --check"
+  },
+  "dependencies": {
+    "jsonc-parser": "3.3.1"
+  }
+}

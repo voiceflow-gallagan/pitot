@@ -1,0 +1,8 @@
+{
+  "theme": "dark",
+  "verbose": true,
+  "env": {
+    "A": "1"
+  },
+  "added": 1
+}

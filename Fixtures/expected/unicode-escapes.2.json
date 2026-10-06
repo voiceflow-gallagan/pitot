@@ -1,0 +1,6 @@
+{
+  "escaped": "caf\u00e9 \ud83d\ude00",
+  "raw": "café 😀",
+  "flag": false,
+  "added": "é"
+}

@@ -1,0 +1,1325 @@
+{
+  "researchDate": "2026-10-06",
+  "claudeCodeVersionChecked": "2.1.291",
+  "docURL": "https://code.claude.com/docs/en/keybindings",
+  "header": {
+    "schema": "https://www.schemastore.org/claude-code-keybindings.json",
+    "docs": "https://code.claude.com/docs/en/keybindings"
+  },
+  "contexts": [
+    {
+      "name": "Global",
+      "description": "Works on every screen"
+    },
+    {
+      "name": "Chat",
+      "description": "The main prompt box"
+    },
+    {
+      "name": "Autocomplete",
+      "description": "The open suggestion list"
+    },
+    {
+      "name": "Settings",
+      "description": "The settings screen"
+    },
+    {
+      "name": "Confirmation",
+      "description": "Permission and yes or no dialogs"
+    },
+    {
+      "name": "Tabs",
+      "description": "Screens with tabs"
+    },
+    {
+      "name": "Help",
+      "description": "The help screen"
+    },
+    {
+      "name": "Transcript",
+      "description": "The transcript view"
+    },
+    {
+      "name": "HistorySearch",
+      "description": "Prompt history search"
+    },
+    {
+      "name": "Task",
+      "description": "While a task runs in front"
+    },
+    {
+      "name": "ThemePicker",
+      "description": "The theme chooser"
+    },
+    {
+      "name": "Attachments",
+      "description": "Moving between attached images"
+    },
+    {
+      "name": "Footer",
+      "description": "Moving through footer items"
+    },
+    {
+      "name": "MessageSelector",
+      "description": "Choosing a message to rewind to"
+    },
+    {
+      "name": "DiffDialog",
+      "description": "The older diff viewer"
+    },
+    {
+      "name": "DiffPanel",
+      "description": "The open diff panel"
+    },
+    {
+      "name": "ModelPicker",
+      "description": "The effort row in the model picker"
+    },
+    {
+      "name": "EffortSlider",
+      "description": "The slider from /effort"
+    },
+    {
+      "name": "Select",
+      "description": "Plain pick lists"
+    },
+    {
+      "name": "Plugin",
+      "description": "The plugin screen"
+    },
+    {
+      "name": "Pane",
+      "description": "A mod pane that has focus"
+    },
+    {
+      "name": "PaneField",
+      "description": "A field inside a mod pane"
+    },
+    {
+      "name": "Agents",
+      "description": "The agent view"
+    },
+    {
+      "name": "Scroll",
+      "description": "Scrolling and selecting text in fullscreen"
+    }
+  ],
+  "actions": [
+    {
+      "id": "app:interrupt",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Stops the current operation",
+      "defaultKey": "Ctrl+C"
+    },
+    {
+      "id": "app:exit",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Quits Claude Code",
+      "defaultKey": "Ctrl+D"
+    },
+    {
+      "id": "app:redraw",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Redraws the terminal"
+    },
+    {
+      "id": "app:toggleTodos",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows or hides the to-do list",
+      "defaultKey": "Ctrl+T"
+    },
+    {
+      "id": "app:toggleTranscript",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows or hides the full transcript",
+      "defaultKey": "Ctrl+O"
+    },
+    {
+      "id": "history:search",
+      "namespace": "history",
+      "contexts": [],
+      "description": "Opens prompt history search",
+      "defaultKey": "Ctrl+R"
+    },
+    {
+      "id": "history:previous",
+      "namespace": "history",
+      "contexts": [],
+      "description": "Goes to the older prompt",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "history:next",
+      "namespace": "history",
+      "contexts": [],
+      "description": "Goes to the newer prompt",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "chat:cancel",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Drops what you are typing",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "chat:clearInput",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Redraws the screen and keeps your text",
+      "defaultKey": "Ctrl+L"
+    },
+    {
+      "id": "chat:clearScreen",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Works like chat:clearInput",
+      "defaultKey": "Cmd+K"
+    },
+    {
+      "id": "chat:killAgents",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Stops all background subagents",
+      "defaultKey": "Ctrl+X Ctrl+K"
+    },
+    {
+      "id": "chat:cycleMode",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Switches to the next permission mode",
+      "defaultKey": "Shift+Tab"
+    },
+    {
+      "id": "chat:modelPicker",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Opens the model list",
+      "defaultKey": "Meta+P"
+    },
+    {
+      "id": "chat:fastMode",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Turns fast mode on or off",
+      "defaultKey": "Meta+O"
+    },
+    {
+      "id": "chat:thinkingToggle",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Turns extended thinking on or off",
+      "defaultKey": "Meta+T"
+    },
+    {
+      "id": "chat:submit",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Sends the prompt",
+      "defaultKey": "Enter"
+    },
+    {
+      "id": "chat:queueSubmit",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Sends the prompt after the current turn ends",
+      "defaultKey": "Ctrl+X Enter"
+    },
+    {
+      "id": "chat:sendNow",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Sends queued messages right away",
+      "defaultKey": "Ctrl+Enter, Ctrl+X Ctrl+S"
+    },
+    {
+      "id": "chat:newline",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Adds a line break",
+      "defaultKey": "Ctrl+J"
+    },
+    {
+      "id": "chat:undo",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Reverts your last edit",
+      "defaultKey": "Ctrl+_, Ctrl+Shift+-"
+    },
+    {
+      "id": "chat:externalEditor",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Opens the prompt in your external editor",
+      "defaultKey": "Ctrl+G, Ctrl+X Ctrl+E"
+    },
+    {
+      "id": "chat:stash",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Saves the prompt for later",
+      "defaultKey": "Ctrl+S"
+    },
+    {
+      "id": "chat:imagePaste",
+      "namespace": "chat",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Pastes an image from the clipboard",
+      "defaultKey": "Ctrl+V (Alt+V on Windows and WSL)"
+    },
+    {
+      "id": "autocomplete:accept",
+      "namespace": "autocomplete",
+      "contexts": [
+        "Autocomplete"
+      ],
+      "description": "Takes the highlighted suggestion",
+      "defaultKey": "Tab"
+    },
+    {
+      "id": "autocomplete:dismiss",
+      "namespace": "autocomplete",
+      "contexts": [
+        "Autocomplete"
+      ],
+      "description": "Closes the suggestion list",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "autocomplete:previous",
+      "namespace": "autocomplete",
+      "contexts": [
+        "Autocomplete"
+      ],
+      "description": "Highlights the suggestion above",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "autocomplete:next",
+      "namespace": "autocomplete",
+      "contexts": [
+        "Autocomplete"
+      ],
+      "description": "Highlights the suggestion below",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "confirm:yes",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Answers yes to the dialog",
+      "defaultKey": "Enter"
+    },
+    {
+      "id": "confirm:no",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation",
+        "Settings"
+      ],
+      "description": "Answers no to the dialog",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "confirm:previous",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Moves to the option above",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "confirm:next",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Moves to the option below",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "confirm:nextField",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Moves to the next field",
+      "defaultKey": "Tab"
+    },
+    {
+      "id": "confirm:previousField",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Does nothing in Claude Code"
+    },
+    {
+      "id": "confirm:toggle",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Checks or unchecks the option",
+      "defaultKey": "Space"
+    },
+    {
+      "id": "confirm:cycleMode",
+      "namespace": "confirm",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Allows the action for the session on file prompts",
+      "defaultKey": "Shift+Tab"
+    },
+    {
+      "id": "permission:toggleDebug",
+      "namespace": "permission",
+      "contexts": [
+        "Confirmation"
+      ],
+      "description": "Does nothing in Claude Code"
+    },
+    {
+      "id": "transcript:toggleShowAll",
+      "namespace": "transcript",
+      "contexts": [
+        "Transcript"
+      ],
+      "description": "Shows or hides all transcript content",
+      "defaultKey": "Ctrl+E"
+    },
+    {
+      "id": "transcript:exit",
+      "namespace": "transcript",
+      "contexts": [
+        "Transcript"
+      ],
+      "description": "Leaves the transcript",
+      "defaultKey": "q, Ctrl+C, Escape"
+    },
+    {
+      "id": "historySearch:next",
+      "namespace": "historySearch",
+      "contexts": [
+        "HistorySearch"
+      ],
+      "description": "Jumps to the next match",
+      "defaultKey": "Ctrl+R"
+    },
+    {
+      "id": "historySearch:accept",
+      "namespace": "historySearch",
+      "contexts": [
+        "HistorySearch"
+      ],
+      "description": "Puts the match in the prompt",
+      "defaultKey": "Escape, Tab"
+    },
+    {
+      "id": "historySearch:cancel",
+      "namespace": "historySearch",
+      "contexts": [
+        "HistorySearch"
+      ],
+      "description": "Stops searching",
+      "defaultKey": "Ctrl+C"
+    },
+    {
+      "id": "historySearch:execute",
+      "namespace": "historySearch",
+      "contexts": [
+        "HistorySearch"
+      ],
+      "description": "Runs the chosen prompt",
+      "defaultKey": "Enter"
+    },
+    {
+      "id": "historySearch:cycleScope",
+      "namespace": "historySearch",
+      "contexts": [
+        "HistorySearch"
+      ],
+      "description": "Switches the search range",
+      "defaultKey": "Ctrl+S"
+    },
+    {
+      "id": "task:background",
+      "namespace": "task",
+      "contexts": [
+        "Task"
+      ],
+      "description": "Moves the running task to the background",
+      "defaultKey": "Ctrl+B, Ctrl+X Ctrl+B"
+    },
+    {
+      "id": "theme:toggleSyntaxHighlighting",
+      "namespace": "theme",
+      "contexts": [
+        "ThemePicker"
+      ],
+      "description": "Turns code colors on or off",
+      "defaultKey": "Ctrl+T"
+    },
+    {
+      "id": "help:dismiss",
+      "namespace": "help",
+      "contexts": [
+        "Help"
+      ],
+      "description": "Closes the help screen",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "tabs:next",
+      "namespace": "tabs",
+      "contexts": [
+        "Tabs"
+      ],
+      "description": "Goes to the next tab",
+      "defaultKey": "Tab, Right"
+    },
+    {
+      "id": "tabs:previous",
+      "namespace": "tabs",
+      "contexts": [
+        "Tabs"
+      ],
+      "description": "Goes to the previous tab",
+      "defaultKey": "Shift+Tab, Left"
+    },
+    {
+      "id": "attachments:next",
+      "namespace": "attachments",
+      "contexts": [
+        "Attachments"
+      ],
+      "description": "Selects the next attachment",
+      "defaultKey": "Right"
+    },
+    {
+      "id": "attachments:previous",
+      "namespace": "attachments",
+      "contexts": [
+        "Attachments"
+      ],
+      "description": "Selects the previous attachment",
+      "defaultKey": "Left"
+    },
+    {
+      "id": "attachments:remove",
+      "namespace": "attachments",
+      "contexts": [
+        "Attachments"
+      ],
+      "description": "Deletes the selected attachment",
+      "defaultKey": "Backspace, Delete"
+    },
+    {
+      "id": "attachments:exit",
+      "namespace": "attachments",
+      "contexts": [
+        "Attachments"
+      ],
+      "description": "Leaves attachment selection",
+      "defaultKey": "Down, Escape"
+    },
+    {
+      "id": "footer:next",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Selects the next footer item",
+      "defaultKey": "Right"
+    },
+    {
+      "id": "footer:previous",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Selects the previous footer item",
+      "defaultKey": "Left"
+    },
+    {
+      "id": "footer:up",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Moves up in the footer",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "footer:down",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Moves down in the footer",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "footer:openSelected",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Opens the chosen footer item",
+      "defaultKey": "Enter"
+    },
+    {
+      "id": "footer:clearSelection",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Unselects the footer item",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "footer:dismiss",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Does nothing in Claude Code"
+    },
+    {
+      "id": "diff:dismiss",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Closes the diff or returns to the file list",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "diff:previousSource",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Shows the previous diff source",
+      "defaultKey": "Left"
+    },
+    {
+      "id": "diff:nextSource",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Shows the next diff source",
+      "defaultKey": "Right"
+    },
+    {
+      "id": "diff:previousFile",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Goes to the file above, or scrolls up",
+      "defaultKey": "Up, K"
+    },
+    {
+      "id": "diff:nextFile",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Goes to the file below, or scrolls down",
+      "defaultKey": "Down, J"
+    },
+    {
+      "id": "diff:back",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Goes back in the diff view"
+    },
+    {
+      "id": "scroll:pageUp",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Scrolls up half a screen",
+      "defaultKey": "PageUp"
+    },
+    {
+      "id": "scroll:pageDown",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Scrolls down half a screen",
+      "defaultKey": "PageDown"
+    },
+    {
+      "id": "scroll:fullPageUp",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Scrolls up a whole screen",
+      "contextDefaults": {
+        "DiffDialog": "Shift+Space, B"
+      }
+    },
+    {
+      "id": "scroll:fullPageDown",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Scrolls down a whole screen",
+      "contextDefaults": {
+        "DiffDialog": "Space"
+      }
+    },
+    {
+      "id": "scroll:top",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Jumps to the beginning",
+      "defaultKey": "Ctrl+Home",
+      "contextDefaults": {
+        "DiffDialog": "G, Home",
+        "Scroll": "Ctrl+Home"
+      }
+    },
+    {
+      "id": "scroll:bottom",
+      "namespace": "scroll",
+      "contexts": [
+        "DiffDialog",
+        "Scroll"
+      ],
+      "description": "Jumps to the newest content",
+      "defaultKey": "Ctrl+End",
+      "contextDefaults": {
+        "DiffDialog": "Shift+G, End",
+        "Scroll": "Ctrl+End"
+      }
+    },
+    {
+      "id": "app:toggleReplTab",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows or hides the diff panel"
+    },
+    {
+      "id": "app:cycleDiffBase",
+      "namespace": "app",
+      "contexts": [
+        "DiffPanel"
+      ],
+      "description": "Changes what the diff panel compares against",
+      "defaultKey": "Ctrl+X B"
+    },
+    {
+      "id": "app:diffFileListUp",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Scrolls the diff file list up",
+      "defaultKey": "Ctrl+Up, Meta+Up"
+    },
+    {
+      "id": "app:diffFileListDown",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Scrolls the diff file list down",
+      "defaultKey": "Ctrl+Down, Meta+Down"
+    },
+    {
+      "id": "app:toggleDiffNoiseFilter",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows or hides test and generated files"
+    },
+    {
+      "id": "app:toggleDiffPreSession",
+      "namespace": "app",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows or hides changes from before this session"
+    },
+    {
+      "id": "modelPicker:decreaseEffort",
+      "namespace": "modelPicker",
+      "contexts": [
+        "ModelPicker"
+      ],
+      "description": "Lowers the effort level",
+      "defaultKey": "Left"
+    },
+    {
+      "id": "modelPicker:increaseEffort",
+      "namespace": "modelPicker",
+      "contexts": [
+        "ModelPicker"
+      ],
+      "description": "Raises the effort level",
+      "defaultKey": "Right"
+    },
+    {
+      "id": "modelPicker:thisSessionOnly",
+      "namespace": "modelPicker",
+      "contexts": [
+        "ModelPicker"
+      ],
+      "description": "Uses the chosen model for this session only",
+      "defaultKey": "s"
+    },
+    {
+      "id": "effortSlider:decreaseEffort",
+      "namespace": "effortSlider",
+      "contexts": [
+        "EffortSlider"
+      ],
+      "description": "Moves the slider to a lower level",
+      "defaultKey": "Left"
+    },
+    {
+      "id": "effortSlider:increaseEffort",
+      "namespace": "effortSlider",
+      "contexts": [
+        "EffortSlider"
+      ],
+      "description": "Moves the slider to a higher level",
+      "defaultKey": "Right"
+    },
+    {
+      "id": "effortSlider:toggleUltracode",
+      "namespace": "effortSlider",
+      "contexts": [
+        "EffortSlider"
+      ],
+      "description": "Turns ultracode on or off",
+      "defaultKey": "Tab"
+    },
+    {
+      "id": "effortSlider:thisSessionOnly",
+      "namespace": "effortSlider",
+      "contexts": [
+        "EffortSlider"
+      ],
+      "description": "Uses the chosen effort for this session only",
+      "defaultKey": "s"
+    },
+    {
+      "id": "select:next",
+      "namespace": "select",
+      "contexts": [
+        "Select",
+        "MessageSelector",
+        "DiffDialog"
+      ],
+      "description": "Moves to the next item",
+      "defaultKey": "Down, J, Ctrl+N"
+    },
+    {
+      "id": "select:previous",
+      "namespace": "select",
+      "contexts": [
+        "Select",
+        "MessageSelector",
+        "DiffDialog"
+      ],
+      "description": "Moves to the previous item",
+      "defaultKey": "Up, K, Ctrl+P"
+    },
+    {
+      "id": "select:pageUp",
+      "namespace": "select",
+      "contexts": [
+        "Select"
+      ],
+      "description": "Moves up one page",
+      "defaultKey": "PageUp"
+    },
+    {
+      "id": "select:pageDown",
+      "namespace": "select",
+      "contexts": [
+        "Select"
+      ],
+      "description": "Moves down one page",
+      "defaultKey": "PageDown"
+    },
+    {
+      "id": "select:first",
+      "namespace": "select",
+      "contexts": [
+        "Select"
+      ],
+      "description": "Moves to the first item",
+      "defaultKey": "Home"
+    },
+    {
+      "id": "select:last",
+      "namespace": "select",
+      "contexts": [
+        "Select"
+      ],
+      "description": "Moves to the last item",
+      "defaultKey": "End"
+    },
+    {
+      "id": "select:accept",
+      "namespace": "select",
+      "contexts": [
+        "Select",
+        "Settings",
+        "MessageSelector",
+        "DiffDialog"
+      ],
+      "description": "Picks the highlighted item",
+      "defaultKey": "Enter",
+      "contextDefaults": {
+        "Settings": "Enter, Space"
+      }
+    },
+    {
+      "id": "select:cancel",
+      "namespace": "select",
+      "contexts": [
+        "Select"
+      ],
+      "description": "Closes the list without picking",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "plugin:toggle",
+      "namespace": "plugin",
+      "contexts": [
+        "Plugin"
+      ],
+      "description": "Selects or deselects the plugin",
+      "defaultKey": "Space"
+    },
+    {
+      "id": "plugin:install",
+      "namespace": "plugin",
+      "contexts": [
+        "Plugin"
+      ],
+      "description": "Installs the chosen plugins",
+      "defaultKey": "I"
+    },
+    {
+      "id": "plugin:favorite",
+      "namespace": "plugin",
+      "contexts": [
+        "Plugin"
+      ],
+      "description": "Marks the plugin as a favorite",
+      "defaultKey": "F"
+    },
+    {
+      "id": "settings:search",
+      "namespace": "settings",
+      "contexts": [
+        "Settings"
+      ],
+      "description": "Starts a settings search",
+      "defaultKey": "/"
+    },
+    {
+      "id": "settings:retry",
+      "namespace": "settings",
+      "contexts": [
+        "Settings"
+      ],
+      "description": "Reloads usage data after an error",
+      "defaultKey": "R"
+    },
+    {
+      "id": "agents:switchView",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Regroups sessions by state or folder",
+      "defaultKey": "Ctrl+S"
+    },
+    {
+      "id": "agents:togglePin",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Pins or unpins the session",
+      "defaultKey": "Ctrl+T"
+    },
+    {
+      "id": "agents:find",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Searches sessions by name",
+      "defaultKey": "Ctrl+F"
+    },
+    {
+      "id": "agents:rename",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Renames the session",
+      "defaultKey": "Ctrl+R"
+    },
+    {
+      "id": "agents:previousGroup",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Jumps to the group above",
+      "defaultKey": "Ctrl+Up, Meta+Up"
+    },
+    {
+      "id": "agents:nextGroup",
+      "namespace": "agents",
+      "contexts": [
+        "Agents"
+      ],
+      "description": "Jumps to the group below",
+      "defaultKey": "Ctrl+Down, Meta+Down"
+    },
+    {
+      "id": "voice:pushToTalk",
+      "namespace": "voice",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Records your voice as a prompt",
+      "defaultKey": "Space"
+    },
+    {
+      "id": "scroll:lineUp",
+      "namespace": "scroll",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Scrolls up one line",
+      "defaultKey": "wheelup"
+    },
+    {
+      "id": "scroll:lineDown",
+      "namespace": "scroll",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Scrolls down one line",
+      "defaultKey": "wheeldown"
+    },
+    {
+      "id": "scroll:halfPageUp",
+      "namespace": "scroll",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Scrolls up half a screen"
+    },
+    {
+      "id": "scroll:halfPageDown",
+      "namespace": "scroll",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Scrolls down half a screen"
+    },
+    {
+      "id": "selection:copy",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Copies the selected text",
+      "defaultKey": "Ctrl+Shift+C / Cmd+C"
+    },
+    {
+      "id": "selection:clear",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Removes the text selection"
+    },
+    {
+      "id": "selection:extendLeft",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection one column left",
+      "defaultKey": "Shift+Left"
+    },
+    {
+      "id": "selection:extendRight",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection one column right",
+      "defaultKey": "Shift+Right"
+    },
+    {
+      "id": "selection:extendUp",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection one row up",
+      "defaultKey": "Shift+Up"
+    },
+    {
+      "id": "selection:extendDown",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection one row down",
+      "defaultKey": "Shift+Down"
+    },
+    {
+      "id": "selection:extendLineStart",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection to the line start",
+      "defaultKey": "Shift+Home"
+    },
+    {
+      "id": "selection:extendLineEnd",
+      "namespace": "selection",
+      "contexts": [
+        "Scroll"
+      ],
+      "description": "Grows the selection to the line end",
+      "defaultKey": "Shift+End"
+    },
+    {
+      "id": "messageSelector:up",
+      "namespace": "messageSelector",
+      "contexts": [
+        "MessageSelector"
+      ],
+      "description": "Old name; use select:previous",
+      "legacy": true,
+      "replacedBy": "select:previous"
+    },
+    {
+      "id": "messageSelector:down",
+      "namespace": "messageSelector",
+      "contexts": [
+        "MessageSelector"
+      ],
+      "description": "Old name; use select:next",
+      "legacy": true,
+      "replacedBy": "select:next"
+    },
+    {
+      "id": "messageSelector:top",
+      "namespace": "messageSelector",
+      "contexts": [
+        "MessageSelector"
+      ],
+      "description": "Old name; use select:first",
+      "legacy": true,
+      "replacedBy": "select:first"
+    },
+    {
+      "id": "messageSelector:bottom",
+      "namespace": "messageSelector",
+      "contexts": [
+        "MessageSelector"
+      ],
+      "description": "Old name; use select:last",
+      "legacy": true,
+      "replacedBy": "select:last"
+    },
+    {
+      "id": "messageSelector:select",
+      "namespace": "messageSelector",
+      "contexts": [
+        "MessageSelector"
+      ],
+      "description": "Old name; use select:accept",
+      "legacy": true,
+      "replacedBy": "select:accept"
+    },
+    {
+      "id": "diff:viewDetails",
+      "namespace": "diff",
+      "contexts": [
+        "DiffDialog"
+      ],
+      "description": "Old name; use select:accept",
+      "legacy": true,
+      "replacedBy": "select:accept"
+    }
+  ],
+  "keySyntax": {
+    "modifiers": [
+      "ctrl",
+      "shift",
+      "alt",
+      "cmd"
+    ],
+    "aliases": {
+      "control": "ctrl",
+      "opt": "alt",
+      "option": "alt",
+      "meta": "alt",
+      "command": "cmd",
+      "super": "cmd",
+      "win": "cmd",
+      "esc": "escape",
+      "return": "enter"
+    },
+    "specialKeys": [
+      "escape",
+      "enter",
+      "tab",
+      "space",
+      "up",
+      "down",
+      "left",
+      "right",
+      "pageup",
+      "pagedown",
+      "home",
+      "end",
+      "backspace",
+      "delete",
+      "wheelup",
+      "wheeldown"
+    ],
+    "chordSeparator": " ",
+    "notes": [
+      "The file is ~/.claude/keybindings.json. The /keybindings command in Claude Code creates or opens it.",
+      "The top level is an object. It may hold $schema and $docs, and it holds a bindings array of blocks.",
+      "A block has a context name and a bindings object. Each key string in that object maps to an action id or to null.",
+      "Claude Code picks up edits to the file on its own. No restart is needed.",
+      "Key names ignore case, so K and k are the same. Write shift+k to mean Shift with a letter.",
+      "Join modifiers and the key with +, as in ctrl+shift+c.",
+      "A chord is several keystrokes separated by a space, as in ctrl+k ctrl+s. Each press must come within 3 seconds of the last.",
+      "The cmd group only works in terminals that report the Super key, such as those with the Kitty keyboard protocol or xterm modifyOtherKeys. Most terminals do not, so ctrl or meta is safer.",
+      "alt, opt, option and meta all mean Alt on Windows and Linux and Option on macOS.",
+      "Setting an action to null removes a default binding. This works for chords too. Remove every chord that shares a prefix to use that prefix as a single key.",
+      "If only some chords on a prefix are removed, the prefix still waits for a second keystroke.",
+      "Claude Code reads a misspelled modifier such as ctl+k as plain k. It only logs a warning, which you see when you start with --debug.",
+      "An unknown action name is skipped, and the default binding for that key stays.",
+      "A bare letter, digit or space that you bind still types normally inside dialog text fields.",
+      "Write Ctrl shortcuts with Latin letters, whatever the keyboard layout.",
+      "The docs do not mention function keys such as f1, so support is unknown.",
+      "Pane and PaneField belong to mods. The docs give default chords for them but no action names.",
+      "MessageSelector has no actions of its own. It uses the Select actions.",
+      "Default chords that start with ctrl+x: Chat has ctrl+x ctrl+k, ctrl+x ctrl+e, ctrl+x enter, ctrl+x ctrl+a, ctrl+x ctrl+s and ctrl+x tab. Task has ctrl+x ctrl+b. DiffPanel has ctrl+x b. Pane has ctrl+x left, right, up, down and x. PaneField has ctrl+x x.",
+      "The docs name no context for the history actions, so they list none."
+    ]
+  },
+  "reservedKeys": [
+    {
+      "key": "ctrl+c",
+      "reason": "Fixed to interrupt"
+    },
+    {
+      "key": "ctrl+d",
+      "reason": "Fixed to exit"
+    },
+    {
+      "key": "ctrl+m",
+      "reason": "Arrives as Enter"
+    },
+    {
+      "key": "ctrl+[",
+      "reason": "Arrives as Escape. With the Kitty keyboard protocol this needs v2.1.242 or later"
+    },
+    {
+      "key": "ctrl+i",
+      "reason": "Arrives as Tab"
+    },
+    {
+      "key": "ctrl+h",
+      "reason": "Sends the backspace byte. How it reads depends on the terminal"
+    },
+    {
+      "key": "Caps Lock",
+      "reason": "Terminals never send it",
+      "writable": false
+    }
+  ]
+}

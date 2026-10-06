@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "context": "Global",
+      "bindings": {
+        "ctrl+t": "app:toggleTodos",
+        "ctrl+o": null
+      }
+    },
+    {
+      "context": "Confirmation",
+      "bindings": {
+        "y": "confirm:yes"
+      }
+    },
+    {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+e": "chat:externalEditor"
+      }
+    }
+  ]
+}

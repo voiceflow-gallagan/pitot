@@ -1,0 +1,94 @@
+name: Pitot
+options:
+  bundleIdPrefix: fr.gallagan
+  deploymentTarget:
+    macOS: "14.0"
+  # Xcode keeps Package.resolved inside the generated, git-ignored project. The committed copy in
+  # App/Package.resolved is put there after every generation, so builds use the recorded Sparkle revision.
+  postGenCommand: mkdir -p Pitot.xcodeproj/project.xcworkspace/xcshareddata/swiftpm && cp Package.resolved Pitot.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+packages:
+  PitotCore:
+    path: ../Core
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.0
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    ENABLE_HARDENED_RUNTIME: NO
+    GENERATE_INFOPLIST_FILE: YES
+    MARKETING_VERSION: 0.1.0
+    CURRENT_PROJECT_VERSION: 1
+targets:
+  Pitot:
+    type: application
+    platform: macOS
+    sources:
+      - Sources
+      - Resources
+      - path: ../Catalog/tweaks.json
+        buildPhase: resources
+      - path: ../Catalog/onboarding.json
+        buildPhase: resources
+      - path: ../Catalog/keybindings.json
+        buildPhase: resources
+      - path: ../Catalog/unverified.json
+        buildPhase: resources
+    dependencies:
+      - package: PitotCore
+      - package: Sparkle
+        product: Sparkle
+    info:
+      path: Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        SUFeedURL: $(PITOT_FEED_URL)
+        SUPublicEDKey: $(PITOT_SPARKLE_PUBLIC_KEY)
+        SUVerifyUpdateBeforeExtraction: true
+        SURequireSignedFeed: true
+        SUEnableAutomaticChecks: false
+        SUAutomaticallyUpdate: false
+        SUEnableSystemProfiling: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: fr.gallagan.pitot
+        PRODUCT_NAME: Pitot
+        INFOPLIST_KEY_CFBundleDisplayName: Pitot
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        ENABLE_APP_SANDBOX: NO
+        # RFC 2606 reserves .invalid, so this placeholder can never reach a real host.
+        PITOT_FEED_URL: https://updates.invalid/pitot/appcast.xml
+        # Public EdDSA key of the keychain account "pitot". It is not a secret. The private key never enters the repo.
+        PITOT_SPARKLE_PUBLIC_KEY: "1UnHf4Lh+cfgwsecEV42lt7DnlZIy//dVNYvX6YrkJM="
+      configs:
+        # Debug stays ad-hoc signed. Release is Developer ID with hardened runtime. Override the identity
+        # with CODE_SIGN_IDENTITY="Developer ID Application: …" on the xcodebuild command line.
+        # Tools/release/release.sh signs Sparkle's nested code and the app again, inside-out.
+        Release:
+          ENABLE_HARDENED_RUNTIME: YES
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Developer ID Application
+          DEVELOPMENT_TEAM: 3442G4TNXR
+          OTHER_CODE_SIGN_FLAGS: --timestamp
+  PitotTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests
+    dependencies:
+      - target: Pitot
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: fr.gallagan.pitot.tests
+        CODE_SIGN_IDENTITY: "-"
+schemes:
+  Pitot:
+    build:
+      targets:
+        Pitot: all
+    test:
+      targets:
+        - PitotTests

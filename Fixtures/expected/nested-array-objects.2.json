@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "name": "first",
+      "items": [
+        {
+          "id": 2
+        }
+      ]
+    },
+    {
+      "name": "second",
+      "items": []
+    }
+  ]
+}
