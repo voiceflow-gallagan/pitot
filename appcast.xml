@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="yes"?><!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+--><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Pitot</title>
+        <item>
+            <title>0.1.0</title>
+            <pubDate>Wed, 07 Oct 2026 10:59:10 +0200</pubDate>
+            <sparkle:version>0.1.0</sparkle:version>
+            <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[First public release of Pitot, a native macOS app that edits your Claude Code settings files with toggles, presets, a keybindings editor, a diff before every write, backups and undo.
+
+**Install:** open the DMG and drag Pitot to Applications. It needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
+
+**What to know**
+- Pitot edits your real `~/.claude/settings.json` (and project settings you choose). Every change shows a diff first, is backed up, and can be undone.
+- It never reads, shows or stores API keys.
+- Updates come through Sparkle, only after you turn on "Automatically check for updates" in About.
+- Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
+
+**SHA-256** of `Pitot-0.1.0.dmg`: `bc177be91314ff9f386717682bc0b245e8112fe9c58277a372ed52f9a6305283`
+
+Built from commit 8c45fa9. Tested with Claude Code 2.1.291 and 2.1.292.
+]]></description>
+            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.0/Pitot-0.1.0.dmg" length="3361019" type="application/octet-stream" sparkle:edSignature="ltgtaGdIoG7NdKrRl0nrwrE72vujSNaZcZ24W/TuPRh8+dK30h6LAkfR3snyNezhGj+sArBD0KGBwq4wTsbXBw=="></enclosure>
+        </item>
+    </channel>
+</rss><!-- sparkle-signatures:
+edSignature: 6v3DwBRSPfBJLM+1FXG336b9Ayp4hzRy9+qKplnB7g2pEO/H4f3KAhnjV57JCthV6YTeAyxqHDraA0vtvMuXAA==
+length: 2069
+-->
