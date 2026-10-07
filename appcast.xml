@@ -6,6 +6,30 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Pitot</title>
         <item>
+            <title>0.1.2</title>
+            <pubDate>Wed, 07 Oct 2026 12:33:53 +0200</pubDate>
+            <sparkle:version>0.1.2</sparkle:version>
+            <sparkle:shortVersionString>0.1.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.2 adds menus and shortcuts, an accessibility pass and plainer text.
+
+**New**
+- Menus and shortcuts: Choose Project Folder (Cmd+O), Apply (Cmd+Return), Discard (Cmd+Delete), Undo Last Change, Find (Cmd+F), sections on Cmd+1 to Cmd+7, and a Help menu with links.
+- Pitot reopens the last section, scope and project.
+
+**Changed**
+- Clearer text for empty screens, banners and notes. "Effective" is now "In effect".
+- Better accessibility: badge text meets 4.5:1 contrast, headings are marked for VoiceOver, review lines are spoken as "Warning" or "Problem", and Increase Contrast adds stronger outlines.
+
+**Update:** from 0.1.0 or 0.1.1, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
+
+**SHA-256** of `Pitot-0.1.2.dmg`: `fc99753fc77e4006273bccf26e327200b45ce7205ecd3bff6ce0ba90d82cd01a`
+
+Built from commit e9cb39e. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
+]]></description>
+            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.2/Pitot-0.1.2.dmg" length="3426492" type="application/octet-stream" sparkle:edSignature="6nLn/PlSpPiWEnkCrm28pADmgWCQzZB2nQDvFWQqZ4kxsYb4fgNnrfp0adbkJm9YkddnbQKTwmvuWf+5/kw9Bg=="/>
+        </item>
+        <item>
             <title>0.1.1</title>
             <pubDate>Wed, 07 Oct 2026 11:38:05 +0200</pubDate>
             <sparkle:version>0.1.1</sparkle:version>
@@ -49,6 +73,6 @@ Built from commit 8c45fa9. Tested with Claude Code 2.1.291 and 2.1.292.
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: 5mOqp5vRFyK0VPeTH9Z/Y/ArCUOrPMlzdiIZNm0u71lo89ZCynlLyfazC5KRGp2YXU3mJ3nV7839r3i4y1QCAw==
-length: 3447
+edSignature: mWtmEZ2y334A8XZ7fncclpUvxhnSCGKD/+Iu1ThjabLRw7yHfzBPyroq+biC+ihzoy3cFzL6t3Ex6Q8noJO7Bw==
+length: 5261
 -->
