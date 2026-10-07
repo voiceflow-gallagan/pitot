@@ -1,26 +1,73 @@
 import PitotCore
 import SwiftUI
 
-/// The label that says which file Pitot edits: red, yellow or blue for the user file,
+/// How the file label looks for one scope and file mode.
+struct FileLabelStyle: Equatable {
+    let title: String
+    let symbol: String
+    let color: Color
+    /// The full path under the title, or nil when the title already names the file.
+    let path: String?
+    let note: String?
+
+    static let realFileNote = "Pitot backs up the file before every change. Undo is in the History panel."
+
+    /// A real file in a release build is the normal case, so its label is calm. A debug build keeps
+    /// the red label, so a developer notices that the real file is open.
+    static func make(scope: SettingsLayerKind, mode: FileMode, project: String, url: URL, isDebugBuild: Bool) -> FileLabelStyle {
+        func style(_ title: String, _ symbol: String, _ color: Color) -> FileLabelStyle {
+            FileLabelStyle(title: title, symbol: symbol, color: color, path: url.path, note: nil)
+        }
+        switch (scope, mode) {
+        case (.project, _): return style("Project settings, shared · \(project)", "person.2", .orange)
+        case (.local, _): return style("Project-local settings · \(project)", "person", .green)
+        case (.user, .copy): return style("Working on a COPY", "doc.on.doc", .yellow)
+        case (.user, .real) where isDebugBuild: return style("REAL FILE", "exclamationmark.triangle.fill", .red)
+        case (.user, .real):
+            return FileLabelStyle(
+                title: "Editing \((url.path as NSString).abbreviatingWithTildeInPath)", symbol: "doc.text", color: .gray,
+                path: nil, note: realFileNote)
+        case (.user, .custom): return style("Custom settings path", "doc.text", .blue)
+        }
+    }
+}
+
+extension FileMode {
+    func keybindingsTitle(isDebugBuild: Bool) -> String {
+        switch self {
+        case .copy: "Keybindings · working on a COPY"
+        case .real: isDebugBuild ? "Keybindings · REAL FILE" : "Keybindings"
+        case .custom: "Keybindings · custom path"
+        }
+    }
+}
+
+/// The label that says which file Pitot edits: its own colour per mode for the user file,
 /// and the full path for a project's shared or local file.
 struct FileLabel: View {
     let model: SettingsModel
 
     var body: some View {
-        let style = Self.style(for: model)
-        let url = model.selectedStore?.url ?? model.settingsURL
+        let style = FileLabelStyle.make(
+            scope: model.scope, mode: model.mode, project: model.projectFolder?.lastPathComponent ?? "",
+            url: model.selectedStore?.url ?? model.settingsURL, isDebugBuild: LaunchConfiguration.isDebugBuild)
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 8) {
                 Image(systemName: style.symbol).foregroundStyle(style.color).accessibilityHidden(true)
                 Text(style.title).font(.headline)
                 Spacer(minLength: 0)
             }
-            Text(url.path)
-                .font(.caption.monospaced())
-                .foregroundStyle(.secondary)
-                .lineLimit(2)
-                .truncationMode(.middle)
-                .textSelection(.enabled)
+            if let path = style.path {
+                Text(path)
+                    .font(.caption.monospaced())
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                    .truncationMode(.middle)
+                    .textSelection(.enabled)
+            }
+            if let note = style.note {
+                Text(note).font(.caption).foregroundStyle(.secondary)
+            }
             if model.selectedStore?.isMissing == true, model.selectedStore?.isEditable == true {
                 Text("The file does not exist yet. Pitot creates it on the first Apply.")
                     .font(.caption)
@@ -32,17 +79,6 @@ struct FileLabel: View {
         .background(style.color.opacity(0.15), in: RoundedRectangle(cornerRadius: 8))
         .overlay(RoundedRectangle(cornerRadius: 8).stroke(style.color.opacity(0.6)))
         .accessibilityElement(children: .combine)
-    }
-
-    private static func style(for model: SettingsModel) -> (title: String, symbol: String, color: Color) {
-        let project = model.projectFolder?.lastPathComponent ?? ""
-        switch (model.scope, model.mode) {
-        case (.project, _): return ("Project settings, shared · \(project)", "person.2", .orange)
-        case (.local, _): return ("Project-local settings · \(project)", "person", .green)
-        case (.user, .copy): return ("Working on a COPY", "doc.on.doc", .yellow)
-        case (.user, .real): return ("REAL FILE", "exclamationmark.triangle.fill", .red)
-        case (.user, .custom): return ("Custom settings path", "doc.text", .blue)
-        }
     }
 }
 

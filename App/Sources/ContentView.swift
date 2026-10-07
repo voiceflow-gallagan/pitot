@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             SidebarView(model: model, isFocused: $isSidebarFocused)
-                .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 300)
+                .navigationSplitViewColumnWidth(min: 220, ideal: 232, max: 300)
         } detail: {
             Group {
                 switch model.section {
@@ -71,28 +71,36 @@ struct ContentView: View {
     }
 }
 
+/// The section list: a tile per section with its own tint, a count badge and a pending dot.
+///
+/// Rows are buttons rather than list selection, so the selected row can carry the accent fill in
+/// active and inactive windows alike. Up and down arrows move the selection, as in a list.
 private struct SidebarView: View {
     @Bindable var model: SettingsModel
     var isFocused: FocusState<Bool>.Binding
 
     var body: some View {
-        List(selection: $model.sidebarSelection) {
+        List {
             Section("Settings") {
                 ForEach(model.categories, id: \.self) { category in
-                    Label(category, systemImage: Self.symbols[category] ?? "slider.horizontal.3")
-                        .badge(model.pendingCount(in: category))
-                        .tag(SidebarItem.category(category))
+                    row(.category(category))
                 }
             }
             Section("More") {
-                Label("Keybindings", systemImage: "keyboard")
-                    .badge(model.keybindings.pending.count)
-                    .tag(SidebarItem.keybindings)
-                Label("Unverified", systemImage: "questionmark.diamond")
-                    .tag(SidebarItem.unverified)
+                row(.keybindings)
+                row(.unverified)
             }
         }
+        .listStyle(.sidebar)
         .focused(isFocused)
+        .onKeyPress(.upArrow) {
+            model.selectAdjacent(-1)
+            return .handled
+        }
+        .onKeyPress(.downArrow) {
+            model.selectAdjacent(1)
+            return .handled
+        }
         .safeAreaInset(edge: .bottom) {
             ClaudeStatusLine(status: model.claude)
                 .padding(.horizontal, 12)
@@ -100,13 +108,10 @@ private struct SidebarView: View {
         }
     }
 
-    private static let symbols: [String: String] = [
-        "Interface": "macwindow",
-        "Notifications": "bell",
-        "Model and cost": "cpu",
-        "Privacy": "hand.raised",
-        "Safety": "lock.shield",
-    ]
+    private func row(_ item: SidebarItem) -> some View {
+        SidebarRow(info: model.sidebarInfo(item), isSelected: model.section == item) { model.select(item) }
+            .listRowInsets(EdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4))
+    }
 }
 
 private struct DetailView: View {

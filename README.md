@@ -18,7 +18,10 @@ Not affiliated with or endorsed by Anthropic. Claude and Claude Code are tradema
 
 It reads managed settings to show which values your organization sets, and never writes them.
 
-By default Pitot works on a copy of your user settings in a temporary folder, so you can try it safely. Start it with `--use-real-settings` to edit the real files.
+A release build edits your real files. A debug build works on a copy of your user settings and keybindings in a temporary folder, so development never changes them. Two launch options change this in any build:
+
+- `--use-settings-copy`, or the environment variable `PITOT_USE_COPY=1`, works on the copy. Use it to try a release build safely.
+- `--use-real-settings` edits the real files. When both are given, Pitot works on the copy.
 
 ## Requirements
 

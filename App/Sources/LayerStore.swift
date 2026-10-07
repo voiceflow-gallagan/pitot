@@ -48,6 +48,7 @@ final class LayerStore {
     private(set) var hasLoaded = false
     private var lastWrittenHash: String?
     private var generation = 0
+    private var writesInFlight = 0
     private var watcher: FileWatcher?
     private var watchTask: Task<Void, Never>?
     private var isStartingWatcher = false
@@ -117,7 +118,7 @@ final class LayerStore {
         let current = generation
         let (reader, file, id, url) = (reader, file, id, url)
         let read = await Task.detached { reader(file, id, url) }.value
-        guard current == generation else { return false }
+        guard current == generation, writesInFlight == 0 else { return false }
         let previous = snapshot?.hash
         snapshot = read.snapshot
         layer = read.layer
@@ -149,6 +150,18 @@ final class LayerStore {
             historyKeys[group.id] = operations.map { $0.path.joined(separator: ".") }.filter { seen.insert($0).inserted }
         }
         accept(result.snapshot)
+    }
+
+    /// Called around a write or an undo of this file. The watcher can report Pitot's own write before
+    /// the write's result is taken; a read in that window is dropped, so the write never looks like
+    /// an outside edit. `endWrite` and taking the result run in one main-actor step.
+    func beginWrite() {
+        writesInFlight += 1
+        generation += 1
+    }
+
+    func endWrite() {
+        writesInFlight = max(0, writesInFlight - 1)
     }
 
     /// Takes the content Pitot just wrote. A read that started before the write is dropped.

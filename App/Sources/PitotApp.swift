@@ -68,7 +68,7 @@ enum AppLaunch {
         switch prepared {
         case .success(let prepared):
             let configuration = prepared.configuration
-            // ~/.claude.json also holds sign-in data, so it is read only when the user asked to edit the real files.
+            // ~/.claude.json also holds sign-in data, so it is read only when Pitot edits the real files.
             let suggestions: ProjectSuggestionSource =
                 configuration.mode == .real ? ClaudeJSONProjects(url: ClaudeJSONProjects.defaultURL) : NoProjectSuggestions()
             let services = LayerServices(

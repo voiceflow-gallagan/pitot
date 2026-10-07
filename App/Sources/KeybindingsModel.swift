@@ -50,7 +50,11 @@ final class KeybindingsModel {
     let url: URL
     let file: SettingsFile
 
-    private(set) var snapshot: SettingsSnapshot?
+    private(set) var snapshot: SettingsSnapshot? {
+        didSet { bindingCount = Self.countBindings(in: snapshot) }
+    }
+    /// The bindings in the file on disk, pending edits not included. Shown on the sidebar tile.
+    private(set) var bindingCount = 0
     private(set) var isMissing = true
     /// Why the file cannot be edited: invalid JSON or a shape Claude Code does not read.
     private(set) var problem: String?
@@ -68,6 +72,7 @@ final class KeybindingsModel {
     private var previewDocument: JSONDocument?
     private var lastWrittenHash: String?
     private var generation = 0
+    private var writesInFlight = 0
     /// False until the first read finishes, so an existing file is never shown as missing.
     private(set) var hasLoaded = false
     private var watcher: FileWatcher?
@@ -119,7 +124,7 @@ final class KeybindingsModel {
         let current = generation
         let (file, url) = (file, url)
         let read = await Task.detached { Self.read(file, url: url) }.value
-        guard current == generation else { return false }
+        guard current == generation, writesInFlight == 0 else { return false }
         let previous = snapshot?.hash
         snapshot = read.snapshot
         isMissing = read.isMissing
@@ -128,6 +133,11 @@ final class KeybindingsModel {
         let loadedBefore = hasLoaded
         hasLoaded = true
         return loadedBefore && snapshot?.hash != previous && snapshot?.hash != lastWrittenHash
+    }
+
+    private static func countBindings(in snapshot: SettingsSnapshot?) -> Int {
+        guard let document = snapshot?.document, let file = try? KeybindingsFile(document: document) else { return 0 }
+        return file.blocks.reduce(0) { $0 + $1.bindings.count }
     }
 
     private nonisolated static func read(_ file: SettingsFile, url: URL) -> Read {
@@ -216,9 +226,11 @@ final class KeybindingsModel {
         isWriting = true
         defer { isWriting = false }
         let file = file
+        beginWrite()
         let outcome = await SettingsModel.run { () throws(SettingsFileError) in
             try file.apply(operations: operations, expectedHash: expectedHash)
         }
+        endWrite()
         switch outcome {
         case .success(let result):
             undoLog.record(result)
@@ -239,11 +251,13 @@ final class KeybindingsModel {
         blockedUndo = nil
         let file = file
         let log = undoLog
+        beginWrite()
         let outcome = await SettingsModel.run { () throws(SettingsFileError) in
             var copy = log
             let result = try copy.undoGroup(in: file, force: force)
             return (result, copy)
         }
+        endWrite()
         switch outcome {
         case .success(let (result, updatedLog)):
             undoLog = updatedLog
@@ -321,6 +335,18 @@ final class KeybindingsModel {
     }
 
     // MARK: Private
+
+    /// The watcher can report Pitot's own write before the write's result is taken. A read in that
+    /// window is dropped, so the write never looks like an outside edit. `endWrite` and taking the
+    /// result run in one main-actor step, so no read lands between them.
+    private func beginWrite() {
+        writesInFlight += 1
+        generation += 1
+    }
+
+    private func endWrite() {
+        writesInFlight = max(0, writesInFlight - 1)
+    }
 
     /// Takes the content Pitot just wrote. A read that started before the write is dropped.
     private func accept(_ written: SettingsSnapshot) {

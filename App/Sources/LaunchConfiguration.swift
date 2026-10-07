@@ -21,6 +21,12 @@ struct LaunchConfiguration: Sendable {
     static let sandboxFolder = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
         .appendingPathComponent("Pitot-Sandbox", isDirectory: true)
 
+    #if DEBUG
+    static let isDebugBuild = true
+    #else
+    static let isDebugBuild = false
+    #endif
+
     init(settingsURL: URL, backupRoot: URL, mode: FileMode, setupError: String?, keybindingsURL: URL? = nil) {
         self.settingsURL = settingsURL
         self.backupRoot = backupRoot
@@ -29,8 +35,21 @@ struct LaunchConfiguration: Sendable {
         self.keybindingsURL = keybindingsURL ?? settingsURL.deletingLastPathComponent().appendingPathComponent("keybindings.json")
     }
 
-    static func resolve(environment: [String: String], arguments: [String]) -> LaunchConfiguration {
-        var configuration = resolveFile(environment: environment, arguments: arguments)
+    /// Which files Pitot edits. A custom path always wins. Then a request for the copy, then
+    /// `--use-real-settings`. Without any of them, a release build edits the real files and a debug
+    /// build works on a copy.
+    static func fileMode(environment: [String: String], arguments: [String], isDebugBuild: Bool) -> FileMode {
+        if let path = environment["PITOT_SETTINGS_PATH"], !path.isEmpty { return .custom }
+        let useCopy = environment["PITOT_USE_COPY"].map { !$0.isEmpty && $0 != "0" } ?? false
+        if useCopy || arguments.contains("--use-settings-copy") { return .copy }
+        if arguments.contains("--use-real-settings") { return .real }
+        return isDebugBuild ? .copy : .real
+    }
+
+    static func resolve(
+        environment: [String: String], arguments: [String], isDebugBuild: Bool = LaunchConfiguration.isDebugBuild
+    ) -> LaunchConfiguration {
+        var configuration = resolveFile(mode: fileMode(environment: environment, arguments: arguments, isDebugBuild: isDebugBuild), environment: environment)
         if let folder = environment["PITOT_MANAGED_DIR"], !folder.isEmpty {
             configuration.managedFolder = URL(fileURLWithPath: folder, isDirectory: true)
         }
@@ -40,11 +59,11 @@ struct LaunchConfiguration: Sendable {
         return configuration
     }
 
-    private static func resolveFile(environment: [String: String], arguments: [String]) -> LaunchConfiguration {
+    private static func resolveFile(mode: FileMode, environment: [String: String]) -> LaunchConfiguration {
         let claude = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".claude", isDirectory: true)
         let realSettings = claude.appendingPathComponent("settings.json")
         let realKeybindings = claude.appendingPathComponent("keybindings.json")
-        if let path = environment["PITOT_SETTINGS_PATH"], !path.isEmpty {
+        if mode == .custom, let path = environment["PITOT_SETTINGS_PATH"] {
             return LaunchConfiguration(
                 settingsURL: URL(fileURLWithPath: path),
                 backupRoot: sandboxFolder.appendingPathComponent("Backups", isDirectory: true),
@@ -52,7 +71,7 @@ struct LaunchConfiguration: Sendable {
                 setupError: nil
             )
         }
-        if arguments.contains("--use-real-settings") {
+        if mode == .real {
             return LaunchConfiguration(
                 settingsURL: realSettings, backupRoot: SettingsFile.defaultBackupRoot, mode: .real, setupError: nil,
                 keybindingsURL: realKeybindings)

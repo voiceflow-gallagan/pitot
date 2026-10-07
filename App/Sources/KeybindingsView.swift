@@ -67,7 +67,7 @@ private struct KeybindingsHeader: View {
             HStack(alignment: .top, spacing: 8) {
                 Image(systemName: "keyboard").foregroundStyle(.purple).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.headline)
+                    Text(model.mode.keybindingsTitle(isDebugBuild: LaunchConfiguration.isDebugBuild)).font(.headline)
                     Text(keybindings.url.path)
                         .font(.caption.monospaced())
                         .foregroundStyle(.secondary)
@@ -97,14 +97,6 @@ private struct KeybindingsHeader: View {
                     keybindings.externalChangeBanner = false
                 }
             }
-        }
-    }
-
-    private var title: String {
-        switch model.mode {
-        case .copy: "Keybindings · working on a COPY"
-        case .real: "Keybindings · REAL FILE"
-        case .custom: "Keybindings · custom path"
         }
     }
 }

@@ -79,6 +79,22 @@ struct BackgroundIOTests {
         #expect(store.snapshot?.document.value(at: ["model"]) == "sonnet")
     }
 
+    @Test func readDuringOwnWriteIsDropped() async throws {
+        let folder = try folder()
+        let url = folder.appendingPathComponent("settings.json")
+        try "{\n  \"model\": \"opus\"\n}\n".write(to: url, atomically: true, encoding: .utf8)
+        let store = LayerStore(kind: .user, project: nil, url: url, backupRoot: folder.appendingPathComponent("Backups"))
+        await store.reload()
+
+        store.beginWrite()
+        try "{\n  \"model\": \"sonnet\"\n}\n".write(to: url, atomically: true, encoding: .utf8)
+        #expect(await store.reload() == false)
+        #expect(store.snapshot?.document.value(at: ["model"]) == "opus")
+        store.endWrite()
+        #expect(await store.reload() == true)
+        #expect(store.snapshot?.document.value(at: ["model"]) == "sonnet")
+    }
+
     @Test func projectsFileOverTheLimitGivesNoSuggestions() throws {
         let folder = try folder()
         let url = folder.appendingPathComponent("claude.json")

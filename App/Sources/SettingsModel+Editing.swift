@@ -93,9 +93,11 @@ extension SettingsModel {
         defer { isWriting = false }
         rebasedNotice = false
         let file = store.file
+        store.beginWrite()
         let outcome = await Self.run { () throws(SettingsFileError) in
             try file.apply(operations: operations, expectedHash: expectedHash)
         }
+        store.endWrite()
         switch outcome {
         case .success(let result):
             store.record(result, operations: operations)
@@ -123,11 +125,13 @@ extension SettingsModel {
         blockedUndo = nil
         let file = store.file
         let log = store.undoLog
+        store.beginWrite()
         let outcome = await Self.run { () throws(SettingsFileError) in
             var copy = log
             let result = try copy.undoGroup(in: file, force: force)
             return (result, copy)
         }
+        store.endWrite()
         switch outcome {
         case .success(let (result, updatedLog)):
             store.replaceUndoLog(updatedLog)
