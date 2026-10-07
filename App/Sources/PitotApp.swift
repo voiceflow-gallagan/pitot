@@ -4,6 +4,7 @@ import SwiftUI
 @main
 struct PitotApp: App {
     @State private var launch = AppLaunch.loading
+    @State private var window = WindowState()
     @State private var updates = UpdatesModel(
         publicKey: Bundle.main.object(forInfoDictionaryKey: "SUPublicEDKey") as? String,
         environment: ProcessInfo.processInfo.environment,
@@ -18,6 +19,7 @@ struct PitotApp: App {
                 case .failed(let message): CatalogErrorView(message: message)
                 }
             }
+            .background(WindowReader(state: window))
             .task {
                 guard case .loading = launch else { return }
                 launch = await AppLaunch.start()
@@ -26,14 +28,7 @@ struct PitotApp: App {
         }
         .defaultSize(width: 1180, height: 760)
         .commands {
-            CommandGroup(replacing: .appInfo) {
-                AppMenuItems(updates: updates)
-            }
-            CommandGroup(after: .newItem) {
-                Button("Run Setup Questions…") {
-                    if case .ready(let model) = launch { model.startOnboarding() }
-                }
-            }
+            PitotCommands(model: launch.model, window: window, updates: updates)
         }
 
         Window("About Pitot", id: "about") {
@@ -48,6 +43,11 @@ enum AppLaunch {
     case loading
     case ready(SettingsModel)
     case failed(String)
+
+    var model: SettingsModel? {
+        if case .ready(let model) = self { return model }
+        return nil
+    }
 
     /// Everything the model needs that comes from disk: the bundled tables, the sandbox copies and
     /// the git lookup. It is gathered off the main actor.
@@ -82,7 +82,8 @@ enum AppLaunch {
                     configuration: configuration,
                     setupQuestions: prepared.questions,
                     launchFlags: OnboardingFlags.store(mode: configuration.mode, environment: environment),
-                    services: services))
+                    services: services,
+                    session: SessionStores.store(mode: configuration.mode, environment: environment)))
         case .failure(let failure):
             return .failed(failure.message)
         }

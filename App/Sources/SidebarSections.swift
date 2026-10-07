@@ -1,3 +1,4 @@
+import AppKit
 import PitotCore
 import SwiftUI
 
@@ -5,27 +6,66 @@ import SwiftUI
 /// so the tint is never the only cue.
 struct SidebarStyle: Equatable {
     let symbol: String
-    let tint: Color
+    /// A system color, so it adapts to light, dark and Increase Contrast.
+    let nsTint: NSColor
     /// The tint's name, so tests can check that no two sections share a tint.
     let tintName: String
+
+    var tint: Color { Color(nsColor: nsTint) }
 }
 
 enum SidebarStyles {
     static let table: [SidebarItem: SidebarStyle] = [
-        .category("Interface"): SidebarStyle(symbol: "macwindow", tint: .blue, tintName: "blue"),
-        .category("Notifications"): SidebarStyle(symbol: "bell.badge", tint: .pink, tintName: "pink"),
-        .category("Model and cost"): SidebarStyle(symbol: "cpu", tint: .green, tintName: "green"),
-        .category("Privacy"): SidebarStyle(symbol: "hand.raised", tint: .teal, tintName: "teal"),
-        .category("Safety"): SidebarStyle(symbol: "lock.shield", tint: .red, tintName: "red"),
-        .keybindings: SidebarStyle(symbol: "keyboard", tint: .indigo, tintName: "indigo"),
-        .unverified: SidebarStyle(symbol: "questionmark.diamond", tint: .gray, tintName: "gray"),
+        .category("Interface"): SidebarStyle(symbol: "macwindow", nsTint: .systemBlue, tintName: "blue"),
+        .category("Notifications"): SidebarStyle(symbol: "bell.badge", nsTint: .systemPink, tintName: "pink"),
+        .category("Model and cost"): SidebarStyle(symbol: "cpu", nsTint: .systemGreen, tintName: "green"),
+        .category("Privacy"): SidebarStyle(symbol: "hand.raised", nsTint: .systemTeal, tintName: "teal"),
+        .category("Safety"): SidebarStyle(symbol: "lock.shield", nsTint: .systemRed, tintName: "red"),
+        .keybindings: SidebarStyle(symbol: "keyboard", nsTint: .systemIndigo, tintName: "indigo"),
+        .unverified: SidebarStyle(symbol: "questionmark.diamond", nsTint: .systemGray, tintName: "gray"),
     ]
 
     /// For a category added to the catalog before it gets its own entry here.
-    static let fallback = SidebarStyle(symbol: "slider.horizontal.3", tint: .secondary, tintName: "secondary")
+    static let fallback = SidebarStyle(symbol: "slider.horizontal.3", nsTint: .systemBrown, tintName: "brown")
 
     static func style(for item: SidebarItem) -> SidebarStyle {
         table[item] ?? fallback
+    }
+}
+
+/// The text color of a count badge: black or white, whichever reads better on the badge's tint.
+/// System tints change with the appearance, so the choice is made for the appearance in use.
+enum BadgeInk {
+    static func color(on tint: NSColor, in appearance: NSAppearance) -> NSColor {
+        contrast(.black, tint, in: appearance) >= contrast(.white, tint, in: appearance) ? .black : .white
+    }
+
+    /// The WCAG contrast ratio of two opaque colors, from 1 to 21.
+    static func contrast(_ first: NSColor, _ second: NSColor, in appearance: NSAppearance) -> Double {
+        let (a, b) = (luminance(first, in: appearance), luminance(second, in: appearance))
+        return (max(a, b) + 0.05) / (min(a, b) + 0.05)
+    }
+
+    static func appearance(dark: Bool, increasedContrast: Bool) -> NSAppearance? {
+        let name: NSAppearance.Name =
+            switch (dark, increasedContrast) {
+            case (false, false): .aqua
+            case (true, false): .darkAqua
+            case (false, true): .accessibilityHighContrastAqua
+            case (true, true): .accessibilityHighContrastDarkAqua
+            }
+        return NSAppearance(named: name)
+    }
+
+    private static func luminance(_ color: NSColor, in appearance: NSAppearance) -> Double {
+        var resolved: NSColor?
+        appearance.performAsCurrentDrawingAppearance { resolved = color.usingColorSpace(.sRGB) }
+        guard let resolved else { return 0 }
+        func linear(_ channel: CGFloat) -> Double {
+            let value = Double(channel)
+            return value <= 0.04045 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
+        }
+        return 0.2126 * linear(resolved.redComponent) + 0.7152 * linear(resolved.greenComponent) + 0.0722 * linear(resolved.blueComponent)
     }
 }
 
@@ -87,6 +127,11 @@ extension SettingsModel {
     /// Settings of `category` that some layer sets, whatever the value, a written default included.
     func customisedCount(in category: String) -> Int {
         catalog.tweaks.filter { $0.category == category && effective.value(for: $0) != nil }.count
+    }
+
+    /// Command-1 to Command-9 select the sidebar rows in order.
+    var goToShortcuts: [GoToShortcut] {
+        zip(sidebarItems, "123456789").map(GoToShortcut.init)
     }
 
     /// Moves the selection up or down the sidebar, stopping at either end.

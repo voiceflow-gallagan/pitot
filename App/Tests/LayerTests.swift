@@ -47,7 +47,7 @@ struct LayerTests {
         #expect(state.reading == .value("opus"))
         #expect(state.effective.winner == .local)
         #expect(state.effective.reading == .value("sonnet"))
-        #expect(state.notes.contains { $0.text == "Effective: sonnet from Project-local" })
+        #expect(state.notes.contains { $0.text == "In effect: sonnet, set in Project-local" })
         #expect(state.overriddenBy == .local)
 
         fixture.model.switchScope(to: .local)

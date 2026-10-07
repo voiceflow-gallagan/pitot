@@ -93,7 +93,7 @@ private struct NoteLine: View {
         if note.kind == .quiet {
             Text(note.text)
                 .font(.caption2)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         } else {
             Label {

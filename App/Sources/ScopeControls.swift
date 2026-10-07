@@ -60,7 +60,7 @@ private struct ProjectMenu: View {
                 }
             }
             Divider()
-            Button("Choose Folder…") {
+            Button("Choose Project Folder…") {
                 if let folder = ProjectPanel.chooseFolder() { Task { await model.selectProject(folder) } }
             }
             if model.projectFolder != nil {

@@ -46,6 +46,7 @@ extension FileMode {
 /// and the full path for a project's shared or local file.
 struct FileLabel: View {
     let model: SettingsModel
+    @Environment(\.colorSchemeContrast) private var contrast
 
     var body: some View {
         let style = FileLabelStyle.make(
@@ -69,7 +70,7 @@ struct FileLabel: View {
                 Text(note).font(.caption).foregroundStyle(.secondary)
             }
             if model.selectedStore?.isMissing == true, model.selectedStore?.isEditable == true {
-                Text("The file does not exist yet. Pitot creates it on the first Apply.")
+                Text("This file does not exist yet. Pitot creates it when you first press Apply.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -77,7 +78,7 @@ struct FileLabel: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
         .background(style.color.opacity(0.15), in: RoundedRectangle(cornerRadius: 8))
-        .overlay(RoundedRectangle(cornerRadius: 8).stroke(style.color.opacity(0.6)))
+        .overlay(RoundedRectangle(cornerRadius: 8).stroke(style.color.opacity(contrast == .increased ? 1 : 0.6)))
         .accessibilityElement(children: .combine)
     }
 }
@@ -106,7 +107,7 @@ struct Banners: View {
                     dismiss: nil)
             }
             if model.externalChangeBanner {
-                Banner(symbol: "arrow.triangle.2.circlepath", color: .blue, text: "Edited outside Pitot \u{2014} reloaded") {
+                Banner(symbol: "arrow.triangle.2.circlepath", color: .blue, text: Banner.externalChange) {
                     model.externalChangeBanner = false
                 }
             }
@@ -120,11 +121,14 @@ struct Banners: View {
 }
 
 struct Banner: View {
+    static let externalChange = "Another program changed this file. Pitot loaded the new version."
+
     let symbol: String
     let color: Color
     let text: String
     /// Nil for a banner that stays until its cause is fixed.
     let dismiss: (() -> Void)?
+    @Environment(\.colorSchemeContrast) private var contrast
 
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
@@ -139,6 +143,9 @@ struct Banner: View {
         }
         .padding(10)
         .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+        .overlay {
+            if contrast == .increased { RoundedRectangle(cornerRadius: 8).stroke(color) }
+        }
     }
 }
 
@@ -229,7 +236,7 @@ struct CatalogErrorView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label("Pitot cannot load its tweak catalog", systemImage: "exclamationmark.triangle")
+            Label("Pitot cannot load its built-in list of settings", systemImage: "exclamationmark.triangle")
         } description: {
             ScrollView {
                 Text(message)

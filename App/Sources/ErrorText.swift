@@ -84,9 +84,9 @@ enum ErrorText {
     static func describe(_ error: CatalogError) -> String {
         switch error {
         case .malformed(let path, let reason):
-            "The tweak catalog is malformed at \(path.isEmpty ? "the top level" : path): \(reason)"
+            "The built-in list of settings is malformed at \(path.isEmpty ? "the top level" : path): \(reason)"
         case .lintFailed(let issues):
-            (["The tweak catalog failed \(issues.count) check\(issues.count == 1 ? "" : "s"):"] + issues.map { "- \($0.description)" })
+            (["The built-in list of settings failed \(issues.count) check\(issues.count == 1 ? "" : "s"):"] + issues.map { "- \($0.description)" })
                 .joined(separator: "\n")
         }
     }

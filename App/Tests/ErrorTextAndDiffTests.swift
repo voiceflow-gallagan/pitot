@@ -35,7 +35,7 @@ struct ErrorTextAndDiffTests {
 
     @Test func catalogFailuresAreReadable() async throws {
         let issue = LintIssue(rule: .duplicateId, tweakId: "tui", detail: "id \"tui\" is used by more than one row")
-        #expect(ErrorText.describe(.lintFailed([issue])) == "The tweak catalog failed 1 check:\n- tui: id \"tui\" is used by more than one row")
+        #expect(ErrorText.describe(.lintFailed([issue])) == "The built-in list of settings failed 1 check:\n- tui: id \"tui\" is used by more than one row")
 
         let empty = FileManager.default.temporaryDirectory.appendingPathComponent("PitotEmptyBundle-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: empty, withIntermediateDirectories: true)

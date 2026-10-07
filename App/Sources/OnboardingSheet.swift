@@ -41,7 +41,7 @@ struct OnboardingSheet: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Label("Setup questions", systemImage: "wand.and.stars").font(.title2.bold())
+                Label("Setup questions", systemImage: "wand.and.stars").font(.title2.bold()).accessibilityAddTraits(.isHeader)
                 Spacer()
                 Text(stepText).foregroundStyle(.secondary)
             }
@@ -87,7 +87,7 @@ private struct OnboardingQuestionStep: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(question.title).font(.title3.bold())
+            Text(question.title).font(.title3.bold()).accessibilityAddTraits(.isHeader)
             if let hint = question.hint {
                 Text(hint).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             }

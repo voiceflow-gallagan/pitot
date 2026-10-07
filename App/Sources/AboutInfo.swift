@@ -20,8 +20,7 @@ struct AboutInfo: Equatable, Sendable {
     static let notAffiliated = "Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic."
     static let privacyNote = "Pitot edits Claude Code settings files. It never reads or stores your API keys."
     static let appLicense = "License: MIT"
-    /// Empty until the repository location is decided. The link is hidden while it is empty.
-    static let projectPage = ""
+    static let projectPage = ProjectLinks.repository
     static let thirdParty = [
         ThirdPartyLicense(
             name: "Sparkle 2.10.0", summary: "MIT License, with BSD and MIT-style notices for parts it includes.",

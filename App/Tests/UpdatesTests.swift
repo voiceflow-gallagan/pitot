@@ -123,7 +123,7 @@ struct UpdatesTests {
         #expect(AboutInfo.notAffiliated == "Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.")
         #expect(AboutInfo.privacyNote == "Pitot edits Claude Code settings files. It never reads or stores your API keys.")
         #expect(AboutInfo.appLicense == "License: MIT")
-        #expect(info.projectURL == nil)
+        #expect(info.projectURL?.absoluteString == "https://github.com/voiceflow-gallagan/pitot")
         #expect(AboutInfo(infoDictionary: [:]).versionLine == "Version unknown (unknown)")
     }
 

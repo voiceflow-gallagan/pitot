@@ -33,12 +33,12 @@ struct ContentView: View {
             }
             ToolbarItemGroup(placement: .primaryAction) {
                 Button("Run Setup Questions", systemImage: "wand.and.stars") { model.startOnboarding() }
-                    .disabled(model.user.snapshot == nil || model.isWriting)
-                    .help("Answer seven questions and review the suggested changes")
+                    .disabled(!model.canRunSetupQuestions)
+                    .help(setupHelp)
                 Button("Undo Last Change", systemImage: "arrow.uturn.backward") { Task { await model.undoInSection() } }
                     .disabled(!model.canUndoInSection || model.isWritingInSection)
-                    .help("Undo the last applied group in \(model.undoTargetName)")
-                    .accessibilityLabel("Undo the last applied group in \(model.undoTargetName)")
+                    .help(model.undoHelp)
+                    .accessibilityLabel(model.undoHelp)
                 Button("Review and History", systemImage: "sidebar.trailing") { showsInspector.toggle() }
                     .help(showsInspector ? "Hide review and history" : "Show review and history")
                     .accessibilityLabel(showsInspector ? "Hide review and history" : "Show review and history")
@@ -60,6 +60,11 @@ struct ContentView: View {
             await model.start()
         }
         .onDisappear { model.stop() }
+    }
+
+    private var setupHelp: String {
+        let count = model.setupQuestions?.questions.count ?? 0
+        return "Answer \(count) short questions, then review the suggested changes"
     }
 
     private var searchPrompt: String {

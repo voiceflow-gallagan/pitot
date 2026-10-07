@@ -60,7 +60,7 @@ private struct UnverifiedRowView: View {
             }
             HStack(spacing: 12) {
                 Text("Seen in: \(row.seenIn)")
-                Text(row.presence).foregroundStyle(row.presence.hasPrefix("Present") ? .primary : .tertiary)
+                Text(row.presence).foregroundStyle(row.presence.hasPrefix("Present") ? .primary : .secondary)
             }
             .font(.caption)
             .foregroundStyle(.secondary)

@@ -46,7 +46,7 @@ struct KeyCaptureField: View {
             TextField("Key", text: $key, prompt: Text("ctrl+k or ctrl+k ctrl+s"))
                 .textFieldStyle(.roundedBorder)
                 .font(.body.monospaced())
-                .accessibilityLabel("Key string")
+                .accessibilityLabel("Key, such as ctrl+k")
             Button(isRecording ? "Recording…" : "Record", systemImage: isRecording ? "record.circle.fill" : "keyboard") {
                 isRecording ? finish() : start()
             }

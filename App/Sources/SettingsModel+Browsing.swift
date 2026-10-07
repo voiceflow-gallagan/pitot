@@ -104,6 +104,11 @@ extension SettingsModel {
         section == .keybindings ? "Keybindings" : scope.displayName
     }
 
+    var undoHelp: String {
+        section == .keybindings
+            ? "Undo the last change you applied to the keybindings" : "Undo the last change you applied to \(scope.displayName) settings"
+    }
+
     var canUndoInSection: Bool {
         section == .keybindings ? keybindings.canUndo : canUndo
     }
@@ -130,6 +135,32 @@ extension SettingsModel {
             keybindings.dismissBlockedUndo()
         } else {
             dismissBlockedUndo()
+        }
+    }
+
+    // MARK: Apply and discard in the selected section, as the review panel shows them
+
+    var canApplyInSection: Bool {
+        section == .keybindings ? keybindings.preview.canApply && !keybindings.isWriting : review.canApply && !isWriting
+    }
+
+    var canDiscardInSection: Bool {
+        section == .keybindings ? keybindings.hasPending && !keybindings.isWriting : hasPending && !isWriting
+    }
+
+    func applyInSection() async {
+        if section == .keybindings {
+            await keybindings.apply()
+        } else {
+            await applyPending()
+        }
+    }
+
+    func discardInSection() {
+        if section == .keybindings {
+            keybindings.discardPending()
+        } else {
+            discardPending()
         }
     }
 }

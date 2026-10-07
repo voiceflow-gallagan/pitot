@@ -15,6 +15,29 @@ enum SidebarItem: Hashable {
     case category(String)
     case keybindings
     case unverified
+
+    /// A name to remember the section by between launches.
+    var id: String {
+        switch self {
+        case .category(let name): "category:\(name)"
+        case .keybindings: "keybindings"
+        case .unverified: "unverified"
+        }
+    }
+
+    init?(id: String) {
+        switch id {
+        case "keybindings": self = .keybindings
+        case "unverified": self = .unverified
+        case let id where id.hasPrefix("category:"): self = .category(String(id.dropFirst("category:".count)))
+        default: return nil
+        }
+    }
+}
+
+struct GoToShortcut: Equatable {
+    let item: SidebarItem
+    let key: Character
 }
 
 /// The settings layers Pitot shows: the user file, a chosen project's shared and local files, and
@@ -34,12 +57,16 @@ final class SettingsModel {
     let keybindings: KeybindingsModel
     let unverified: UnverifiedCatalog
 
-    var projectFolder: URL?
+    var projectFolder: URL? {
+        didSet { session?.projectPath = projectFolder?.path }
+    }
     var projectStores: (project: LayerStore, local: LayerStore)?
     var managed: SettingsLayer
     /// All layers merged, rebuilt after every reload and write.
     var effective: EffectiveSettings
-    var scope: SettingsLayerKind = .user
+    var scope: SettingsLayerKind = .user {
+        didSet { session?.scope = scope.rawValue }
+    }
     var claude: ClaudeStatus = .checking
     var isWriting = false
     /// One change per tweak id for each layer. A nil value removes the key from that layer.
@@ -71,6 +98,7 @@ final class SettingsModel {
     var sidebarSelection: SidebarItem? {
         didSet {
             if case .category(let category)? = sidebarSelection { selectedCategory = category }
+            if let sidebarSelection { session?.section = sidebarSelection.id }
         }
     }
     var selectedCategory: String?
@@ -82,6 +110,8 @@ final class SettingsModel {
     let setupQuestionsError: String?
     /// Nil when the questions must not open by themselves, such as for a custom settings path.
     let launchFlags: OnboardingFlagStore?
+    /// Nil when the selection must not be remembered, such as for a custom settings path.
+    let session: SessionStore?
     let services: LayerServices
     let backupRoot: URL
 
@@ -100,9 +130,11 @@ final class SettingsModel {
         setupQuestions: Result<OnboardingFile, CatalogLoadFailure> = .failure(.missing("onboarding.json")),
         launchFlags: OnboardingFlagStore? = nil,
         services: LayerServices,
+        session: SessionStore? = nil,
         probe: ClaudeProbe = ClaudeProbe()
     ) {
         self.catalog = catalog
+        self.session = session
         var seen: Set<String> = []
         categories = catalog.tweaks.map(\.category).filter { seen.insert($0).inserted }
         selectedCategory = categories.first
@@ -168,6 +200,7 @@ final class SettingsModel {
         await reload()
         await keybindings.reload()
         keybindings.startWatching()
+        await restoreSession()
         presentOnboardingIfFirstLaunch()
         startWatching()
         await loadProjectSuggestions()

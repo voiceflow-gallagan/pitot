@@ -11,6 +11,7 @@ struct ConfirmSheet: View {
         VStack(alignment: .leading, spacing: 14) {
             Label("Confirm this change", systemImage: "exclamationmark.shield")
                 .font(.title3.bold())
+                .accessibilityAddTraits(.isHeader)
             Text(request.headline)
                 .font(.headline)
             Text(request.message)

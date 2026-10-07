@@ -10,7 +10,7 @@ struct OnboardingProposalStep: View {
         VStack(alignment: .leading, spacing: 16) {
             if let preset = onboarding.proposal?.presetLabel {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Preset: \(preset.title)").font(.title3.bold())
+                    Text("Preset: \(preset.title)").font(.title3.bold()).accessibilityAddTraits(.isHeader)
                     Text(lines.isEmpty ? "Based on your answers." : "Based on your answers. Untick any line you do not want.")
                         .foregroundStyle(.secondary)
                 }
@@ -43,7 +43,7 @@ struct OnboardingProposalStep: View {
             }
             if !lines.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Changes to settings.json").font(.headline)
+                    Text("Changes to settings.json").font(.headline).accessibilityAddTraits(.isHeader)
                     if let error = onboarding.previewError {
                         Text(error).foregroundStyle(.red)
                     } else if onboarding.diff.isEmpty {

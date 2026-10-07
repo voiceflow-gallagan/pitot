@@ -45,7 +45,7 @@ struct RowContext {
 /// Everything one row shows: the selected layer's value, the value in effect across all layers,
 /// the pending change, and why the row may not be edited.
 struct RowState: Equatable {
-    static let envNote = "Written to the env block. Claude Desktop launches can override it."
+    static let envNote = "Saved in the env block of the file. When Claude Desktop starts Claude Code, it can override this value."
     static let lockedText = "Set by your organization"
     static let opusplanNote = "Opus plan (opusplan) is not in the /model picker of Claude Code. Type /model opusplan there, or choose it here."
 
@@ -123,7 +123,7 @@ struct RowState: Equatable {
             state.notes.append(RowNote(kind: .warning, text: "Needs Claude Code \(minimum) or later. Pitot could not check the installed version."))
         }
         if let winner = state.effective.winner, winner != selected {
-            state.notes.append(RowNote(kind: .info, text: "Effective: \(effectiveText(tweak, state.effective.reading)) from \(winner.displayName)"))
+            state.notes.append(RowNote(kind: .info, text: "In effect: \(effectiveText(tweak, state.effective.reading)), set in \(winner.displayName)"))
         }
         if let autoSet = state.autoSet {
             state.notes.append(RowNote(kind: .info, text: "Will be set to \(tweak.label(for: autoSet.value)): \(autoSet.reason)"))

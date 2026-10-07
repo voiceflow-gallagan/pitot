@@ -27,7 +27,8 @@ struct ModelFixture {
         managed: String? = nil,
         keybindings: String? = nil,
         suggestions: ProjectSuggestionSource = NoProjectSuggestions(),
-        gitCheck: GitIgnoreCheck = GitIgnoreCheck(git: nil)
+        gitCheck: GitIgnoreCheck = GitIgnoreCheck(git: nil),
+        session: SessionStore? = nil
     ) async throws -> ModelFixture {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("PitotTests-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
@@ -61,7 +62,7 @@ struct ModelFixture {
             ?? CatalogResource.loadSetupQuestions(bundle: Bundle(for: SettingsModel.self), catalog: catalog)
         let model = SettingsModel(
             catalog: catalog, keybindingsCatalog: try bundledKeybindings(), unverified: try bundledUnverified(), configuration: configuration,
-            setupQuestions: questions, launchFlags: launchFlags, services: services,
+            setupQuestions: questions, launchFlags: launchFlags, services: services, session: session,
             probe: ClaudeProbe(searchPaths: searchPaths))
         await model.reload()
         await model.keybindings.reload()
@@ -143,4 +144,11 @@ final class MemoryOnboardingFlags: OnboardingFlagStore {
 @MainActor
 final class MemoryRecentProjects: RecentProjectStore {
     var paths: [String] = []
+}
+
+@MainActor
+final class MemorySession: SessionStore {
+    var section: String?
+    var scope: String?
+    var projectPath: String?
 }

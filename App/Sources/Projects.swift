@@ -96,8 +96,8 @@ enum ProjectChoices {
         return recentChoices + suggested
     }
 
-    /// Touches the disk, so callers run it off the main actor.
-    private static func exists(_ path: String) -> Bool {
+    /// True for a folder. It touches the disk, so callers run it off the main actor.
+    static func exists(_ path: String) -> Bool {
         var isDirectory: ObjCBool = false
         return FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) && isDirectory.boolValue
     }

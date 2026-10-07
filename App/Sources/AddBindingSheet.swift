@@ -12,7 +12,7 @@ struct AddBindingSheet: View {
     var body: some View {
         let plan = action.flatMap { action in key.isEmpty ? nil : model.check(.add(context: context, key: key, action: action)) }
         VStack(alignment: .leading, spacing: 14) {
-            Text("Add a binding").font(.title3.bold())
+            Text("Add a binding").font(.title3.bold()).accessibilityAddTraits(.isHeader)
             Picker("Context", selection: $context) {
                 ForEach(model.catalog.contexts, id: \.name) { context in
                     Text(context.name).tag(context.name)
@@ -94,7 +94,7 @@ struct ChangeActionSheet: View {
     var body: some View {
         let plan = action.flatMap { model.check(.change(context: context, key: row.key, action: $0)) }
         VStack(alignment: .leading, spacing: 14) {
-            Text("Change the action for \(row.key)").font(.title3.bold())
+            Text("Change the action for \(row.key)").font(.title3.bold()).accessibilityAddTraits(.isHeader)
             Text("\(context). Now: \(row.action ?? "null (unbound)")").font(.callout).foregroundStyle(.secondary)
             ActionPicker(model: model, context: context, selection: $action)
                 .frame(height: 260)

@@ -102,7 +102,7 @@ struct LaunchConfiguration: Sendable {
             return nil
         } catch {
             unlink(temporary.path)
-            return "Could not copy \(source.path) to the sandbox: \(error.localizedDescription)"
+            return "Could not make the working copy of \(source.path): \(error.localizedDescription)"
         }
     }
 

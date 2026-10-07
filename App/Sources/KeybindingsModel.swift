@@ -44,7 +44,7 @@ struct KeybindingsPreview: Equatable {
 @MainActor
 @Observable
 final class KeybindingsModel {
-    static let reloadNote = "Claude Code reloads this file automatically; no restart needed."
+    static let reloadNote = "Claude Code reads this file again by itself. You do not need to restart it."
 
     let catalog: KeybindingsCatalog
     let url: URL

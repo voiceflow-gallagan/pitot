@@ -26,7 +26,7 @@ struct AboutView: View {
             Divider()
             LicensesSection()
             if let url = info.projectURL {
-                Link("Project page", destination: url)
+                Link("Pitot on GitHub", destination: url)
             }
         }
         .padding(20)
@@ -39,7 +39,7 @@ private struct UpdatesSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Updates").font(.headline)
+            Text("Updates").font(.headline).accessibilityAddTraits(.isHeader)
             Toggle("Automatically check for updates", isOn: Binding(get: { updates.automaticallyChecks }, set: updates.setAutomaticChecks))
                 .disabled(!updates.isConfigured)
             HStack {
@@ -51,7 +51,7 @@ private struct UpdatesSection: View {
             }
             Text("Pitot never checks without your permission. Turn on the switch to check once a day.")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -60,7 +60,7 @@ private struct UpdatesSection: View {
 private struct LicensesSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Licenses").font(.headline)
+            Text("Licenses").font(.headline).accessibilityAddTraits(.isHeader)
             Text(AboutInfo.appLicense)
             ForEach(AboutInfo.thirdParty) { license in
                 DisclosureGroup {

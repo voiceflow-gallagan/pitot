@@ -21,7 +21,7 @@ struct KeybindingsView: View {
                 ContentUnavailableView {
                     Label("No keybindings file yet", systemImage: "keyboard")
                 } description: {
-                    Text("Pitot will create it with the documented header when you add the first binding.")
+                    Text("Pitot creates the file when you add your first binding.")
                 } actions: {
                     Button("Add Binding") { isAdding = true }.disabled(!keybindings.canEdit)
                 }
@@ -93,7 +93,7 @@ private struct KeybindingsHeader: View {
                 Banner(symbol: "xmark.octagon.fill", color: .red, text: message) { keybindings.errorMessage = nil }
             }
             if keybindings.externalChangeBanner {
-                Banner(symbol: "arrow.triangle.2.circlepath", color: .blue, text: "Edited outside Pitot \u{2014} reloaded") {
+                Banner(symbol: "arrow.triangle.2.circlepath", color: .blue, text: Banner.externalChange) {
                     keybindings.externalChangeBanner = false
                 }
             }
@@ -115,7 +115,7 @@ private struct KeybindingGroupSection: View {
                 }
             } label: {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(group.context).font(.headline)
+                    Text(group.context).font(.headline).accessibilityAddTraits(.isHeader)
                     Text(group.description ?? "A context the docs do not list. Claude Code ignores this block.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -162,12 +162,12 @@ private struct KeybindingRowView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 if row.isLegacy {
-                    Text("Legacy action name. Claude Code still reads it.\(row.replacedBy.map { " Replaced by \($0)." } ?? "")")
+                    Text("Old action name. Claude Code still accepts it.\(row.replacedBy.map { " Replaced by \($0)." } ?? "")")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 if let defaultKey = row.defaultKey {
-                    Text("Default key: \(defaultKey)").font(.caption).foregroundStyle(.tertiary)
+                    Text("Default key: \(defaultKey)").font(.caption).foregroundStyle(.secondary)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

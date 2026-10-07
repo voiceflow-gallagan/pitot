@@ -8,18 +8,21 @@ struct HistoryPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("History").font(.headline)
+                Text("History").font(.headline).accessibilityAddTraits(.isHeader)
                 Spacer()
                 Button("Undo in \(model.undoTargetName)", systemImage: "arrow.uturn.backward") { Task { await model.undoInSection() } }
                     .controlSize(.small)
                     .disabled(!model.canUndoInSection || model.isWritingInSection)
-                    .accessibilityLabel("Undo the last applied group in \(model.undoTargetName)")
+                    .accessibilityLabel(model.undoHelp)
             }
             if let keys = model.blockedUndoInSection {
                 BlockedUndoNotice(model: model, keys: keys)
             }
             if model.history.isEmpty {
-                Text("Nothing applied yet.").font(.callout).foregroundStyle(.secondary)
+                Text("Nothing applied yet. Each change you apply shows here, and you can undo it.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             ForEach(model.history) { entry in
                 HistoryRow(entry: entry, isSelectedLayer: model.section == .keybindings ? entry.kind == nil : entry.kind == model.scope)

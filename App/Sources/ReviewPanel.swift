@@ -7,40 +7,41 @@ struct ReviewPanel: View {
     var body: some View {
         let review = model.review
         VStack(alignment: .leading, spacing: 10) {
-            Text("Review").font(.headline)
+            Text("Review").font(.headline).accessibilityAddTraits(.isHeader)
             if review.isEmpty {
-                Text("No pending changes. Changes you make stay here until you apply them.")
+                Text(ReviewText.empty)
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } else {
                 ForEach(review.changes) { line in
-                    ReviewLine(text: line.text, symbol: "pencil", color: .orange)
+                    ReviewLine(kind: .change, text: line.text)
                 }
                 ForEach(review.autoSets) { line in
-                    ReviewLine(text: line.text, symbol: "link", color: .blue)
+                    ReviewLine(kind: .autoSet, text: line.text)
                 }
                 ForEach(Array(review.warnings.enumerated()), id: \.offset) { _, warning in
-                    ReviewLine(text: warning, symbol: "exclamationmark.triangle", color: .orange)
+                    ReviewLine(kind: .warning, text: warning)
                 }
                 ForEach(review.suggestions, id: \.tweakId) { suggestion in
                     SuggestionLine(model: model, suggestion: suggestion)
                 }
                 ForEach(Array(review.problems.enumerated()), id: \.offset) { _, problem in
-                    ReviewLine(text: problem, symbol: "xmark.octagon", color: .red)
+                    ReviewLine(kind: .problem, text: problem)
                 }
                 if let error = review.previewError {
-                    ReviewLine(text: error, symbol: "xmark.octagon", color: .red)
+                    ReviewLine(kind: .problem, text: error)
                 } else {
                     DiffView(lines: review.diff)
                 }
                 HStack {
                     Button("Discard", role: .destructive) { model.discardPending() }
                         .disabled(model.isWriting)
+                        .help(ReviewText.discardHelp)
                         .accessibilityLabel("Discard all pending changes")
                     Spacer()
                     Button("Apply") { Task { await model.applyPending() } }
-                        .keyboardShortcut(.defaultAction)
                         .disabled(model.isWriting || !review.canApply)
+                        .help(ReviewText.applyHelp)
                         .accessibilityLabel("Apply all pending changes in one write")
                 }
             }
@@ -48,18 +49,59 @@ struct ReviewPanel: View {
     }
 }
 
+/// The review panels' fixed text.
+enum ReviewText {
+    static let empty = "No changes waiting. When you change a setting, it waits here until you press Apply."
+    static let emptyKeybindings = "No keybinding changes waiting. Each change waits here until you press Apply."
+    static let applyHelp = "Write all pending changes to the file (Command-Return)"
+    static let discardHelp = "Forget all pending changes (Command-Delete)"
+}
+
+/// What a line of the review panel is. VoiceOver says the kind first, since the icon only shows it.
+enum ReviewLineKind {
+    case change, autoSet, warning, problem
+
+    var symbol: String {
+        switch self {
+        case .change: "pencil"
+        case .autoSet: "link"
+        case .warning: "exclamationmark.triangle"
+        case .problem: "xmark.octagon"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .change, .warning: .orange
+        case .autoSet: .blue
+        case .problem: .red
+        }
+    }
+
+    /// Automatic lines already start with "Also turning on", so they need no word in front.
+    func spokenText(_ text: String) -> String {
+        switch self {
+        case .change: "Change: \(text)"
+        case .autoSet: text
+        case .warning: "Warning: \(text)"
+        case .problem: "Problem: \(text)"
+        }
+    }
+}
+
 private struct ReviewLine: View {
+    let kind: ReviewLineKind
     let text: String
-    let symbol: String
-    let color: Color
 
     var body: some View {
         Label {
             Text(text).fixedSize(horizontal: false, vertical: true)
         } icon: {
-            Image(systemName: symbol).foregroundStyle(color)
+            Image(systemName: kind.symbol).foregroundStyle(kind.color)
         }
         .font(.callout)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(kind.spokenText(text))
     }
 }
 
