@@ -76,7 +76,7 @@ Do these in order. Stop at the first failure.
    - Create the GitHub release `vX.Y.Z` and upload the DMG with its exact file name.
    - Download the asset again and compare its SHA-256 with step 5.
    - Check that the release download URL is exactly the enclosure URL in `appcast.xml`.
-   - Publish `appcast.xml` at `PITOT_FEED_URL`, then check that `curl -fsSI <PITOT_FEED_URL>` answers 200 over HTTPS.
+   - Publish `appcast.xml` at `PITOT_FEED_URL` (see "Feed hosting" below), then check that `curl -fsSI <PITOT_FEED_URL>` answers 200 over HTTPS.
    - Update an installed earlier version through "Check for Updates…".
 
 For a dry run, add `--dry-run` to either script: it prints each command and changes nothing. `release.sh --skip-notarize --allow-dirty` makes a local build named `Pitot-X.Y.Z-unnotarized.dmg`. Never publish it. `appcast.sh` refuses it.
@@ -126,3 +126,20 @@ Sparkle checks two signatures on every update: the EdDSA signature against `SUPu
 - [ ] The app is signed by your team, the same as every earlier release, with hardened runtime and no `disable-library-validation`.
 - [ ] The uploaded DMG has the SHA-256 that `release.sh` printed.
 - [ ] Sparkle's security advisories were checked before this release: https://github.com/sparkle-project/Sparkle/security/advisories
+
+## Feed hosting
+
+The feed is served by GitHub Pages from the `gh-pages` branch of the public repo. `PITOT_FEED_URL` is `https://<owner>.github.io/<repo>/appcast.xml`. The DMGs live in GitHub Releases. Forks must change the URL in `App/project.yml`.
+
+One-time setup, from a fresh clone in a temporary folder:
+
+```bash
+git clone https://github.com/<owner>/<repo>.git pages && cd pages
+git switch --orphan gh-pages
+cp <path to appcast.xml> . && touch .nojekyll
+git add appcast.xml .nojekyll && git commit -m "Publish appcast" && git push origin gh-pages
+gh api -X POST repos/<owner>/<repo>/pages -f "source[branch]=gh-pages" -f "source[path]=/"
+```
+
+Pages can take a minute to go live. For every later release, copy the new `appcast.xml` into the same branch, commit and push. Never put a DMG or a private key in that branch.
+

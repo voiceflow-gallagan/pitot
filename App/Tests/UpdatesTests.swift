@@ -104,7 +104,7 @@ struct UpdatesTests {
 
     @Test func infoPlistTurnsOffEverythingAutomatic() {
         let info = Bundle(for: SettingsModel.self).infoDictionary ?? [:]
-        #expect(info["SUFeedURL"] as? String == "https://updates.invalid/pitot/appcast.xml")
+        #expect(info["SUFeedURL"] as? String == "https://voiceflow-gallagan.github.io/pitot/appcast.xml")
         #expect(info["SUEnableAutomaticChecks"] as? Bool == false)
         #expect(info["SUAutomaticallyUpdate"] as? Bool == false)
         #expect(info["SUEnableSystemProfiling"] as? Bool == false)

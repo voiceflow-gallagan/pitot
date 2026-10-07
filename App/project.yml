@@ -59,8 +59,8 @@ targets:
         CODE_SIGN_STYLE: Automatic
         CODE_SIGN_IDENTITY: "-"
         ENABLE_APP_SANDBOX: NO
-        # RFC 2606 reserves .invalid, so this placeholder can never reach a real host.
-        PITOT_FEED_URL: https://updates.invalid/pitot/appcast.xml
+        # Sparkle feed on GitHub Pages (branch gh-pages of the public repo). Forks must change it.
+        PITOT_FEED_URL: https://voiceflow-gallagan.github.io/pitot/appcast.xml
         # Public EdDSA key of the keychain account "pitot". It is not a secret. The private key never enters the repo.
         PITOT_SPARKLE_PUBLIC_KEY: "1UnHf4Lh+cfgwsecEV42lt7DnlZIy//dVNYvX6YrkJM="
       configs:
