@@ -82,6 +82,18 @@ extension SettingsModel {
         sidebarSelection = item
     }
 
+    /// Keybindings always edit the user file, so the project menu hides there. The unverified list
+    /// keeps it, because the chosen project changes which files it searches.
+    var showsProjectMenu: Bool {
+        section != .keybindings
+    }
+
+    /// The scope picker chooses the settings file that edits go to, so only settings sections show it.
+    var showsScopePicker: Bool {
+        if case .category = section { return true }
+        return false
+    }
+
     var unverifiedSections: [UnverifiedSection] {
         UnverifiedList.sections(unverified, layers: effective.layers, search: searchText)
     }

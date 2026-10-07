@@ -74,6 +74,22 @@ struct SidebarTests {
         #expect(!model.sidebarInfo(.category("Safety")).hasPending)
     }
 
+    @Test func projectMenuHidesOnKeybindingsAndScopePickerShowsOnlyForSettings() async throws {
+        let fixture = try await ModelFixture.make()
+        let model = fixture.model
+        var withMenu: [SidebarItem] = []
+        var withPicker: [SidebarItem] = []
+        for item in model.sidebarItems {
+            model.select(item)
+            if model.showsProjectMenu { withMenu.append(item) }
+            if model.showsScopePicker { withPicker.append(item) }
+        }
+        let settings = model.categories.map(SidebarItem.category)
+        #expect(settings.count == 5)
+        #expect(withMenu == settings + [.unverified])
+        #expect(withPicker == settings)
+    }
+
     @Test func arrowsMoveTheSelectionWithinTheList() async throws {
         let fixture = try await ModelFixture.make()
         let model = fixture.model

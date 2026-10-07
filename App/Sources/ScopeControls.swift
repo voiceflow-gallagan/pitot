@@ -8,9 +8,10 @@ struct ScopeControls: View {
 
     var body: some View {
         HStack(spacing: 8) {
-            ProjectMenu(model: model)
-            // Keybindings always edit the user file, and the unverified list only reads.
-            if case .category = model.section {
+            if model.showsProjectMenu {
+                ProjectMenu(model: model)
+            }
+            if model.showsScopePicker {
                 Picker("Scope", selection: Binding(get: { model.scope }, set: select)) {
                     ForEach(SettingsLayerKind.allCases, id: \.self) { kind in
                         Text(kind == .local ? "Local" : kind.displayName).tag(kind)
