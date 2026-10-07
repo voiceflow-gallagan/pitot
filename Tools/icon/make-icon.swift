@@ -1,4 +1,4 @@
-// Draws the Pitot app icon, a flat gauge dial, and writes every macOS size into an asset catalog icon set.
+// Draws the Pitot app icon, a pixel-art set of three switches on a dark plate, and writes every macOS size into an asset catalog icon set.
 // Run from the repository root:  swift Tools/icon/make-icon.swift App/Resources/Assets.xcassets/AppIcon.appiconset
 // It uses CoreGraphics and ImageIO only, so the output is the same on every Mac.
 
@@ -7,81 +7,78 @@ import Foundation
 import ImageIO
 import UniformTypeIdentifiers
 
-struct Palette {
-    static let background = CGColor(srgbRed: 0.09, green: 0.20, blue: 0.33, alpha: 1)
-    static let face = CGColor(srgbRed: 0.13, green: 0.29, blue: 0.45, alpha: 1)
-    static let scale = CGColor(srgbRed: 0.93, green: 0.95, blue: 0.97, alpha: 1)
-    static let caution = CGColor(srgbRed: 0.96, green: 0.55, blue: 0.16, alpha: 1)
-    static let needle = CGColor(srgbRed: 0.96, green: 0.55, blue: 0.16, alpha: 1)
+func color(_ hex: UInt32) -> CGColor {
+    CGColor(
+        srgbRed: CGFloat((hex >> 16) & 0xFF) / 255, green: CGFloat((hex >> 8) & 0xFF) / 255,
+        blue: CGFloat(hex & 0xFF) / 255, alpha: 1)
 }
 
-/// Draws the icon into a square of `size` pixels. Small sizes drop the minor ticks, and the 16 pixel size
-/// drops all ticks and thickens the rest, so the mark stays legible.
-func drawIcon(_ context: CGContext, size: CGFloat) {
-    let unit = size / 1024
-    // The macOS icon grid: an 824 point rounded square centered in 1024, corner radius 185.
-    let inset = 100 * unit
-    let plate = CGRect(x: inset, y: inset, width: size - 2 * inset, height: size - 2 * inset)
-    context.addPath(CGPath(roundedRect: plate, cornerWidth: 185 * unit, cornerHeight: 185 * unit, transform: nil))
-    context.setFillColor(Palette.background)
-    context.fillPath()
+enum Palette {
+    static let plateTop = color(0x26282E)
+    static let plateBottom = color(0x0C0D10)
+    static let art: [Character: CGColor] = [
+        "O": color(0xD97757),
+        "D": color(0x5F7285),
+        "W": color(0xF2F6FA),
+    ]
+}
 
-    let center = CGPoint(x: size / 2, y: size / 2 - 20 * unit)
-    let radius = 300 * unit
-    let faceRadius = radius + 40 * unit
-    context.addEllipse(in: CGRect(x: center.x - faceRadius, y: center.y - faceRadius, width: 2 * faceRadius, height: 2 * faceRadius))
-    context.setFillColor(Palette.face)
-    context.fillPath()
+/// Three switches: two on (orange track, knob right) and one off (grey track, knob left).
+let artGrid = [
+    "................",
+    "..........WWWW..",
+    "..OOOOOOOOWWWW..",
+    "..OOOOOOOOWWWW..",
+    "..........WWWW..",
+    "................",
+    "..WWWW..........",
+    "..WWWWDDDDDDDD..",
+    "..WWWWDDDDDDDD..",
+    "..WWWW..........",
+    "................",
+    "..........WWWW..",
+    "..OOOOOOOOWWWW..",
+    "..OOOOOOOOWWWW..",
+    "..........WWWW..",
+    "................",
+]
 
-    // The scale runs over 240 degrees, from lower left to lower right through the top.
-    let start = CGFloat.pi * 1.25
-    let sweep = CGFloat.pi * 1.5
-    let small = size <= 64
-    let tiny = size <= 16
-    context.setLineCap(.round)
+/// Draws the icon into a square of `size` pixels. The plate follows the macOS icon grid (824 point rounded
+/// square centered in 1024, corner radius 185) and may be antialiased. The art is drawn with whole pixel
+/// squares, so it stays crisp at every size. At 16 pixels the plate fills the canvas so the art is not clipped.
+func drawIcon(_ context: CGContext, size: Int) {
+    let canvas = CGFloat(size)
+    let unit = canvas / 1024
+    let inset = size <= 16 ? 0 : CGFloat((Double(size) * 100 / 1024).rounded())
+    let radius = size <= 16 ? 3 : 185 * unit
+    let plate = CGRect(x: inset, y: inset, width: canvas - 2 * inset, height: canvas - 2 * inset)
 
-    context.setStrokeColor(Palette.scale)
-    context.setLineWidth((tiny ? 80 : small ? 34 : 26) * unit)
-    context.addArc(center: center, radius: radius, startAngle: start, endAngle: start - sweep * 0.78, clockwise: true)
-    context.strokePath()
-    context.setStrokeColor(Palette.caution)
-    context.addArc(center: center, radius: radius, startAngle: start - sweep * 0.82, endAngle: start - sweep, clockwise: true)
-    context.strokePath()
-
-    let ticks = tiny ? 0 : small ? 4 : 12
-    for index in 0...ticks where !tiny {
-        let fraction = CGFloat(index) / CGFloat(ticks)
-        let angle = start - sweep * fraction
-        let major = small || index % 3 == 0
-        let outer = radius - 50 * unit
-        let inner = outer - (major ? 70 : 38) * unit
-        context.setStrokeColor(Palette.scale)
-        context.setLineWidth((major ? (small ? 30 : 20) : 12) * unit)
-        context.move(to: CGPoint(x: center.x + cos(angle) * outer, y: center.y + sin(angle) * outer))
-        context.addLine(to: CGPoint(x: center.x + cos(angle) * inner, y: center.y + sin(angle) * inner))
-        context.strokePath()
+    context.setShouldAntialias(true)
+    context.saveGState()
+    context.addPath(CGPath(roundedRect: plate, cornerWidth: radius, cornerHeight: radius, transform: nil))
+    context.clip()
+    if let gradient = CGGradient(
+        colorsSpace: CGColorSpace(name: CGColorSpace.sRGB), colors: [Palette.plateTop, Palette.plateBottom] as CFArray,
+        locations: [0, 1])
+    {
+        context.drawLinearGradient(
+            gradient, start: CGPoint(x: 0, y: plate.maxY), end: CGPoint(x: 0, y: plate.minY), options: [])
     }
+    context.restoreGState()
 
-    // The needle points two thirds up the scale.
-    let needleAngle = start - sweep * 0.66
-    let tip = CGPoint(x: center.x + cos(needleAngle) * (radius - 70 * unit), y: center.y + sin(needleAngle) * (radius - 70 * unit))
-    let side = needleAngle + CGFloat.pi / 2
-    let halfWidth = (tiny ? 60 : small ? 30 : 22) * unit
-    context.setFillColor(Palette.needle)
-    context.move(to: tip)
-    context.addLine(to: CGPoint(x: center.x + cos(side) * halfWidth, y: center.y + sin(side) * halfWidth))
-    context.addLine(to: CGPoint(x: center.x - cos(side) * halfWidth, y: center.y - sin(side) * halfWidth))
-    context.closePath()
-    context.fillPath()
-
-    let hub = (tiny ? 95 : small ? 62 : 52) * unit
-    context.addEllipse(in: CGRect(x: center.x - hub, y: center.y - hub, width: 2 * hub, height: 2 * hub))
-    context.setFillColor(Palette.needle)
-    context.fillPath()
-    let dot = hub * 0.45
-    context.addEllipse(in: CGRect(x: center.x - dot, y: center.y - dot, width: 2 * dot, height: 2 * dot))
-    context.setFillColor(Palette.background)
-    context.fillPath()
+    context.setShouldAntialias(false)
+    context.interpolationQuality = .none
+    let cell = max(1, size * 40 / 1024)
+    let offset = (size - artGrid.count * cell) / 2
+    for (row, line) in artGrid.enumerated() {
+        for (column, key) in line.enumerated() {
+            guard let fill = Palette.art[key] else { continue }
+            context.setFillColor(fill)
+            context.fill(
+                CGRect(
+                    x: offset + column * cell, y: offset + (artGrid.count - 1 - row) * cell, width: cell, height: cell))
+        }
+    }
 }
 
 func writePNG(pixels: Int, to url: URL) throws {
@@ -90,8 +87,7 @@ func writePNG(pixels: Int, to url: URL) throws {
             data: nil, width: pixels, height: pixels, bitsPerComponent: 8, bytesPerRow: 0, space: space,
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
     else { throw IconError.context }
-    context.setShouldAntialias(true)
-    drawIcon(context, size: CGFloat(pixels))
+    drawIcon(context, size: pixels)
     guard let image = context.makeImage(),
         let destination = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil)
     else { throw IconError.encode(url.path) }
