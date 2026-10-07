@@ -4,6 +4,16 @@ Pitot is a native macOS app that edits Claude Code settings files. It turns docu
 
 Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
 
+## Screenshots
+
+The Interface section. Each setting shows its key, a short description and the control. The sidebar badges count the settings that are set.
+
+![The Interface section of Pitot, with the section list on the left, settings in the middle, and the review and history panels on the right](docs/screenshots/interface-settings.png)
+
+A pending change in Model and cost. The review panel shows the exact lines that will change in the file. Nothing is written until you press Apply, and History keeps an undo for each change.
+
+![The Model and cost section of Pitot with a pending model change and its diff in the review panel](docs/screenshots/model-and-cost-review.png)
+
 ## What Pitot never does
 
 - It never reads, shows or stores API keys or tokens.
