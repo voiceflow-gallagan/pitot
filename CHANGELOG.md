@@ -4,6 +4,13 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-10-07
+
+### Security
+
+- A feed that fails its signature check is now never shown, even after 20 days. Before, Sparkle showed such a feed in a restricted mode after 20 days. Pitot sets `SUSignedFeedFailureExpirationInterval` to 0, so signature failures never expire.
+- `SECURITY.md` now explains how update trust works and its limits.
+
 ## [0.1.2] - 2026-10-07
 
 ### Added

@@ -110,6 +110,7 @@ struct UpdatesTests {
         #expect(info["SUEnableSystemProfiling"] as? Bool == false)
         #expect(info["SUVerifyUpdateBeforeExtraction"] as? Bool == true)
         #expect(info["SURequireSignedFeed"] as? Bool == true)
+        #expect(info["SUSignedFeedFailureExpirationInterval"] as? Int == 0)
         #expect(info["CFBundleVersion"] as? String == "1")
         #expect(info["CFBundleShortVersionString"] as? String == "0.1.0")
     }

@@ -47,6 +47,7 @@ targets:
         SUPublicEDKey: $(PITOT_SPARKLE_PUBLIC_KEY)
         SUVerifyUpdateBeforeExtraction: true
         SURequireSignedFeed: true
+        SUSignedFeedFailureExpirationInterval: 0
         SUEnableAutomaticChecks: false
         SUAutomaticallyUpdate: false
         SUEnableSystemProfiling: false

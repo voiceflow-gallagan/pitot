@@ -65,7 +65,16 @@ spctl --assess --type execute -vv /Applications/Pitot.app
 - A `null` is never written to a settings file, because one `null` can make Claude Code skip the whole file.
 - Files larger than 8 MiB are refused.
 - Pitot does not read your API keys, and tests never touch your real files.
-- Updates are only checked after you turn that on in About. A tampered or unsigned update is rejected.
+- Updates are only checked after you turn that on in About. An update must carry a valid signature from the update key. A changed file, a wrong key, an unsigned feed or an altered feed is rejected.
+- A feed that fails its signature check is never shown to you, however long it keeps failing.
+
+## How update trust works, and its limits
+
+The update signing key is the main protection. Sparkle, the update library, accepts an update when its Ed25519 signature is valid. In that case it does not check which Apple team signed the app inside. So the private key must stay private.
+
+Sparkle's source code shows one fallback. If the signature of a DMG fails, Sparkle can still accept it when it is signed with the same Developer ID as the installed app. This path exists for key rotation. An attacker would need both our Developer ID certificate and control of the download or the feed. Keep both private, and report a suspected leak through the private form.
+
+If the update key is lost, updates stop and you must install a new release by hand.
 
 ## If the update key is ever exposed
 
