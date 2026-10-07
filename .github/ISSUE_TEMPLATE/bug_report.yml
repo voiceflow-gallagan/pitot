@@ -1,0 +1,58 @@
+name: Bug report
+description: Something in Pitot does not work as it should.
+title: "[Bug] "
+body:
+  - type: input
+    id: pitot-version
+    attributes:
+      label: Pitot version
+      description: Shown in About.
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+  - type: input
+    id: claude-code-version
+    attributes:
+      label: Claude Code version
+      description: Run `claude --version` in a terminal.
+  - type: dropdown
+    id: file
+    attributes:
+      label: Which file did Pitot edit?
+      options:
+        - User settings
+        - Project settings
+        - Local settings
+        - Keybindings
+        - None
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed API keys, tokens and personal paths from anything I pasted.
+          required: true
+        - label: This is not a security issue (those go to the private form).
+          required: true

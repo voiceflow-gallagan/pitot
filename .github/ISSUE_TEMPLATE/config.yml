@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security issue (private)
+    url: https://github.com/voiceflow-gallagan/pitot/security/advisories/new
+    about: Use this private form for security problems. Do not open a public issue.
+  - name: Questions about Claude Code
+    url: https://code.claude.com/docs/en/settings
+    about: The Claude Code docs answer questions about Claude Code itself.
