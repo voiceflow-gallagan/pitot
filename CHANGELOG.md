@@ -4,6 +4,7 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-10-19
 ### Added
 
 - Nine new catalog rows from the Claude Code 2.1.303 docs: idle compaction and its token limit, web search refills, overloaded retry delays, file mentions, terminal images, Claude in Chrome and artifact publish edits.
