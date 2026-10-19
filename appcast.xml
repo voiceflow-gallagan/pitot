@@ -6,6 +6,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Pitot</title>
         <item>
+            <title>0.1.5</title>
+            <pubDate>Mon, 19 Oct 2026 18:33:42 +0200</pubDate>
+            <sparkle:version>0.1.5</sparkle:version>
+            <sparkle:shortVersionString>0.1.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.5 fixes a warning on prompt suggestions.
+
+**Fixed**
+- Prompt suggestions now warn that they have no effect while `DO_NOT_TRACK` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` is set, as they already did for `DISABLE_TELEMETRY`. Both variables turn telemetry off.
+
+**Update:** from an earlier version, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
+
+**SHA-256** of `Pitot-0.1.5.dmg`: `248adae9a97d7edc68328bb3ff2162d3b5feedfba6318f411fa6ba55388fba38`
+
+Built from commit 09bed8c. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
+]]></description>
+            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.5/Pitot-0.1.5.dmg" length="3430464" type="application/octet-stream" sparkle:edSignature="KXS6oJeGCnpjzecZoG9n5CiXwILFPJkTCdnkYfJvSCEMtobIrU07xV6uQyAZpYVuTP05tJyr19wREWucCe5NBA=="/>
+        </item>
+        <item>
             <title>0.1.4</title>
             <pubDate>Mon, 19 Oct 2026 17:27:44 +0200</pubDate>
             <sparkle:version>0.1.4</sparkle:version>
@@ -52,33 +71,9 @@ Built from commit 8facbbb. Not affiliated with or endorsed by Anthropic. Claude 
 ]]></description>
             <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.3/Pitot-0.1.3.dmg" length="3426590" type="application/octet-stream" sparkle:edSignature="P6bOt3gxrFZWAefUCpNqTFAswItMQ7DFQjCRdxXthczkr3Dq0+0L+NjIx/pHiYPkyRShlbMpzpOBMJvgbyF/CQ=="/>
         </item>
-        <item>
-            <title>0.1.2</title>
-            <pubDate>Wed, 07 Oct 2026 12:33:53 +0200</pubDate>
-            <sparkle:version>0.1.2</sparkle:version>
-            <sparkle:shortVersionString>0.1.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.2 adds menus and shortcuts, an accessibility pass and plainer text.
-
-**New**
-- Menus and shortcuts: Choose Project Folder (Cmd+O), Apply (Cmd+Return), Discard (Cmd+Delete), Undo Last Change, Find (Cmd+F), sections on Cmd+1 to Cmd+7, and a Help menu with links.
-- Pitot reopens the last section, scope and project.
-
-**Changed**
-- Clearer text for empty screens, banners and notes. "Effective" is now "In effect".
-- Better accessibility: badge text meets 4.5:1 contrast, headings are marked for VoiceOver, review lines are spoken as "Warning" or "Problem", and Increase Contrast adds stronger outlines.
-
-**Update:** from 0.1.0 or 0.1.1, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
-
-**SHA-256** of `Pitot-0.1.2.dmg`: `fc99753fc77e4006273bccf26e327200b45ce7205ecd3bff6ce0ba90d82cd01a`
-
-Built from commit e9cb39e. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
-]]></description>
-            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.2/Pitot-0.1.2.dmg" length="3426492" type="application/octet-stream" sparkle:edSignature="6nLn/PlSpPiWEnkCrm28pADmgWCQzZB2nQDvFWQqZ4kxsYb4fgNnrfp0adbkJm9YkddnbQKTwmvuWf+5/kw9Bg=="/>
-        </item>
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: CiCBpO/6Ce93zAMLctSsu0nsH/sPZ2bnXBRlX5R4qUe9peiBF7FyjzpUcWG/dfMnXxf9aSPf0xdT5bh4MF9FBQ==
-length: 5652
+edSignature: HxLrERiQEWwQPmsMSFKUuep+OkEaldoJBEj5nLhjMS5jmx1lEOOWNbCeaEjO5eQpD6H6CNM8hOKsCJuCWzydBQ==
+length: 5317
 -->
