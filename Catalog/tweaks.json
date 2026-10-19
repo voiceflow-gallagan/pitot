@@ -793,10 +793,21 @@
         },
         {
           "envName": "DISABLE_TELEMETRY"
+        },
+        {
+          "envName": "DO_NOT_TRACK",
+          "whenValue": "1"
+        },
+        {
+          "envName": "DISABLE_GROWTHBOOK",
+          "whenValue": "1"
+        },
+        {
+          "envName": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC"
         }
       ],
       "docURL": "https://code.claude.com/docs/en/settings-reference#idlecompaction",
-      "notes": "Older versions ignore this key, so turn off auto-compact there instead. Applies only in an interactive session on the 1 hour prompt cache, after about 54 idle minutes, once the context reaches the idle compaction threshold. It needs feature-flag fetching, so it has no effect while DISABLE_TELEMETRY is set."
+      "notes": "Setting autoCompactEnabled to false turns idle compaction off too. Older versions ignore this key, so turn off auto-compact there instead. Applies only in an interactive session on the 1 hour prompt cache, after about 54 idle minutes, once the context reaches the idle compaction threshold. It needs feature-flag fetching, so it has no effect while DISABLE_TELEMETRY, DO_NOT_TRACK, DISABLE_GROWTHBOOK or CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC is set. Fetching is also off on a third-party provider such as Amazon Bedrock, unless the platform that embeds Claude Code manages the provider, and in a Claude apps gateway session."
     },
     {
       "id": "CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS",

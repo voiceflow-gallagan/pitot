@@ -14,7 +14,8 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 - `footer:up` and `footer:down` now also use Ctrl+P and Ctrl+N, as the docs say.
 - `enableArtifact` no longer needs a minimum Claude Code version.
-- The catalog checker reads a "requires" version line in lower case, and it gives a keybinding context only to the actions its sentence names.
+- The catalog checker also reads a settings entry's version from a "The key requires Claude Code vX" line. A lower-case "requires" about one detail of a key still does not count as the key's version.
+- The catalog checker reads keybinding contexts one sentence or semicolon clause at a time. A context named next to some actions goes only to those actions. When that sentence says "also", those actions keep the section's other contexts too.
 
 ## [0.1.3] - 2026-10-07
 
