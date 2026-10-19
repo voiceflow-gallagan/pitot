@@ -369,10 +369,17 @@
         },
         {
           "envName": "DISABLE_TELEMETRY"
+        },
+        {
+          "envName": "DO_NOT_TRACK",
+          "whenValue": "1"
+        },
+        {
+          "envName": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC"
         }
       ],
       "docURL": "https://code.claude.com/docs/en/settings-reference#promptsuggestionenabled",
-      "notes": "Display only. Needs a claude.ai or Console account with telemetry on, so it has no effect while DISABLE_TELEMETRY is set."
+      "notes": "Display only. Needs a claude.ai or Console account with telemetry on, so it has no effect while DISABLE_TELEMETRY, DO_NOT_TRACK or CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC is set. It also has no effect on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry. In those cases only CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=1 turns suggestions on."
     },
     {
       "id": "CLAUDE_CODE_DISABLE_FILE_MENTIONS",

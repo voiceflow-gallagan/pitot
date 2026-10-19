@@ -75,7 +75,9 @@ struct CatalogDataTests {
         "documented env overrides are modelled",
         arguments: [
             ("askUserQuestionTimeout", ["CLAUDE_AFK_TIMEOUT_MS"]), ("awaySummaryEnabled", ["CLAUDE_CODE_ENABLE_AWAY_SUMMARY"]),
-            ("model", ["ANTHROPIC_MODEL"]), ("promptSuggestionEnabled", ["CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION", "DISABLE_TELEMETRY"]),
+            ("model", ["ANTHROPIC_MODEL"]), ("promptSuggestionEnabled", [
+                "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION", "DISABLE_TELEMETRY", "DO_NOT_TRACK", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+            ]),
             ("alwaysThinkingEnabled", ["MAX_THINKING_TOKENS"]), ("promptCacheTtl", ["CLAUDE_CODE_PROMPT_CACHE_TTL", "FORCE_PROMPT_CACHING_5M"]),
             ("autoCompactEnabled", ["DISABLE_AUTO_COMPACT"]), ("fastMode", ["CLAUDE_CODE_DISABLE_FAST_MODE"]),
         ])
