@@ -4,6 +4,7 @@ const KEY_HEADING = /^`([A-Za-z][\w.]*)`$/;
 const FIELD_BULLET = /^\* \*\*([^*]+)\*\*:\s*(.*)$/;
 const SUB_BULLET = /^\s{2,}\* (.*)$/;
 export const REQUIRES = /Requires Claude Code v(\d+(?:\.\d+)+)/g;
+const KEY_REQUIRES = /^The key requires Claude Code v(\d+(?:\.\d+)+)/m;
 const ENV_NAME = /^[A-Z][A-Z0-9_]*\*?$/;
 
 function firstVersion(text) {
@@ -110,7 +111,7 @@ function parseSections(lines, allHeadings) {
       scopeText: scope ? stripInline(scope.text) : null,
       type: parseType(fields.get('Type')),
       default: parseDefault(fields.get('Default')),
-      minVersion: firstVersion(intro),
+      minVersion: firstVersion(intro) ?? body.match(KEY_REQUIRES)?.[1] ?? null,
       versions: [...new Set([...body.matchAll(REQUIRES)].map((m) => m[1]))],
     });
   }

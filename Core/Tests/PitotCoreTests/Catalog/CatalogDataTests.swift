@@ -32,7 +32,7 @@ struct CatalogDataTests {
     }
 
     @Test func rowCountIsInRange() throws {
-        #expect((25...40).contains(try load().tweaks.count))
+        #expect((25...45).contains(try load().tweaks.count))
     }
 
     @Test func everyMustHaveIdIsPresent() throws {
@@ -95,6 +95,16 @@ struct CatalogDataTests {
             }
         }
         #expect(mode.canWrite(in: .project, value: "plan") == .allowed)
+    }
+
+    @Test func onlyUserSettingsCanTurnOnChrome() throws {
+        let chrome = try #require(try load().tweak(id: "CLAUDE_CODE_ENABLE_CFC"))
+
+        #expect(chrome.canWrite(in: .user, value: "1") == .allowed)
+        for layer: SettingsLayerKind in [.project, .local] {
+            #expect(chrome.canWrite(in: layer, value: "1") != .allowed, "1 allowed in \(layer)")
+            #expect(chrome.canWrite(in: layer, value: "0") == .allowed)
+        }
     }
 
     @Test func userOnlyRowsAreRefusedOutsideUserSettings() throws {

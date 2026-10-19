@@ -8,10 +8,10 @@ import Testing
 struct UnverifiedTests {
     @Test func bundledListLoadsAndGroupsByStatusAndKind() async throws {
         let catalog = try bundledUnverified()
-        #expect(catalog.keys.count == 15)
+        #expect(catalog.keys.count == 14)
         let sections = UnverifiedList.sections(catalog, layers: [], search: "")
         #expect(sections.map(\.title) == ["Not documented settings", "Unverified settings", "Unverified env vars"])
-        #expect(sections.map(\.rows.count) == [11, 2, 2])
+        #expect(sections.map(\.rows.count) == [10, 2, 2])
         #expect(sections.flatMap(\.rows).allSatisfy { $0.presence == "Not found in your files" })
     }
 

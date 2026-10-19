@@ -45,12 +45,6 @@
       "seenIn": ["binary"]
     },
     {
-      "name": "idleCompaction",
-      "kind": "setting",
-      "status": "hidden",
-      "seenIn": ["binary"]
-    },
-    {
       "name": "precomputeCompactionEnabled",
       "kind": "setting",
       "status": "hidden",

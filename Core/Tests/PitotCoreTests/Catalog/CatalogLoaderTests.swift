@@ -86,7 +86,7 @@ struct CatalogLoaderTests {
         arguments: [
             Tweak.Location.setting(path: ["askUserQuestionTimeout"]), .setting(path: ["sandbox", "filesystem", "disabled"]),
             .setting(path: ["spellcheck", "enabled"]), .env(name: "CLAUDE_CODE_ENABLE_TELEMETRY"), .env(name: "OTEL_EXPORTER_OTLP_ENDPOINT"),
-            .env(name: "OTEL_METRICS_EXPORTER"),
+            .env(name: "OTEL_METRICS_EXPORTER"), .env(name: "CLAUDE_CODE_DISABLE_FILE_MENTIONS"),
         ])
     func userOnlyKeysAreMarked(location: Tweak.Location) {
         #expect(rules([tweak("a", location: location)]) == [.userOnlyNotMarked])

@@ -16,7 +16,6 @@ Data table for the keybindings editor. Source: https://code.claude.com/docs/en/k
 ## Known gaps in the docs
 
 - The History actions section names no context, so those actions have an empty `contexts` list.
-- The `Pane` and `PaneField` contexts have no listed actions.
 - Caps Lock is reserved but cannot be written as a key string, so it is not in `reservedKeys`.
 - Function keys are not mentioned. Their support is unknown.
 - `defaultKey` is display text and is not linted as a key string.
