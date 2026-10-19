@@ -41,7 +41,7 @@ struct SidebarTests {
         let fixture = try await ModelFixture.make(keybindings: file)
         #expect(fixture.model.sidebarInfo(.keybindings).count == 2)
         #expect(fixture.model.sidebarInfo(.keybindings).accessibilityLabel == "Keybindings, 2 bindings")
-        #expect(fixture.model.sidebarInfo(.unverified).accessibilityLabel == "Unverified, 15 keys listed")
+        #expect(fixture.model.sidebarInfo(.unverified).accessibilityLabel == "Unverified, 14 keys listed")
 
         fixture.model.keybindings.request(.add(context: "Chat", key: "ctrl+j", action: "chat:clearScreen"))
         #expect(fixture.model.sidebarInfo(.keybindings).count == 2)

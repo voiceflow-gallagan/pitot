@@ -55,3 +55,15 @@ test('key text is compared without markdown escapes, footnote marks or case', ()
   assert.equal(normalizeKey('(unbound)'), normalizeKey(undefined));
   assert.notEqual(normalizeKey('Enter'), normalizeKey('Enter, Space'));
 });
+
+test('a sentence that names actions gives its contexts to those actions only', async () => {
+  const { parseKeybindings } = await import('../lib/parse-keybindings.js');
+  const page = [
+    '## Contexts', '', '| Context | Description |', '| :- | :- |', '| `Chat` | Prompt |', '| `Band` | Band |', '',
+    '## Available actions', '', '### Band actions', '',
+    '`band:toggle` applies in the `Chat` context. The other actions apply in `Band`.', '',
+    '| Action | Default | Description |', '| :- | :- | :- |', '| `band:toggle` | Ctrl+B | Toggle |', '| `band:next` | Tab | Next |', '',
+  ].join('\n');
+  const { actions } = parseKeybindings(page);
+  assert.deepEqual(Object.fromEntries(actions.map((a) => [a.id, a.contexts])), { 'band:toggle': ['Chat'], 'band:next': ['Band'] });
+});

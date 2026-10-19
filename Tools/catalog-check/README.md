@@ -28,7 +28,7 @@ A page that does not load or no longer parses is always an ERROR. The checks tha
 
 ## What it checks
 
-- **Settings rows**: the key is in the settings index and has an entry. The scope column still matches `scope: userOnly`. Enum values match the documented values. The type is still Boolean for bool rows. `minVersion` equals the "Requires Claude Code vX or later" line of the entry. `defaultDescription` starts with the documented default. The `docURL` anchor exists and is the anchor the index uses for that key.
+- **Settings rows**: the key is in the settings index and has an entry. The scope column still matches `scope: userOnly`. Enum values match the documented values. The type is still Boolean for bool rows. `minVersion` equals the "Requires Claude Code vX or later" line of the entry, in upper or lower case. That line counts when it comes before the Scope bullet, or when it starts with "The key requires". `defaultDescription` starts with the documented default. The `docURL` anchor exists and is the anchor the index uses for that key.
 - **Env var rows**: the variable is in the env-vars table and `minVersion` matches its row. A variable that project and local settings cannot set must be `userOnly`.
 - **Suggestions**: model aliases are checked against model-config, subagent aliases against sub-agents, and output style names against output-styles. The mapping is in `lib/parse-lists.js`.
 - **Keybindings**: contexts and action ids match on both sides. Default keys match per context, including `contextDefaults`. Legacy actions are still mentioned on the page.

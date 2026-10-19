@@ -10,14 +10,26 @@ function paragraphs(lines) {
     .filter(Boolean);
 }
 
-/** Contexts named in the closest paragraph above the table that names any, within the same subsection. */
+/**
+ * Contexts named in the closest paragraph above the table that names any, within the same subsection.
+ * A sentence that also names action ids gives its contexts to those actions only.
+ */
 function tableContexts(lines, sectionStart, tableLine, known) {
   const prose = paragraphs(lines.slice(sectionStart, tableLine)).reverse();
   for (const paragraph of prose) {
-    const named = [...new Set(codeSpans(paragraph).filter((span) => known.has(span)))];
-    if (named.length > 0) return named;
+    const general = new Set();
+    const perAction = new Map();
+    for (const sentence of paragraph.split(/(?<=\.)\s+/)) {
+      const spans = codeSpans(sentence);
+      const named = spans.filter((span) => known.has(span));
+      if (named.length === 0) continue;
+      const ids = spans.filter((span) => /^[\w-]+:[\w-]+$/.test(span));
+      if (ids.length === 0) named.forEach((name) => general.add(name));
+      for (const id of ids) perAction.set(id, new Set([...(perAction.get(id) ?? []), ...named]));
+    }
+    if (general.size > 0 || perAction.size > 0) return (id) => [...(perAction.get(id) ?? general)];
   }
-  return [];
+  return () => [];
 }
 
 function parseContexts(lines, allHeadings, problems) {
@@ -63,7 +75,7 @@ function parseActions(lines, allHeadings, contexts, problems) {
       for (const row of table.rows) {
         const id = codeSpans(row.cells[actionCol] ?? '')[0];
         if (!id || !/^[\w-]+:[\w-]+$/.test(id)) continue;
-        rows.push({ id, key: row.cells[defaultCol] ?? '', contexts: tableCtx, section: stripInline(sub.text), line: row.line + 1 });
+        rows.push({ id, key: row.cells[defaultCol] ?? '', contexts: tableCtx(id), section: stripInline(sub.text), line: row.line + 1 });
       }
     }
   }

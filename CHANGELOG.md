@@ -4,6 +4,18 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+### Added
+
+- Nine new catalog rows from the Claude Code 2.1.303 docs: idle compaction and its token limit, web search refills, overloaded retry delays, file mentions, terminal images, Claude in Chrome and artifact publish edits.
+- Claude in Chrome can be turned on only in user settings, and turning it on asks you to confirm.
+- Keybindings for the area above the prompt and for panes, plus `footer:close`.
+
+### Changed
+
+- `footer:up` and `footer:down` now also use Ctrl+P and Ctrl+N, as the docs say.
+- `enableArtifact` no longer needs a minimum Claude Code version.
+- The catalog checker reads a "requires" version line in lower case, and it gives a keybinding context only to the actions its sentence names.
+
 ## [0.1.3] - 2026-10-07
 
 ### Security

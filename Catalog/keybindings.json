@@ -1,6 +1,6 @@
 {
-  "researchDate": "2026-10-06",
-  "claudeCodeVersionChecked": "2.1.291",
+  "researchDate": "2026-10-19",
+  "claudeCodeVersionChecked": "2.1.303",
   "docURL": "https://code.claude.com/docs/en/keybindings",
   "header": {
     "schema": "https://www.schemastore.org/claude-code-keybindings.json",
@@ -86,6 +86,18 @@
     {
       "name": "Plugin",
       "description": "The plugin screen"
+    },
+    {
+      "name": "AbovePrompt",
+      "description": "The band above the prompt"
+    },
+    {
+      "name": "AbovePromptInput",
+      "description": "An input field in the band or a pane"
+    },
+    {
+      "name": "AbovePromptSelect",
+      "description": "A select in the band or a pane"
     },
     {
       "name": "Pane",
@@ -599,7 +611,7 @@
         "Footer"
       ],
       "description": "Moves up in the footer",
-      "defaultKey": "Up"
+      "defaultKey": "Up, Ctrl+P"
     },
     {
       "id": "footer:down",
@@ -608,7 +620,7 @@
         "Footer"
       ],
       "description": "Moves down in the footer",
-      "defaultKey": "Down"
+      "defaultKey": "Down, Ctrl+N"
     },
     {
       "id": "footer:openSelected",
@@ -627,6 +639,15 @@
       ],
       "description": "Unselects the footer item",
       "defaultKey": "Escape"
+    },
+    {
+      "id": "footer:close",
+      "namespace": "footer",
+      "contexts": [
+        "Footer"
+      ],
+      "description": "Stops the chosen agent or workflow, or removes its row if it has ended",
+      "defaultKey": "x"
     },
     {
       "id": "footer:dismiss",
@@ -985,6 +1006,205 @@
       "defaultKey": "F"
     },
     {
+      "id": "abovePrompt:toggle",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Collapses the band above the prompt, or expands it",
+      "defaultKey": "Ctrl+X Ctrl+A"
+    },
+    {
+      "id": "abovePrompt:focus",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "Chat"
+      ],
+      "description": "Moves focus into the band, then through each open pane",
+      "defaultKey": "Ctrl+X Tab"
+    },
+    {
+      "id": "abovePrompt:next",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePrompt",
+        "AbovePromptInput",
+        "AbovePromptSelect",
+        "Pane"
+      ],
+      "description": "Focuses the next control",
+      "defaultKey": "Tab",
+      "contextDefaults": {
+        "AbovePrompt": "Tab, Right",
+        "AbovePromptInput": "Tab, Down"
+      }
+    },
+    {
+      "id": "abovePrompt:previous",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePrompt",
+        "AbovePromptInput",
+        "AbovePromptSelect",
+        "Pane"
+      ],
+      "description": "Focuses the previous control",
+      "defaultKey": "Shift+Tab",
+      "contextDefaults": {
+        "AbovePrompt": "Shift+Tab, Left",
+        "AbovePromptInput": "Shift+Tab, Up"
+      }
+    },
+    {
+      "id": "abovePrompt:press",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePrompt",
+        "AbovePromptInput",
+        "AbovePromptSelect",
+        "Pane"
+      ],
+      "description": "Presses the focused button, submits the input, or picks the option",
+      "defaultKey": "Enter",
+      "contextDefaults": {
+        "AbovePrompt": "Enter, Space"
+      }
+    },
+    {
+      "id": "abovePrompt:leave",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePrompt",
+        "AbovePromptInput",
+        "AbovePromptSelect",
+        "Pane"
+      ],
+      "description": "Returns focus to the prompt",
+      "defaultKey": "Escape"
+    },
+    {
+      "id": "abovePrompt:highlightNext",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePromptSelect"
+      ],
+      "description": "Highlights the next option in a select",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "abovePrompt:highlightPrevious",
+      "namespace": "abovePrompt",
+      "contexts": [
+        "AbovePromptSelect"
+      ],
+      "description": "Highlights the previous option in a select",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "pane:scrollUp",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Scrolls the pane up",
+      "defaultKey": "Up"
+    },
+    {
+      "id": "pane:scrollDown",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Scrolls the pane down",
+      "defaultKey": "Down"
+    },
+    {
+      "id": "pane:pageUp",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Scrolls the pane up a page",
+      "defaultKey": "PageUp"
+    },
+    {
+      "id": "pane:pageDown",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Scrolls the pane down a page",
+      "defaultKey": "PageDown"
+    },
+    {
+      "id": "pane:top",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Jumps to the top of the pane",
+      "defaultKey": "Home"
+    },
+    {
+      "id": "pane:bottom",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "AbovePrompt"
+      ],
+      "description": "Jumps to the bottom of the pane",
+      "defaultKey": "End"
+    },
+    {
+      "id": "pane:grow",
+      "namespace": "pane",
+      "contexts": [
+        "Pane"
+      ],
+      "description": "Gives the pane more room",
+      "defaultKey": "Ctrl+X Left, Ctrl+X Up"
+    },
+    {
+      "id": "pane:shrink",
+      "namespace": "pane",
+      "contexts": [
+        "Pane"
+      ],
+      "description": "Gives the pane less room",
+      "defaultKey": "Ctrl+X Right, Ctrl+X Down"
+    },
+    {
+      "id": "pane:close",
+      "namespace": "pane",
+      "contexts": [
+        "Pane",
+        "PaneField"
+      ],
+      "description": "Closes the pane",
+      "defaultKey": "Ctrl+X X"
+    },
+    {
+      "id": "pane:next",
+      "namespace": "pane",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows the next open pane"
+    },
+    {
+      "id": "pane:previous",
+      "namespace": "pane",
+      "contexts": [
+        "Global"
+      ],
+      "description": "Shows the previous open pane"
+    },
+    {
       "id": "settings:search",
       "namespace": "settings",
       "contexts": [
@@ -1285,7 +1505,6 @@
       "A bare letter, digit or space that you bind still types normally inside dialog text fields.",
       "Write Ctrl shortcuts with Latin letters, whatever the keyboard layout.",
       "The docs do not mention function keys such as f1, so support is unknown.",
-      "Pane and PaneField belong to mods. The docs give default chords for them but no action names.",
       "MessageSelector has no actions of its own. It uses the Select actions.",
       "Default chords that start with ctrl+x: Chat has ctrl+x ctrl+k, ctrl+x ctrl+e, ctrl+x enter, ctrl+x ctrl+a, ctrl+x ctrl+s and ctrl+x tab. Task has ctrl+x ctrl+b. DiffPanel has ctrl+x b. Pane has ctrl+x left, right, up, down and x. PaneField has ctrl+x x.",
       "The docs name no context for the history actions, so they list none."

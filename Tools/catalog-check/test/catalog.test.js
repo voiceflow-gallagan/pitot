@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { matching, tweak, workspace } from '../support/workspace.js';
+import { matching, replaceOnce, tweak, workspace } from '../support/workspace.js';
 
 test('the fixture catalog has no ERROR against the synthetic pages', async (t) => {
   const ws = await workspace(t);
@@ -52,6 +52,20 @@ test('minVersion drift is an ERROR in every direction', async (t) => {
   assert.equal(matching(result, 'ERROR', 'promptCacheTtl', /v2\.1\.242" but the row has no minVersion/).length, 1);
   assert.equal(matching(result, 'ERROR', 'tui', /states no version/).length, 1);
   assert.equal(matching(result, 'ERROR', 'CLAUDE_CODE_SUBAGENT_MODEL_FORCE', /env-vars says "Requires Claude Code v2\.1\.257"/).length, 1);
+});
+
+test('a lower-case "requires" line still gives the key version', async (t) => {
+  const ws = await workspace(t);
+  await ws.editPage('settings-reference', (text) =>
+    replaceOnce(text, '* **Default**: unset, fast mode stays off\n', '* **Default**: unset, fast mode stays off\n\nThe key requires Claude Code v2.1.290 or later.\n'),
+  );
+  await ws.editPage('env-vars', (text) => replaceOnce(text, 'Requires Claude Code v2.1.257', 'requires Claude Code v2.1.257'));
+  await ws.editJson('tweaks.json', (data) => {
+    tweak(data, 'fastMode').minVersion = '2.1.290';
+  });
+  const result = await ws.run();
+  assert.equal(result.counts.error, 0, JSON.stringify(result.findings.filter((f) => f.severity === 'ERROR'), null, 2));
+  assert.equal(matching(result, 'WARN', 'fastMode', /minVersion/).length, 0);
 });
 
 test('a scope that no longer matches the docs is an ERROR', async (t) => {

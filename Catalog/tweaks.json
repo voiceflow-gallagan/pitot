@@ -1,6 +1,6 @@
 {
-  "researchDate": "2026-10-06",
-  "claudeCodeVersionChecked": "2.1.291",
+  "researchDate": "2026-10-19",
+  "claudeCodeVersionChecked": "2.1.303",
   "tweaks": [
     {
       "id": "tui",
@@ -329,6 +329,24 @@
       "notes": "Display only."
     },
     {
+      "id": "CLAUDE_CODE_FORCE_TERMINAL_IMAGES",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_FORCE_TERMINAL_IMAGES"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: mod images show as pictures only in terminals Claude Code detects, such as kitty and Ghostty.",
+      "title": "Always draw mod images",
+      "description": "Draw mod images as pictures when your terminal can show them but Claude Code does not detect it.",
+      "category": "Interface",
+      "risks": [],
+      "status": "documented",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Display only. The docs say to set it to 1. The terminal must draw kitty graphics images with Unicode placeholders. Inside tmux or screen it does not help and hides the alt text."
+    },
+    {
       "id": "promptSuggestionEnabled",
       "location": {
         "type": "setting",
@@ -355,6 +373,28 @@
       ],
       "docURL": "https://code.claude.com/docs/en/settings-reference#promptsuggestionenabled",
       "notes": "Display only. Needs a claude.ai or Console account with telemetry on, so it has no effect while DISABLE_TELEMETRY is set."
+    },
+    {
+      "id": "CLAUDE_CODE_DISABLE_FILE_MENTIONS",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_DISABLE_FILE_MENTIONS"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: an @ mention adds the file contents or directory listing to your message.",
+      "title": "Do not expand @ mentions",
+      "description": "Send @ mentioned paths without their contents, so Claude reads them with its file tools.",
+      "category": "Interface",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.299",
+      "scope": "userOnly",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "The docs say to set it to 1. Claude Code ignores it in project and local settings."
     },
     {
       "id": "preferredNotifChannel",
@@ -727,6 +767,60 @@
       "notes": "Turning it off can fill the context window and stop a long session."
     },
     {
+      "id": "idleCompaction",
+      "location": {
+        "type": "setting",
+        "path": [
+          "idleCompaction"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "true: idle conversations that meet the conditions are compacted.",
+      "title": "Idle compaction",
+      "description": "Compact a long conversation you stepped away from, shortly before its prompt cache expires.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.290",
+      "overriddenBy": [
+        {
+          "envName": "DISABLE_AUTO_COMPACT",
+          "whenValue": "1"
+        },
+        {
+          "envName": "DISABLE_TELEMETRY"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/settings-reference#idlecompaction",
+      "notes": "Older versions ignore this key, so turn off auto-compact there instead. Applies only in an interactive session on the 1 hour prompt cache, after about 54 idle minutes, once the context reaches the idle compaction threshold. It needs feature-flag fetching, so it has no effect while DISABLE_TELEMETRY is set."
+    },
+    {
+      "id": "CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS"
+      },
+      "valueType": {
+        "type": "integer",
+        "min": 100000
+      },
+      "defaultDescription": "Unset: 200000 tokens.",
+      "title": "Idle compaction threshold",
+      "description": "Set how many tokens of context a conversation needs before idle compaction applies.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.290",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Claude Code raises values below 100000 to 100000, so Pitot does not offer them. At the default, a conversation on a 200K context window auto-compacts before it qualifies. Has no effect while idle compaction is off."
+    },
+    {
       "id": "CLAUDE_CODE_SUBAGENT_MODEL",
       "location": {
         "type": "env",
@@ -784,6 +878,86 @@
       "minVersion": "2.1.257",
       "docURL": "https://code.claude.com/docs/en/env-vars#variables",
       "notes": "Works on its own. Agent definitions and the model Claude passes at spawn are ignored. When only this is set, the built-in Explore subagent keeps the model listed for it."
+    },
+    {
+      "id": "CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR"
+      },
+      "valueType": {
+        "type": "integer",
+        "min": 0
+      },
+      "defaultDescription": "Unset: 100 per hour in an interactive session, no refill in a non-interactive one.",
+      "title": "Web search refill rate",
+      "description": "Set how fast a session's web search limit refills, in searches per hour.",
+      "category": "Model and cost",
+      "risks": [
+        "cost"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.290",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "0 turns refill off. Claude Code reads anything other than plain digits as unset. An interactive session starts with a limit of 200 searches."
+    },
+    {
+      "id": "CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS"
+      },
+      "valueType": {
+        "type": "integer",
+        "min": 500,
+        "max": 32000
+      },
+      "defaultDescription": "Unset: 500 milliseconds.",
+      "title": "Overload retry delay",
+      "description": "Set the first wait, in milliseconds, before Claude Code retries a request the API rejected as overloaded.",
+      "category": "Model and cost",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.292",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_RETRY_WATCHDOG",
+          "whenValue": "1"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Applies to 529 overloaded errors. The wait grows with each retry, up to the overload retry ceiling. Claude Code treats a value outside 500 to 32000 as unset. No effect for requests sent in fast mode."
+    },
+    {
+      "id": "CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS"
+      },
+      "valueType": {
+        "type": "integer",
+        "min": 32000,
+        "max": 64000
+      },
+      "defaultDescription": "Unset: 32000 milliseconds.",
+      "title": "Overload retry ceiling",
+      "description": "Set the longest wait, in milliseconds, between retries of a request the API rejected as overloaded.",
+      "category": "Model and cost",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.296",
+      "overriddenBy": [
+        {
+          "envName": "CLAUDE_CODE_RETRY_WATCHDOG",
+          "whenValue": "1"
+        }
+      ],
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Applies to 529 overloaded errors. Claude Code treats a value outside 32000 to 64000 as unset. No effect for requests sent in fast mode."
     },
     {
       "id": "disableClaudeAiConnectors",
@@ -878,9 +1052,30 @@
         "behavior"
       ],
       "status": "documented",
-      "minVersion": "2.1.196",
       "docURL": "https://code.claude.com/docs/en/settings-reference#enableartifact",
       "notes": "False in any settings file applies. True is the same as unset."
+    },
+    {
+      "id": "CLAUDE_CODE_ARTIFACT_PUBLISH_EDITS",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_ARTIFACT_PUBLISH_EDITS"
+      },
+      "valueType": {
+        "type": "fixedString",
+        "value": "0"
+      },
+      "defaultDescription": "Unset: Claude can apply small changes to an artifact's file while it publishes it.",
+      "title": "Edit artifacts before publishing",
+      "description": "Make Claude change an artifact's file with its file tools first, then publish it as a separate step.",
+      "category": "Privacy",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.300",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "The docs describe only the value 0. Pitot writes 0 to turn it on and removes the key to turn it off."
     },
     {
       "id": "CLAUDE_CODE_NEW_INIT",
@@ -1078,6 +1273,47 @@
       },
       "docURL": "https://code.claude.com/docs/en/env-vars#variables",
       "notes": "Remote Control is disabled for a non-Anthropic host. Telemetry is still sent. Do not put keys in env."
+    },
+    {
+      "id": "CLAUDE_CODE_ENABLE_CFC",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_ENABLE_CFC"
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "1",
+            "label": "On"
+          },
+          {
+            "value": "0",
+            "label": "Off"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: sessions start with Chrome integration off, unless claudeInChromeDefaultEnabled is on.",
+      "title": "Claude in Chrome",
+      "description": "Choose whether CLI sessions start with Claude connected to your Chrome browser.",
+      "category": "Safety",
+      "risks": [
+        "security",
+        "privacy"
+      ],
+      "status": "documented",
+      "userOnlyValues": [
+        "1"
+      ],
+      "confirm": {
+        "message": "Claude can then use your browser with your logins, so it can open and act on any site you are signed in to.",
+        "appliesWhen": {
+          "type": "whenValue",
+          "value": "1"
+        }
+      },
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Claude Code ignores 1 in project and local settings, so Pitot writes On only to user settings. Off works from any file. Beats the claudeInChromeDefaultEnabled setting, and the --chrome and --no-chrome flags beat both. Needs the Claude in Chrome extension and a /login sign-in."
     }
   ]
 }
