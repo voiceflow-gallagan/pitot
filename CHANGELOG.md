@@ -4,6 +4,8 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-10-19
+
 ### Fixed
 
 - Prompt suggestions now warn that they have no effect while `DO_NOT_TRACK` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` is set, as they already did for `DISABLE_TELEMETRY`. Both variables turn telemetry off.
