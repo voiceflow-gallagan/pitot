@@ -6,6 +6,33 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Pitot</title>
         <item>
+            <title>0.1.4</title>
+            <pubDate>Mon, 19 Oct 2026 17:27:44 +0200</pubDate>
+            <sparkle:version>0.1.4</sparkle:version>
+            <sparkle:shortVersionString>0.1.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.4 updates the settings catalog for Claude Code 2.1.303.
+
+**New settings**
+- Nine new settings from the Claude Code 2.1.303 docs: idle compaction and its token limit, web search refills, overloaded retry delays, file mentions, terminal images, Claude in Chrome and artifact publish edits.
+- Claude in Chrome can be turned on only in user settings, and turning it on asks you to confirm.
+
+**Keybindings**
+- New actions for the area above the prompt and for panes, plus `footer:close`.
+- `footer:up` and `footer:down` now also use Ctrl+P and Ctrl+N, as the docs say.
+
+**Changed**
+- `enableArtifact` no longer needs a minimum Claude Code version.
+
+**Update:** from an earlier version, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
+
+**SHA-256** of `Pitot-0.1.4.dmg`: `3e6422dcf937edceb5ba10c6b93c93aae640590834288ab33988d28565cbccfb`
+
+Built from commit 4b29782. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
+]]></description>
+            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.4/Pitot-0.1.4.dmg" length="3430321" type="application/octet-stream" sparkle:edSignature="WnRoYwRZGrUTUwTq99FoeIYq5y6w9MBq3iWLWcSRLciudPdpn5LOUiFguiR/aq8IjmUd1ol53f6LC/j3JvPrAA=="/>
+        </item>
+        <item>
             <title>0.1.3</title>
             <pubDate>Wed, 07 Oct 2026 14:16:59 +0200</pubDate>
             <sparkle:version>0.1.3</sparkle:version>
@@ -49,28 +76,9 @@ Built from commit e9cb39e. Not affiliated with or endorsed by Anthropic. Claude 
 ]]></description>
             <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.2/Pitot-0.1.2.dmg" length="3426492" type="application/octet-stream" sparkle:edSignature="6nLn/PlSpPiWEnkCrm28pADmgWCQzZB2nQDvFWQqZ4kxsYb4fgNnrfp0adbkJm9YkddnbQKTwmvuWf+5/kw9Bg=="/>
         </item>
-        <item>
-            <title>0.1.1</title>
-            <pubDate>Wed, 07 Oct 2026 11:38:05 +0200</pubDate>
-            <sparkle:version>0.1.1</sparkle:version>
-            <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.1 is a small update. It also serves as the first test of the built-in updater.
-
-**Changes**
-- The project menu no longer shows on the Keybindings screen, where it did nothing.
-
-**Install or update:** open the DMG and drag Pitot to Applications, or turn on "Automatically check for updates" in About and use "Check for Updates…" from 0.1.0. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
-
-**SHA-256** of `Pitot-0.1.1.dmg`: `7d286e1b0861e8fdf4896a2550916d325c99788ba0f994d6f44148ebea5ce1f1`
-
-Built from commit ed686e8. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
-]]></description>
-            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.1/Pitot-0.1.1.dmg" length="3361030" type="application/octet-stream" sparkle:edSignature="1HsXluPYLjAHtADOQ2z3TXUrkxgHGXUb1owfEadtrQfBnQLhTwR064GF4VK7y+Nw0EavPWzOLGgrdvOdj/zFDg=="/>
-        </item>
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: XTGeCq5EeSVXzP1jrRvY2sIEu/0bxQnAwAK3tx6iPD5YVLSJ4htuVw5lUmpCFzHlvvUuIQ168r6RGK11qlhCBg==
-length: 5178
+edSignature: CiCBpO/6Ce93zAMLctSsu0nsH/sPZ2bnXBRlX5R4qUe9peiBF7FyjzpUcWG/dfMnXxf9aSPf0xdT5bh4MF9FBQ==
+length: 5652
 -->
