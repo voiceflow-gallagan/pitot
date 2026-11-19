@@ -6,6 +6,36 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Pitot</title>
         <item>
+            <title>0.1.6</title>
+            <pubDate>Thu, 19 Nov 2026 14:42:35 +0100</pubDate>
+            <sparkle:version>0.1.6</sparkle:version>
+            <sparkle:shortVersionString>0.1.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.6 updates the catalog for Claude Code 2.1.327.
+
+**Added**
+- Five new rows: Code Mode, turning off ultrathink, blocking writes outside the project, denying instead of prompting, and the auto mode classifier model.
+- Code Mode and "Deny instead of prompting" can be set only in user settings. Turning off the write block asks you to confirm.
+- Pitot shows the value Claude Code uses for these rows. A true in any file keeps the write block on. A true in user or managed settings keeps "Deny instead of prompting" on. A 0 in user or managed settings keeps Code Mode off. Project and local values of those two rows are shown as ignored.
+- Code Mode is available from Claude Code v2.1.323.
+- The `settings:fixUsage` keybinding, which applies the `/usage` fixes.
+
+**Fixed**
+- A restrictive managed value, such as a lower effort cap or a protective true, now stays in effect when a later file in `managed-settings.d` sets a weaker value.
+
+**Removed**
+- The `fable[1m]` model suggestion, which the docs no longer list.
+- `CLAUDE_AFK_TIMEOUT_MS` as an override of the question timeout, because the docs no longer list it.
+
+**Update:** from an earlier version, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
+
+**SHA-256** of `Pitot-0.1.6.dmg`: `ce0b54175fee85a1be11f7040884e3b8c04b7de5d99ab16b73e158d1dbebbb8b`
+
+Built from commit b1f87ca. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
+]]></description>
+            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.6/Pitot-0.1.6.dmg" length="3438018" type="application/octet-stream" sparkle:edSignature="opL2YMeeiJRBUho1zQGAEuao34z8e9y+XeZXdKRKu+lhPwGacgYn30gj948OuGcuZ9ev0NyB8fCN0QrrXGY2Bw=="/>
+        </item>
+        <item>
             <title>0.1.5</title>
             <pubDate>Mon, 19 Oct 2026 18:33:42 +0200</pubDate>
             <sparkle:version>0.1.5</sparkle:version>
@@ -51,29 +81,9 @@ Built from commit 4b29782. Not affiliated with or endorsed by Anthropic. Claude 
 ]]></description>
             <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.4/Pitot-0.1.4.dmg" length="3430321" type="application/octet-stream" sparkle:edSignature="WnRoYwRZGrUTUwTq99FoeIYq5y6w9MBq3iWLWcSRLciudPdpn5LOUiFguiR/aq8IjmUd1ol53f6LC/j3JvPrAA=="/>
         </item>
-        <item>
-            <title>0.1.3</title>
-            <pubDate>Wed, 07 Oct 2026 14:16:59 +0200</pubDate>
-            <sparkle:version>0.1.3</sparkle:version>
-            <sparkle:shortVersionString>0.1.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[Pitot 0.1.3 is a security hardening update.
-
-**Security**
-- A feed that fails its signature check is now never shown, even after 20 days. Before, Sparkle could show such a feed in a restricted mode after 20 days. Pitot now sets `SUSignedFeedFailureExpirationInterval` to 0.
-- `SECURITY.md` now explains how update trust works and its limits.
-
-**Update:** from an earlier version, use "Check for Updates…" (turn on "Automatically check for updates" in About first). Or open the DMG and drag Pitot to Applications. Pitot needs macOS 14 or later and Claude Code installed. The app is signed with a Developer ID and notarized by Apple.
-
-**SHA-256** of `Pitot-0.1.3.dmg`: `ed951756c7f521bba4afa3f3fb5fd95328a9d540193d1ea989b4e925f6a8ce4c`
-
-Built from commit 8facbbb. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.
-]]></description>
-            <enclosure url="https://github.com/voiceflow-gallagan/pitot/releases/download/v0.1.3/Pitot-0.1.3.dmg" length="3426590" type="application/octet-stream" sparkle:edSignature="P6bOt3gxrFZWAefUCpNqTFAswItMQ7DFQjCRdxXthczkr3Dq0+0L+NjIx/pHiYPkyRShlbMpzpOBMJvgbyF/CQ=="/>
-        </item>
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: HxLrERiQEWwQPmsMSFKUuep+OkEaldoJBEj5nLhjMS5jmx1lEOOWNbCeaEjO5eQpD6H6CNM8hOKsCJuCWzydBQ==
-length: 5317
+edSignature: nhBSHoRz7biRUnKLDKxS/BCxp40vK+02eKPUpYIWWDydqt34T0geiUJLcw8+n5/d3yLulbbWqs7yVms1IhLGDg==
+length: 6098
 -->
