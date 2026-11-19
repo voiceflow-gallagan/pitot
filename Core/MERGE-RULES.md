@@ -35,7 +35,7 @@ Layers, lowest to highest: user (`~/.claude/settings.json`), project (`.claude/s
 | 25 | Claude Code ignores some variables, such as `CLAUDE_CONFIG_DIR`, `HOME` and `TMPDIR`, in project and local `env`. | Docs |
 | 26 | A `deny` rule from any file beats an `allow` rule from any file. | Docs |
 | 27 | Some restrictive values win even over managed settings, such as `disableClaudeAiConnectors: true` from any file or the lowest `maxEffortLevel`. | Docs, not tested |
-| 28 | Managed settings: `managed-settings.json` first, then `managed-settings.d/*.json` in alphabetical order. Nested blocks merge key by key. | Docs |
+| 28 | Managed settings: `managed-settings.json` first, then `managed-settings.d/*.json` in alphabetical order. Nested blocks merge key by key. A restrictive value from rule 27 in any of these files still wins. | Docs, inferred for restrictive values |
 | 29 | A file sets a key when the key is present. A `null` value counts as set. | Inferred |
 
 Docs pages: https://code.claude.com/docs/en/settings, https://code.claude.com/docs/en/settings-reference, https://code.claude.com/docs/en/managed-settings, https://code.claude.com/docs/en/hooks and https://code.claude.com/docs/en/permissions.

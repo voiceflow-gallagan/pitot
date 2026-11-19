@@ -107,7 +107,7 @@ public enum CatalogLinter {
     /// A row whose path is one of these, or nested under one, must be `userOnly`.
     public static let userOnlySettingKeys: Set<String> = [
         "askUserQuestionTimeout", "autoContinueAtUsageLimit", "autoMode", "bashEditDiffEnabled", "desktopSessionCleanupPeriodDays",
-        "dialogExpiry", "feedbackDrafts", "footerLinksRegexes", "modelPicker", "pluginConfigs", "processWrapper",
+        "dialogExpiry", "feedbackDrafts", "footerLinksRegexes", "modelPicker", "permissions.denyInsteadOfPrompting", "pluginConfigs", "processWrapper",
         "sandbox.allowAppleEvents", "sandbox.filesystem.disabled", "sandbox.network.strictAllowlist", "skipAutoPermissionPrompt",
         "skipDangerousModePermissionPrompt", "spellcheck", "sshConfigs", "syncClaudeAiPlugins", "syncClaudeAiSkills",
         "useAutoModeDuringPlan", "vimInsertModeRemaps",
@@ -115,7 +115,7 @@ public enum CatalogLinter {
 
     /// Env vars Claude Code ignores in a project or local `env` block.
     public static let userOnlyEnvNames: Set<String> = [
-        "BETA_TRACING_ENDPOINT", "CLAUDE_CODE_DISABLE_FILE_MENTIONS", "CLAUDE_CODE_ENABLE_TELEMETRY", "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA",
+        "BETA_TRACING_ENDPOINT", "CLAUDE_CODE_DISABLE_FILE_MENTIONS", "CLAUDE_CODE_ENABLE_TELEMETRY", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE", "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA",
         "CLAUDE_CODE_PLUGIN_CACHE_DIR", "CLAUDE_CODE_PLUGIN_SEED_DIR", "CLAUDE_CODE_PROCESS_WRAPPER", "CLAUDE_CODE_SYNC_PLUGINS",
         "CLAUDE_CODE_SYNC_SKILLS", "CLAUDE_CODE_TMPDIR", "CLAUDE_CONFIG_DIR", "ENABLE_BETA_TRACING_DETAILED", "ENABLE_ENHANCED_TELEMETRY_BETA",
         "HOME", "OTEL_LOG_ASSISTANT_RESPONSES", "OTEL_LOG_RAW_API_BODIES", "OTEL_LOG_TOOL_CONTENT", "OTEL_LOG_TOOL_DETAILS",

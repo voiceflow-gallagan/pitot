@@ -25,12 +25,13 @@ public struct EffectiveValue: Sendable, Equatable {
 ///
 /// Merging follows `SettingsMerge`, then these steps, all inferred (`Core/MERGE-RULES.md`):
 /// - Keys a layer cannot set are dropped from it first (`ScopedKey`): `modelPicker` in project and
-///   local, `deniedModels` outside managed, and the keys a repository cannot turn off.
+///   local, `deniedModels` outside managed, the keys a repository cannot turn off, and
+///   `permissions.denyInsteadOfPrompting` and `CLAUDE_CODE_EXPERIMENTAL_CODE_MODE` in project and local.
 /// - A managed `availableModels` replaces the merged list.
 /// - The restrictive keys follow `RestrictiveKey`.
 ///
 /// Not modeled: schema checks other than `null` (a value of the wrong type also makes Claude Code
-/// skip the file), the `env` variables Claude Code ignores in project and local files, project
+/// skip the file), the other `env` variables Claude Code ignores in project and local files, project
 /// `permissions.allow` rules that wait for workspace trust, plugin-supplied settings below user,
 /// and the `--settings` layer.
 public struct EffectiveSettings: Sendable {
@@ -100,7 +101,7 @@ public struct EffectiveSettings: Sendable {
             return rule.locks(managedValue: value)
         }
         if SettingsMerge.managedWholeKeys.contains(key) { return true }
-        if let scoped = ScopedKey.rule(for: key), scoped.readFrom.subtracting([.managed]).isEmpty { return true }
+        if let scoped = ScopedKey.rule(for: path), scoped.readFrom.subtracting([.managed]).isEmpty { return true }
         guard case .found(let value) = projection else { return true }
         if SettingsMerge.replacesWhole(key: last, parentKey: path.count > 1 ? path[path.count - 2] : nil) { return true }
         switch value {

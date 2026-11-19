@@ -54,6 +54,26 @@ test('minVersion drift is an ERROR in every direction', async (t) => {
   assert.equal(matching(result, 'ERROR', 'CLAUDE_CODE_SUBAGENT_MODEL_FORCE', /env-vars says "Requires Claude Code v2\.1\.257"/).length, 1);
 });
 
+test('an env minVersion from another page is INFO only while env-vars states no version', async (t) => {
+  const name = 'CLAUDE_CODE_EXPERIMENTAL_CODE_MODE';
+  const ws = await workspace(t);
+  await ws.editPage('env-vars', (text) =>
+    replaceOnce(text, '| `CLAUDE_CODE_NEW_INIT` |', `| \`${name}\` | Starts sessions in a made-up mode. See its own page for versions |\n| \`CLAUDE_CODE_NEW_INIT\` |`),
+  );
+  await ws.editJson('tweaks.json', (data) => {
+    data.tweaks.push({ ...tweak(data, 'DISABLE_TELEMETRY'), id: name, location: { type: 'env', name }, minVersion: '2.1.323' });
+    tweak(data, 'CLAUDE_CODE_NEW_INIT').minVersion = '2.1.323';
+  });
+  const result = await ws.run();
+  assert.equal(matching(result, 'ERROR', name, /minVersion/).length, 0);
+  assert.equal(matching(result, 'INFO', name, /minVersion 2\.1\.323 comes from code-mode/).length, 1);
+  assert.equal(matching(result, 'ERROR', 'CLAUDE_CODE_NEW_INIT', /states no version/).length, 1);
+
+  await ws.editPage('env-vars', (text) => replaceOnce(text, 'See its own page for versions', 'Requires Claude Code v2.1.320 or later'));
+  const drifted = await ws.run();
+  assert.equal(matching(drifted, 'ERROR', name, /minVersion is 2\.1\.323 but env-vars says "Requires Claude Code v2\.1\.320"/).length, 1);
+});
+
 test('a "The key requires" line after the Scope bullet gives the key version', async (t) => {
   const ws = await workspace(t);
   await ws.editPage('settings-reference', (text) =>

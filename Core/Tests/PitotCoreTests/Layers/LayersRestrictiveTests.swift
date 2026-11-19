@@ -11,6 +11,8 @@ struct LayersRestrictiveTests {
             ["disableClaudeAiConnectors"], ["enableArtifact"], ["disableArtifact"], ["isolatePeerMachines"],
             ["remoteControlAtStartup"], ["crossSessionInbound"], ["useAutoModeDuringPlan"], ["syncClaudeAiSkills"],
             ["syncClaudeAiPlugins"], ["maxEffortLevel"],
+            ["permissions", "blockWritesOutsideWorkingDirectories"], ["permissions", "denyInsteadOfPrompting"],
+            ["env", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"],
         ])
         for key in RestrictiveKey.all {
             #expect(!key.quote.isEmpty)
@@ -142,6 +144,92 @@ struct LayersRestrictiveTests {
             (.user, #"{"maxEffortLevel": "max"}"#)
         )
         #expect(noCap.value(at: ["maxEffortLevel"])?.value == "high")
+    }
+
+    @Test func writeBlockTrueFromAnyLayerApplies() throws {
+        let path = ["permissions", "blockWritesOutsideWorkingDirectories"]
+        let repo = LayersFixtures.settings(
+            (.user, #"{"permissions": {"blockWritesOutsideWorkingDirectories": true}}"#),
+            (.project, #"{"permissions": {"blockWritesOutsideWorkingDirectories": false}}"#)
+        )
+        let effective = try #require(repo.value(at: path))
+        #expect(effective.value == true)
+        #expect(effective.winner == .user)
+        #expect(effective.overriddenLayers == [.project])
+        #expect(repo.merged == ["permissions": ["blockWritesOutsideWorkingDirectories": true]])
+
+        let managedFalse = LayersFixtures.settings(
+            (.managed, #"{"permissions": {"blockWritesOutsideWorkingDirectories": false}}"#),
+            (.user, #"{"permissions": {"blockWritesOutsideWorkingDirectories": true}}"#)
+        )
+        #expect(managedFalse.value(at: path)?.value == true)
+        #expect(!managedFalse.lockedByManaged(path))
+        #expect(LayersFixtures.settings((.managed, #"{"permissions": {"blockWritesOutsideWorkingDirectories": true}}"#)).lockedByManaged(path))
+    }
+
+    @Test func denyInsteadOfPromptingComesFromUserOrManagedAndTrueWins() throws {
+        let path = ["permissions", "denyInsteadOfPrompting"]
+        let repo = LayersFixtures.settings(
+            (.user, #"{"permissions": {"denyInsteadOfPrompting": true}}"#),
+            (.project, #"{"permissions": {"denyInsteadOfPrompting": false}}"#)
+        )
+        let effective = try #require(repo.value(at: path))
+        #expect(effective.value == true)
+        #expect(effective.winner == .user)
+        #expect(effective.ignoredLayers == [.project])
+        #expect(repo.merged == ["permissions": ["denyInsteadOfPrompting": true]])
+
+        let local = LayersFixtures.settings(
+            (.user, #"{"permissions": {"denyInsteadOfPrompting": false}}"#),
+            (.local, #"{"permissions": {"denyInsteadOfPrompting": true}}"#)
+        )
+        #expect(local.value(at: path)?.value == false)
+        #expect(local.value(at: path)?.ignoredLayers == [.local])
+
+        let managedFalse = LayersFixtures.settings(
+            (.managed, #"{"permissions": {"denyInsteadOfPrompting": false}}"#),
+            (.user, #"{"permissions": {"denyInsteadOfPrompting": true}}"#)
+        )
+        #expect(managedFalse.value(at: path)?.value == true)
+        #expect(!managedFalse.lockedByManaged(path))
+        #expect(LayersFixtures.settings((.managed, #"{"permissions": {"denyInsteadOfPrompting": true}}"#)).lockedByManaged(path))
+    }
+
+    @Test func codeModeZeroFromUserOrManagedKeepsItOff() throws {
+        let path = ["env", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"]
+        let userOff = LayersFixtures.settings(
+            (.managed, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"}}"#),
+            (.user, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "0"}}"#)
+        )
+        let effective = try #require(userOff.value(at: path))
+        #expect(effective.value == "0")
+        #expect(effective.winner == .user)
+        #expect(effective.ignoredLayers == [.managed])
+        #expect(!userOff.lockedByManaged(path))
+        #expect(userOff.merged == ["env": ["CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "0"]])
+
+        let managedOff = LayersFixtures.settings(
+            (.managed, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "0"}}"#),
+            (.user, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"}}"#)
+        )
+        #expect(managedOff.value(at: path)?.value == "0")
+        #expect(managedOff.value(at: path)?.winner == .managed)
+        #expect(managedOff.lockedByManaged(path))
+    }
+
+    @Test func codeModeIsOnOnlyFromUserAndIgnoredInProjectAndLocal() throws {
+        let path = ["env", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"]
+        let repo = LayersFixtures.settings(
+            (.user, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"}}"#),
+            (.project, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "0"}}"#)
+        )
+        let effective = try #require(repo.value(at: path))
+        #expect(effective.value == "1")
+        #expect(effective.winner == .user)
+        #expect(effective.ignoredLayers == [.project])
+
+        #expect(LayersFixtures.settings((.managed, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"}}"#)).value(at: path) == nil)
+        #expect(LayersFixtures.settings((.local, #"{"env": {"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"}}"#)).value(at: path) == nil)
     }
 
     @Test func restrictiveManagedValueLocksOnlyWhenNothingStricterExists() {

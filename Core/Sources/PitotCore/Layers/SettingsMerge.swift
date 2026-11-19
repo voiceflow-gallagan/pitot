@@ -92,35 +92,42 @@ enum SettingsMerge {
     }
 }
 
-/// A top-level key Claude Code reads only from some layers. Elsewhere it is ignored.
+/// A key, at any depth, that Claude Code reads only from some layers. Elsewhere it is ignored.
 struct ScopedKey: Sendable {
-    let key: String
+    let path: [String]
     let readFrom: Set<LayerID>
     let quote: String
 
-    /// From https://code.claude.com/docs/en/settings-reference.md, read 2026-10-06.
+    /// From https://code.claude.com/docs/en/settings-reference.md, read 2026-10-06, and the last two
+    /// rows 2026-11-19.
     static let all: [ScopedKey] = [
         ScopedKey(
-            key: "modelPicker",
+            path: ["modelPicker"],
             readFrom: [.managed, .user],
             quote: "Claude Code reads the key from managed settings, `--settings`, and user settings, and ignores it in project and local settings"
         ),
         ScopedKey(
-            key: "deniedModels",
+            path: ["deniedModels"],
             readFrom: [.managed],
             quote: "Claude Code ignores the key in user, project, and local settings and in `--settings`, with a warning"
         ),
-        ScopedKey(key: "useAutoModeDuringPlan", readFrom: [.managed, .user, .local], quote: "User, local, or managed. A repository can't turn it off for you."),
-        ScopedKey(key: "syncClaudeAiSkills", readFrom: [.managed, .user, .local], quote: "User, local, or managed, and files passed with `--settings`. A repository can't turn it off for you."),
-        ScopedKey(key: "syncClaudeAiPlugins", readFrom: [.managed, .user, .local], quote: "User, local, or managed, and files passed with `--settings`. A repository can't turn it off for you."),
+        ScopedKey(path: ["useAutoModeDuringPlan"], readFrom: [.managed, .user, .local], quote: "User, local, or managed. A repository can't turn it off for you."),
+        ScopedKey(path: ["syncClaudeAiSkills"], readFrom: [.managed, .user, .local], quote: "User, local, or managed, and files passed with `--settings`. A repository can't turn it off for you."),
+        ScopedKey(path: ["syncClaudeAiPlugins"], readFrom: [.managed, .user, .local], quote: "User, local, or managed, and files passed with `--settings`. A repository can't turn it off for you."),
+        ScopedKey(path: ["permissions", "denyInsteadOfPrompting"], readFrom: [.managed, .user], quote: "User or managed, and `--settings`. A repository can't set it for you."),
+        ScopedKey(
+            path: ["env", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"],
+            readFrom: [.managed, .user],
+            quote: "With a `0` in any of the first three or in managed settings, Code Mode stays off whatever you set elsewhere"
+        ),
     ]
 
-    static func rule(for key: String) -> ScopedKey? {
-        all.first { $0.key == key }
+    static func rule(for path: [String]) -> ScopedKey? {
+        all.first { path.starts(with: $0.path) }
     }
 
     /// `root` without the keys Claude Code ignores in `layer`.
     static func readable(_ root: JSONValue, in layer: LayerID) -> JSONValue {
-        all.filter { !$0.readFrom.contains(layer) }.reduce(root) { SettingsTree.removing([$1.key], from: $0) }
+        all.filter { !$0.readFrom.contains(layer) }.reduce(root) { SettingsTree.removing($1.path, from: $0) }
     }
 }

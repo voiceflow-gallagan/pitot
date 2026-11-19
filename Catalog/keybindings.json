@@ -1,6 +1,6 @@
 {
-  "researchDate": "2026-10-19",
-  "claudeCodeVersionChecked": "2.1.303",
+  "researchDate": "2026-11-19",
+  "claudeCodeVersionChecked": "2.1.327",
   "docURL": "https://code.claude.com/docs/en/keybindings",
   "header": {
     "schema": "https://www.schemastore.org/claude-code-keybindings.json",
@@ -1221,6 +1221,15 @@
       ],
       "description": "Reloads usage data after an error",
       "defaultKey": "R"
+    },
+    {
+      "id": "settings:fixUsage",
+      "namespace": "settings",
+      "contexts": [
+        "Settings"
+      ],
+      "description": "Sends your session the /usage fixes Claude Code can apply",
+      "defaultKey": "F"
     },
     {
       "id": "agents:switchView",

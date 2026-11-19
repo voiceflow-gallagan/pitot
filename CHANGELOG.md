@@ -4,6 +4,23 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+### Added
+
+- Five new catalog rows from the Claude Code 2.1.327 docs: Code Mode, turning off ultrathink, blocking writes outside the project, denying instead of prompting, and the auto mode classifier model.
+- Code Mode and "Deny instead of prompting" can be set only in user settings. Turning off the write block asks you to confirm.
+- Pitot shows the value Claude Code uses for these rows. A true in any file keeps the write block on. A true in user or managed settings keeps "Deny instead of prompting" on. A 0 in user or managed settings keeps Code Mode off. Project and local values of those two rows are shown as ignored.
+- Code Mode is available from Claude Code v2.1.323.
+- The `settings:fixUsage` keybinding, which applies the `/usage` fixes.
+
+### Fixed
+
+- A restrictive managed value, such as a lower effort cap or a protective true, now stays in effect when a later file in `managed-settings.d` sets a weaker value.
+
+### Removed
+
+- The `fable[1m]` model suggestion, which the docs no longer list.
+- `CLAUDE_AFK_TIMEOUT_MS` as an override of the question timeout, because the docs no longer list it.
+
 ## [0.1.5] - 2026-10-19
 
 ### Fixed
