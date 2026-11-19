@@ -20,7 +20,8 @@ struct CatalogDataTests {
 
     /// Rows that make Claude Code safer when on, so turning them off must ask first.
     private static let protectiveIds = [
-        "sandbox.enabled", "permissions.blockReadsOutsideWorkingDirectories", "permissions.disableBypassPermissionsMode",
+        "sandbox.enabled", "permissions.blockReadsOutsideWorkingDirectories", "permissions.blockWritesOutsideWorkingDirectories",
+        "permissions.disableBypassPermissionsMode",
     ]
 
     private func load() throws -> Catalog {
@@ -32,7 +33,7 @@ struct CatalogDataTests {
     }
 
     @Test func rowCountIsInRange() throws {
-        #expect((25...45).contains(try load().tweaks.count))
+        #expect((25...50).contains(try load().tweaks.count))
     }
 
     @Test func everyMustHaveIdIsPresent() throws {
@@ -74,7 +75,7 @@ struct CatalogDataTests {
     @Test(
         "documented env overrides are modelled",
         arguments: [
-            ("askUserQuestionTimeout", ["CLAUDE_AFK_TIMEOUT_MS"]), ("awaySummaryEnabled", ["CLAUDE_CODE_ENABLE_AWAY_SUMMARY"]),
+            ("awaySummaryEnabled", ["CLAUDE_CODE_ENABLE_AWAY_SUMMARY"]),
             ("model", ["ANTHROPIC_MODEL"]), ("promptSuggestionEnabled", [
                 "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION", "DISABLE_TELEMETRY", "DO_NOT_TRACK", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
             ]),

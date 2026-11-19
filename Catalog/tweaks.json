@@ -1,6 +1,6 @@
 {
-  "researchDate": "2026-10-19",
-  "claudeCodeVersionChecked": "2.1.303",
+  "researchDate": "2026-11-19",
+  "claudeCodeVersionChecked": "2.1.327",
   "tweaks": [
     {
       "id": "tui",
@@ -491,11 +491,6 @@
       ],
       "status": "documented",
       "scope": "userOnly",
-      "overriddenBy": [
-        {
-          "envName": "CLAUDE_AFK_TIMEOUT_MS"
-        }
-      ],
       "docURL": "https://code.claude.com/docs/en/settings-reference#askuserquestiontimeout",
       "notes": "Only honored in user or managed settings. Claude continues without your answer after the timeout."
     },
@@ -575,11 +570,6 @@
           "value": "sonnet[1m]",
           "label": "Sonnet, 1M context",
           "note": "Sonnet with a 1 million token context window. No effect when sonnet already resolves to a model with a native 1M window."
-        },
-        {
-          "value": "fable[1m]",
-          "label": "Fable, 1M context",
-          "note": "The 1M context form of the fable alias."
         },
         {
           "value": "opusplan[1m]",
@@ -702,6 +692,56 @@
       ],
       "docURL": "https://code.claude.com/docs/en/settings-reference#fastmode",
       "notes": "Fast mode costs more per token."
+    },
+    {
+      "id": "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"
+      },
+      "valueType": {
+        "type": "enum",
+        "options": [
+          {
+            "value": "1",
+            "label": "On"
+          },
+          {
+            "value": "0",
+            "label": "Off"
+          }
+        ]
+      },
+      "defaultDescription": "Unset: sessions start without Code Mode.",
+      "title": "Code Mode",
+      "description": "Start new sessions in Code Mode, where Claude runs tool calls from code. Experimental.",
+      "category": "Model and cost",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "scope": "userOnly",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Experimental. Needs Claude Code v2.1.323 or later, per the Code Mode page. Claude Code reads it from your shell, user settings or --settings only, never from project or local settings. A 0 in any of those, or in managed settings, keeps Code Mode off. Code Mode needs the Anthropic API directly, so a custom ANTHROPIC_BASE_URL, an API key helper, OpenTelemetry export or DISABLE_TELEMETRY stops it from starting. Keep it set to 1 to resume a Code Mode session."
+    },
+    {
+      "id": "CLAUDE_CODE_DISABLE_ULTRATHINK",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_DISABLE_ULTRATHINK"
+      },
+      "valueType": {
+        "type": "flag"
+      },
+      "defaultDescription": "Unset: the ultrathink keyword asks for deep reasoning on one turn.",
+      "title": "Turn off ultrathink",
+      "description": "Stop the ultrathink keyword in a prompt from raising reasoning for that turn.",
+      "category": "Model and cost",
+      "risks": [],
+      "status": "documented",
+      "minVersion": "2.1.316",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "The docs say to set it to 1."
     },
     {
       "id": "promptCacheTtl",
@@ -1176,6 +1216,62 @@
       "notes": "Protective. True in any file applies, and a repo cannot lift it."
     },
     {
+      "id": "permissions.blockWritesOutsideWorkingDirectories",
+      "location": {
+        "type": "setting",
+        "path": [
+          "permissions",
+          "blockWritesOutsideWorkingDirectories"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: writes outside follow your permission mode.",
+      "title": "Block writes outside the project",
+      "description": "Refuse Write, Edit and NotebookEdit calls outside the working directories in every mode.",
+      "category": "Safety",
+      "risks": [
+        "security",
+        "behavior"
+      ],
+      "status": "documented",
+      "confirm": {
+        "message": "Claude's file tools will be able to write outside the working directories again, as your permission mode allows. A true in another settings file still applies.",
+        "appliesWhen": {
+          "type": "onDisable"
+        }
+      },
+      "minVersion": "2.1.314",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-blockwritesoutsideworkingdirectories",
+      "notes": "Protective. True in any file applies, and a repo cannot lift it. Applies in bypassPermissions too. It does not limit shell commands, MCP tools or hooks; use the sandbox for those. While it is on, Claude Code removes the EnterWorktree and ExitWorktree tools."
+    },
+    {
+      "id": "permissions.denyInsteadOfPrompting",
+      "location": {
+        "type": "setting",
+        "path": [
+          "permissions",
+          "denyInsteadOfPrompting"
+        ]
+      },
+      "valueType": {
+        "type": "bool"
+      },
+      "defaultDescription": "Unset: a call that needs approval prompts you.",
+      "title": "Deny instead of prompting",
+      "description": "Deny a tool call that would wait on a permission prompt, and let the turn continue.",
+      "category": "Safety",
+      "risks": [
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.319",
+      "scope": "userOnly",
+      "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-denyinsteadofprompting",
+      "notes": "For sessions nobody watches. Allow rules, your permission mode and the auto mode classifier still approve calls. Only user settings, managed settings and --settings can set it; a repo cannot."
+    },
+    {
       "id": "permissions.disableBypassPermissionsMode",
       "location": {
         "type": "setting",
@@ -1264,6 +1360,28 @@
       },
       "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-defaultmode",
       "notes": "Settings reference: \"auto and bypassPermissions don't take effect from project or local settings, so set them in ~/.claude/settings.json instead.\" Pitot writes those two values only to user settings. bypassPermissions skips almost all prompts. The docs also accept manual as an alias for default. Pitot does not offer it."
+    },
+    {
+      "id": "CLAUDE_CODE_AUTO_MODE_MODEL",
+      "location": {
+        "type": "env",
+        "name": "CLAUDE_CODE_AUTO_MODE_MODEL"
+      },
+      "valueType": {
+        "type": "string"
+      },
+      "defaultDescription": "Unset: auto mode uses its default classifier model.",
+      "title": "Auto mode classifier model",
+      "description": "Set the model for the classifier requests auto mode sends, as a full model ID.",
+      "category": "Model and cost",
+      "risks": [
+        "cost",
+        "behavior"
+      ],
+      "status": "documented",
+      "minVersion": "2.1.302",
+      "docURL": "https://code.claude.com/docs/en/env-vars#variables",
+      "notes": "Use a full model ID such as claude-sonnet-4-6. The permission modes page lists the cases where Claude Code ignores it."
     },
     {
       "id": "ANTHROPIC_BASE_URL",

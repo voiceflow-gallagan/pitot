@@ -4,6 +4,17 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+### Added
+
+- Five new catalog rows from the Claude Code 2.1.327 docs: Code Mode, turning off ultrathink, blocking writes outside the project, denying instead of prompting, and the auto mode classifier model.
+- Code Mode and "Deny instead of prompting" can be set only in user settings. Turning off the write block asks you to confirm.
+- The `settings:fixUsage` keybinding, which applies the `/usage` fixes.
+
+### Removed
+
+- The `fable[1m]` model suggestion, which the docs no longer list.
+- `CLAUDE_AFK_TIMEOUT_MS` as an override of the question timeout, because the docs no longer list it.
+
 ## [0.1.5] - 2026-10-19
 
 ### Fixed
