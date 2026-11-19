@@ -136,6 +136,19 @@ struct CatalogDataTests {
         #expect(values == ["sonnet", "opus", "haiku", "fable"])
     }
 
+    @Test func liftingTheWriteBlockConfirmsWhileARepoHoldsFalse() throws {
+        let tweak = try #require(try load().tweak(id: "permissions.blockWritesOutsideWorkingDirectories"))
+        let effective = LayersFixtures.settings(
+            (.user, #"{"permissions": {"blockWritesOutsideWorkingDirectories": true}}"#),
+            (.project, #"{"permissions": {"blockWritesOutsideWorkingDirectories": false}}"#)
+        )
+        let old = tweak.reading(in: effective)
+
+        #expect(old.reading == .value(true))
+        #expect(Tweak.Confirmation.isRequired(for: tweak, old: old, new: nil))
+        #expect(Tweak.Confirmation.isRequired(for: tweak, old: old, new: false))
+    }
+
     @Test func securityRowsHaveAConfirm() throws {
         for tweak in try load().tweaks where tweak.risks.contains(.security) {
             #expect(tweak.confirm != nil, "\(tweak.id) has no confirm")

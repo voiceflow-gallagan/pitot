@@ -107,7 +107,7 @@ public enum CatalogLinter {
     /// A row whose path is one of these, or nested under one, must be `userOnly`.
     public static let userOnlySettingKeys: Set<String> = [
         "askUserQuestionTimeout", "autoContinueAtUsageLimit", "autoMode", "bashEditDiffEnabled", "desktopSessionCleanupPeriodDays",
-        "dialogExpiry", "feedbackDrafts", "footerLinksRegexes", "modelPicker", "pluginConfigs", "processWrapper",
+        "dialogExpiry", "feedbackDrafts", "footerLinksRegexes", "modelPicker", "permissions.denyInsteadOfPrompting", "pluginConfigs", "processWrapper",
         "sandbox.allowAppleEvents", "sandbox.filesystem.disabled", "sandbox.network.strictAllowlist", "skipAutoPermissionPrompt",
         "skipDangerousModePermissionPrompt", "spellcheck", "sshConfigs", "syncClaudeAiPlugins", "syncClaudeAiSkills",
         "useAutoModeDuringPlan", "vimInsertModeRemaps",

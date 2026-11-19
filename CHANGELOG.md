@@ -8,6 +8,8 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 - Five new catalog rows from the Claude Code 2.1.327 docs: Code Mode, turning off ultrathink, blocking writes outside the project, denying instead of prompting, and the auto mode classifier model.
 - Code Mode and "Deny instead of prompting" can be set only in user settings. Turning off the write block asks you to confirm.
+- Pitot shows the value Claude Code uses for these rows. A true in any file keeps the write block on. A true in user or managed settings keeps "Deny instead of prompting" on. A 0 in user or managed settings keeps Code Mode off. Project and local values of those two rows are shown as ignored.
+- Code Mode is available from Claude Code v2.1.323.
 - The `settings:fixUsage` keybinding, which applies the `/usage` fixes.
 
 ### Removed

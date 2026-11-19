@@ -6,6 +6,9 @@ import { matchesEnvName } from './parse-settings.js';
 const USER_ONLY_SCOPES = new Set(['User or managed', 'User, local, or managed']);
 const KEY_PAGES = new Set(['settings-reference', 'env-vars']);
 
+/** Env vars whose version env-vars leaves to another page, which this check does not read. */
+const ENV_VERSION_PAGES = { CLAUDE_CODE_EXPERIMENTAL_CODE_MODE: 'code-mode' };
+
 export function rowKey(row) {
   return row.location.type === 'env' ? row.location.name : row.location.path.join('.');
 }
@@ -144,7 +147,12 @@ function checkEnv(row, docs, out) {
     out.error('tweaks', row.id, `env var ${name} is not on env-vars (removed or renamed)`);
     return;
   }
-  checkVersion(row, documented.minVersion, documented.versions, 'env-vars', out);
+  const versionPage = ENV_VERSION_PAGES[name];
+  if (versionPage && row.minVersion && !documented.minVersion) {
+    out.info('tweaks', row.id, `minVersion ${row.minVersion} comes from ${versionPage}, which this check does not read`);
+  } else {
+    checkVersion(row, documented.minVersion, documented.versions, 'env-vars', out);
+  }
   const ignored = docs.settings?.ignoredEnv;
   if (!ignored) return;
   const userOnly = row.scope === 'userOnly';

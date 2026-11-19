@@ -720,9 +720,10 @@
         "behavior"
       ],
       "status": "documented",
+      "minVersion": "2.1.323",
       "scope": "userOnly",
       "docURL": "https://code.claude.com/docs/en/env-vars#variables",
-      "notes": "Experimental. Needs Claude Code v2.1.323 or later, per the Code Mode page. Claude Code reads it from your shell, user settings or --settings only, never from project or local settings. A 0 in any of those, or in managed settings, keeps Code Mode off. Code Mode needs the Anthropic API directly, so a custom ANTHROPIC_BASE_URL, an API key helper, OpenTelemetry export or DISABLE_TELEMETRY stops it from starting. Keep it set to 1 to resume a Code Mode session."
+      "notes": "Experimental. Claude Code reads it from your shell, user settings or --settings only, never from project or local settings. A 0 in any of those, or in managed settings, keeps Code Mode off. Code Mode needs the Anthropic API directly, so a custom ANTHROPIC_BASE_URL, an API key helper, OpenTelemetry export or DISABLE_TELEMETRY stops it from starting. Keep it set to 1 to resume a Code Mode session."
     },
     {
       "id": "CLAUDE_CODE_DISABLE_ULTRATHINK",

@@ -2,7 +2,8 @@
 /// managed settings.
 ///
 /// The rows are the docs table "Exceptions to managed settings precedence", read 2026-10-06 at
-/// `docURL`. They are documented, not tested against Claude Code (rule 27 in `Core/MERGE-RULES.md`).
+/// `docURL`, then three keys whose settings-reference entry gives the same kind of rule, read
+/// 2026-11-19. They are documented, not tested against Claude Code (rule 27 in `Core/MERGE-RULES.md`).
 ///
 /// How a value is chosen: the layers outside `onlyRestrictiveFrom` give a base value by plain
 /// precedence. Each restrictive value from a layer in `honoredFrom` then competes with the base,
@@ -73,9 +74,22 @@ public struct RestrictiveKey: Sendable, Equatable {
             path: ["maxEffortLevel"], ladder: ["max", "xhigh", "high", "medium", "low"], honoredFrom: anyLayer, onlyRestrictiveFrom: [],
             quote: "A lower cap from any scope, including `--settings`. Honored even when the managed settings Claude Code applies set a higher cap; the lowest cap applies"
         ),
+        RestrictiveKey(
+            path: ["permissions", "blockWritesOutsideWorkingDirectories"], ladder: [false, true], honoredFrom: anyLayer, onlyRestrictiveFrom: [],
+            quote: "A `true` in any file the session loads applies, so a repository can turn the block on for itself but can't lift yours. `false`: the same as unset"
+        ),
+        RestrictiveKey(
+            path: ["permissions", "denyInsteadOfPrompting"], ladder: [false, true], honoredFrom: userOrManaged, onlyRestrictiveFrom: [],
+            quote: "`false`: the same as unset; calls are still denied if another of these sources sets `true`"
+        ),
+        RestrictiveKey(
+            path: ["env", "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE"], ladder: ["1", "0"], honoredFrom: userOrManaged, onlyRestrictiveFrom: [.managed],
+            quote: "You can turn on Code Mode with `CLAUDE_CODE_EXPERIMENTAL_CODE_MODE` from your shell, user settings, or a `--settings` file, and not from managed, project, or local settings. With a `0` in any of the first three or in managed settings, Code Mode stays off whatever you set elsewhere"
+        ),
     ]
 
     private static let anyLayer = Set(LayerID.allCases)
+    private static let userOrManaged: Set<LayerID> = [.managed, .user]
     private static let projectOrLocal: Set<LayerID> = [.project, .local]
     private static let notProject: Set<LayerID> = [.managed, .user, .local]
 
