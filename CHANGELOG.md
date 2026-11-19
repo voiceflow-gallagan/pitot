@@ -4,6 +4,8 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 
 ## [Unreleased]
 
+## [0.1.6] - 2026-11-19
+
 ### Added
 
 - Five new catalog rows from the Claude Code 2.1.327 docs: Code Mode, turning off ultrathink, blocking writes outside the project, denying instead of prompting, and the auto mode classifier model.
