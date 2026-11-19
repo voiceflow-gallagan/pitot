@@ -13,6 +13,9 @@ public struct ManagedSettings: Sendable, Equatable {
 /// - "Claude Code merges `managed-settings.json` first, then every `*.json` file in the directory
 ///   in alphabetical order. ... Claude Code ignores hidden files and files that don't end in
 ///   `.json`." The files merge with the same rules as the layers (`SettingsMerge`).
+/// - A restrictive value (`RestrictiveKey`) from any managed file wins over a later file, for the
+///   keys whose rule honors managed settings. Inferred from the docs wording "from any scope",
+///   "any file" and "any managed source".
 /// - "An empty managed settings file counts as `{}`." An absent file is not a failure.
 /// - A file that "isn't valid JSON, or its top level isn't an object" makes Claude Code refuse to
 ///   start, so the whole layer is `.invalid`.
@@ -66,7 +69,19 @@ public struct ManagedSettingsReader: Sendable {
         }
         if documents.isEmpty { return layer(.missing) }
         if documents.count == 1, let document = documents.first { return layer(.loaded(document)) }
-        return layer(.loaded(JSONWriter.document(SettingsMerge.fold(documents.map { $0.decode($0.root) }))))
+        return layer(.loaded(JSONWriter.document(Self.fold(documents.map { $0.decode($0.root) }))))
+    }
+
+    private static func fold(_ roots: [JSONValue]) -> JSONValue {
+        var tree = SettingsMerge.fold(roots)
+        for rule in RestrictiveKey.all where rule.honoredFrom.contains(.managed) {
+            let values = roots.compactMap { SettingsTree.value(in: $0, at: rule.path) }
+            guard let last = values.last, let strictest = values.max(by: { rule.rank(of: $0) < rule.rank(of: $1) }),
+                  rule.rank(of: strictest) > rule.rank(of: last)
+            else { continue }
+            tree = SettingsTree.setting(strictest, at: rule.path, in: tree) ?? tree
+        }
+        return tree
     }
 
     private func layer(_ state: SettingsLayer.State) -> SettingsLayer {

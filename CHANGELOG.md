@@ -12,6 +12,10 @@ All notable changes to Pitot are listed here. The format follows [Keep a Changel
 - Code Mode is available from Claude Code v2.1.323.
 - The `settings:fixUsage` keybinding, which applies the `/usage` fixes.
 
+### Fixed
+
+- A restrictive managed value, such as a lower effort cap or a protective true, now stays in effect when a later file in `managed-settings.d` sets a weaker value.
+
 ### Removed
 
 - The `fable[1m]` model suggestion, which the docs no longer list.

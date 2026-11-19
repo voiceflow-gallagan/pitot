@@ -150,6 +150,27 @@ struct LayersManagedTests {
         #expect(LayersFixtures.problem(of: reader.load()) == .managedFile(name: "managed-settings.json", problem: .notAnObject))
     }
 
+    /// Inferred: a restrictive value in an earlier managed file still wins over a later drop-in.
+    @Test func restrictiveValueFromTheMainFileSurvivesALaterDropIn() throws {
+        try folder.write(
+            "managed-settings.json",
+            #"{"permissions": {"blockWritesOutsideWorkingDirectories": true}, "maxEffortLevel": "low", "disableClaudeAiConnectors": true, "crossSessionInbound": "refuse"}"#
+        )
+        try dropIn(
+            "10.json",
+            #"{"permissions": {"blockWritesOutsideWorkingDirectories": false}, "maxEffortLevel": "high", "disableClaudeAiConnectors": false, "crossSessionInbound": "accept"}"#
+        )
+
+        #expect(try value(["permissions", "blockWritesOutsideWorkingDirectories"]) == true)
+        #expect(try value(["maxEffortLevel"]) == "low")
+        #expect(try value(["disableClaudeAiConnectors"]) == true)
+        #expect(try value(["crossSessionInbound"]) == "accept")
+        let effective = EffectiveSettings(layers: [reader.load(), LayersFixtures.layer(.user, #"{"maxEffortLevel": "medium"}"#)])
+        #expect(effective.value(at: ["permissions", "blockWritesOutsideWorkingDirectories"])?.value == true)
+        #expect(effective.lockedByManaged(["permissions", "blockWritesOutsideWorkingDirectories"]))
+        #expect(effective.value(at: ["maxEffortLevel"])?.winner == .managed)
+    }
+
     /// Inferred: each file is checked before the merge, so a null drops only that file's key.
     @Test func nullInADropInRemovesOnlyThatFilesKey() throws {
         try folder.write("managed-settings.json", #"{"model": "opus"}"#)
