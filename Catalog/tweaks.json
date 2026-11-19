@@ -1245,7 +1245,7 @@
       },
       "minVersion": "2.1.314",
       "docURL": "https://code.claude.com/docs/en/settings-reference#permissions-blockwritesoutsideworkingdirectories",
-      "notes": "Protective. True in any file applies, and a repo cannot lift it. Applies in bypassPermissions too. It does not limit shell commands, MCP tools or hooks; use the sandbox for those. While it is on, Claude Code removes the EnterWorktree and ExitWorktree tools."
+      "notes": "Protective. True in any file applies, and a repo cannot lift it. Applies in bypassPermissions too. It does not limit shell commands, MCP tools or the programs hooks run. The sandbox can limit where shell commands write. While it is on, Claude Code removes the EnterWorktree and ExitWorktree tools."
     },
     {
       "id": "permissions.denyInsteadOfPrompting",
